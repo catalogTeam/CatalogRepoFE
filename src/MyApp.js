@@ -3,12 +3,68 @@ import Table from "./Table";
 import Form from "./Form";
 import axios from "axios";
 
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+const users = [
+  {
+    user: 'Charlie',
+    id: '123ABC',
+    profile_pic: 'profile_pic.jpg',
+    bio: 'this is a bio',
+
+    albums: [
+      {
+        name: 'The White Album',
+        id: '123ABC',
+        artist: 'The Beatles',
+        album_pic: 'url',
+        rating: 4.2
+      },
+      {
+        name: 'Trick',
+        id: '123ABC',
+        artist: 'Alex G',
+        album_pic: 'url',
+        rating: 4.0
+      },
+      {
+        name: 'In Rainbows',
+        id: '123ABC',
+        artist: 'Radiohead',
+        album_pic: 'url',
+        rating: 4.9
+      }
+    ],
+    artists: [
+      {
+        artist_name: 'The Beatles',
+        album_pic: 'url',
+        id: '123ABC'
+      },
+      {
+        name: 'Trick',
+        artist: 'Alex G',
+        artist_name: 'The Beatles',
+        album_pic: 'url',
+        id: '123ABC'
+      },
+      {
+        name: 'In Rainbows',
+        artist: 'Radiohead',
+        album_pic: 'url',
+        rating: 4.9
+      }
+    ]
+  }
+];
+
+
 function MyApp() {
-  const [characters, setCharacters] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     fetchAll().then((result) => {
-      if (result) setCharacters(result);
+      if (result) setUsers(result);
     });
   }, []);
 
@@ -45,25 +101,24 @@ function MyApp() {
 
   function updateList(person) {
     makePostCall(person).then((result) => {
-      console.log("hello");
       if (result && result.status === 201)
-        setCharacters([...characters, result.data]);
+        setUsers([...users, result.data]);
     });
   }
 
   function removeOneCharacter(index) {
-    const toDelete = characters[index];
+    const toDelete = users[index];
     makeDeleteCall(toDelete["id"]).then((result) => {
-      const updated = characters.filter((character, i) => {
+      const updated = users.filter((character, i) => {
         return i !== index;
       });
-      setCharacters(updated);
+      setUsers(updated);
     });
   }
 
   return (
     <div className="container">
-      <Table characterData={characters} removeCharacter={removeOneCharacter} />
+      {/* <Table characterData={users} removeCharacter={removeOneCharacter} /> */}
       <Form handleSubmit={updateList} />
     </div>
   );
