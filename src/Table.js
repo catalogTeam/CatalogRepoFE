@@ -1,4 +1,5 @@
 import React from "react";
+import {Link } from "react-router-dom";
 
 function TableHeader() {
   return (
@@ -28,13 +29,17 @@ function TableBody(props) {
 
 function Table(props) {
   return (
-    <table>
-      <TableHeader />
+    <div>
+      <li><Link to='/'>Back</Link></li>
+      <table>
+        <TableHeader />
       <TableBody
         characterData={props.characterData}
         removeCharacter={props.removeCharacter}
       />
-    </table>
+      </table>
+    </div>
+
   );
 }
 
