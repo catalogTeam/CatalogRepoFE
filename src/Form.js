@@ -3,12 +3,6 @@ import Table from "./Table";
 import axios from "axios";
 import Table2 from "./Table2";
 
-
-import users from "./MyApp";
-import removeOneCharacter from "./MyApp";
-
-
-
 function Form(props) {
     const [users, setUsers] = useState([]);
 
@@ -107,21 +101,21 @@ function Form(props) {
                 type="text"
                 name="artist"
                 id="artist"
-                value={user.artists}
+                value={user.artists.push}
                 onChange={handleChange} />
             <label htmlFor="albums">Enter an artist</label>
             <input
                 type="text"
                 name="artist"
                 id="artist"
-                value={user.artists}
+                value={user.artists.push}
                 onChange={handleChange} />
             <Table2 characterData={users} />
             <input
                 type="text"
                 name="artist"
                 id="artist"
-                value={user.artists}
+                value={user.artists.push}
                 onChange={handleChange} />
             </form>
 
