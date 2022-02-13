@@ -123,11 +123,24 @@ function MyApp() {
     // </div>
     <div className="containe ">
       <BrowserRouter>
+        <nav>
+          <ul>
+            <li><Link to='/users-table'>List all</Link></li>
+            <li><Link to='/'>back</Link></li>
+
+          </ul>
+        </nav>
         <Routes>
           <Route
             path='/'
             element={
               <Form handleSubmit={updateList} />}
+          />
+          <Route
+            path='/users-table'
+            element={
+              <Table characterData={users} />
+            }
           />
         </Routes>
       </BrowserRouter>
