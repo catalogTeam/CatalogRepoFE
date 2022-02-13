@@ -98,20 +98,27 @@ function Form(props) {
             <label htmlFor="albums">Albums</label>
             <Table characterData={users} />
             <input
-                type="title"
+                type="text"
                 name="title"
                 id="title"
                 value={user.title}
                 onChange={handleChange} />
             <input
-                type="artist"
+                type="text"
+                name="artist"
+                id="artist"
+                value={user.artists}
+                onChange={handleChange} />
+            <label htmlFor="albums">Enter an artist</label>
+            <input
+                type="text"
                 name="artist"
                 id="artist"
                 value={user.artists}
                 onChange={handleChange} />
             <Table2 characterData={users} />
             <input
-                type="artist"
+                type="text"
                 name="artist"
                 id="artist"
                 value={user.artists}
