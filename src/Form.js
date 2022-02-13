@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import axios from "axios";
+import Table2 from "./Table2";
+
 
 import users from "./MyApp";
 import removeOneCharacter from "./MyApp";
@@ -92,9 +94,30 @@ function Form(props) {
                 id="album"
                 value={user.albums}
                 onChange={handleChange} />
-                <label htmlFor="albums">albums</label>
-            </form>
+                
+            <label htmlFor="albums">Albums</label>
             <Table characterData={users} />
+            <input
+                type="title"
+                name="title"
+                id="title"
+                value={user.title}
+                onChange={handleChange} />
+            <input
+                type="artist"
+                name="artist"
+                id="artist"
+                value={user.artists}
+                onChange={handleChange} />
+            <Table2 characterData={users} />
+            <input
+                type="artist"
+                name="artist"
+                id="artist"
+                value={user.artists}
+                onChange={handleChange} />
+            </form>
+
         </div>
     ); 
 }

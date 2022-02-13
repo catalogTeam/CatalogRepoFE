@@ -1,22 +1,19 @@
 import React from "react";
-import {Link } from "react-router-dom";
 
-function TableHeader() {
+function Table2Header() {
   return (
     <thead>
       <tr>
-        <th>Title</th>
         <th>Artist</th>
       </tr>
     </thead>
   );
 }
 
-function TableBody(props) {
+function Table2Body(props) {
   const rows = props.characterData.map((row, index) => {
     return (
       <tr key={index}>
-        <td>{row.Title}</td>
         <td>{row.Artist}</td>
       </tr>
     );
@@ -24,13 +21,13 @@ function TableBody(props) {
   return <tbody>{rows}</tbody>;
 }
 
-function Table(props) {
+function Table2(props) {
   return (
     <div>
       {/* <li><Link to='/'>Back</Link></li> */}
       <table>
-        <TableHeader />
-        <TableBody
+        <Table2Header />
+        <Table2Body
         characterData={props.characterData}
       />
       </table>
@@ -39,4 +36,4 @@ function Table(props) {
   );
 }
 
-export default Table;
+export default Table2;
