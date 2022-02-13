@@ -18,9 +18,6 @@ function TableBody(props) {
       <tr key={index}>
         <td>{row.Album}</td>
         <td>{row.Artist}</td>
-        <td>
-          <button onClick={() => props.removeCharacter(index)}>Delete</button>
-        </td>
       </tr>
     );
   });
@@ -30,10 +27,10 @@ function TableBody(props) {
 function Table(props) {
   return (
     <div>
-      <li><Link to='/'>Back</Link></li>
+      {/* <li><Link to='/'>Back</Link></li> */}
       <table>
         <TableHeader />
-      <TableBody
+        <TableBody
         characterData={props.characterData}
         removeCharacter={props.removeCharacter}
       />

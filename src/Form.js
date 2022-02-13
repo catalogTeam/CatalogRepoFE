@@ -1,6 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Table from "./Table";
+import axios from "axios";
 
-function Form(props) {   
+import users from "./MyApp";
+import removeOneCharacter from "./MyApp";
+
+
+
+function Form(props) {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+      fetchAll().then((result) => {
+        if (result) setUsers(result);
+      });
+    }, []);
+
+    async function fetchAll() {
+        try {
+          const response = await axios.get("http://localhost:5000/users");
+          return response.data.users_list;
+        } catch (error) {
+          //We're not handling errors. Just logging into the console.
+          console.log(error);
+          return false;
+        }
+      }
+
    const [user, setUser] = useState(
       {  
          username: '',
@@ -36,38 +62,40 @@ function Form(props) {
     }
 
     return (
-        <form>
-        <label htmlFor="Username">Username</label>
-        <input
-            type="text"
-            name="username"
-            id="username"
-            value={user.username}
-            onChange={handleChange} />
-        <label htmlFor="Bio">Bio</label>
-        <input
-            type="text"
-            name="bio"
-            id="bio"
-            value={user.bio}
-            onChange={handleChange} />
-        <label htmlFor="profile_url">Profile_url</label>
-        <input
-            type="text"
-            name="profile_url"
-            id="profile_url"
-            value={user.profile_url}
-            onChange={handleChange} />
-        <label htmlFor="albums">Enter an album</label>
-        <input
-            type="text"
-            name="albums"
-            id="album"
-            value={user.albums}
-            onChange={handleChange} />
-            <label htmlFor="albums">albums</label>
-        <input type="button" value="Submit" onClick={submitForm} />
-        </form>
+        <div>
+            <form>
+            <label htmlFor="Username">Username</label>
+            <input
+                type="text"
+                name="username"
+                id="username"
+                value={user.username}
+                onChange={handleChange} />
+            <label htmlFor="Bio">Bio</label>
+            <input
+                type="text"
+                name="bio"
+                id="bio"
+                value={user.bio}
+                onChange={handleChange} />
+            <label htmlFor="profile_url">Profile_url</label>
+            <input
+                type="text"
+                name="profile_url"
+                id="profile_url"
+                value={user.profile_url}
+                onChange={handleChange} />
+            <label htmlFor="albums">Enter an album</label>
+            <input
+                type="text"
+                name="albums"
+                id="album"
+                value={user.albums}
+                onChange={handleChange} />
+                <label htmlFor="albums">albums</label>
+            </form>
+            <Table characterData={users} />
+        </div>
     ); 
 }
 
