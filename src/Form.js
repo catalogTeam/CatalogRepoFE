@@ -16,19 +16,6 @@ function Form(props) {
       }
    );
 
-   var query = {
-       q: ""
-   }
-
-//    const [album, setAlbum] =  useState(
-//         {
-//             albumname: '',
-//             id: '',
-//             artist: ''
-//         }
-//    )
-
-
     function handleChange(event) {
         const { name, value } = event.target;
         if (name === "bio")
@@ -45,21 +32,24 @@ function Form(props) {
         else if(name === 'albums')
             setUser({...user, album_name:value});
 
-        else if(name === 'albums')
-            setUser({...user, album_name:value});
+        else if(name === 'artists')
+            setUser({...user, artist_name:value});
             
     }
-
-    // function handleAlbumChange(event) {
-    //     const { name, value } = event.target;
-            
-    //     if(name === 'albums')
-    //         setUser({...user, album_name:value});
-    // }
 
     async function getAlbum(album_name) {
         try {
           const response = await axios.get(`http://localhost:5000/search/${album_name}`);
+          return response.data;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      }
+
+      async function getArtist(artist_name) {
+        try {
+          const response = await axios.get(`http://localhost:5000/search/${artist_name}`);
           return response.data;
         } catch (error) {
           console.log(error);
@@ -73,10 +63,21 @@ function Form(props) {
         const album_response = await getAlbum(album);
         const album_data = album_response.result[0];
         console.log(album_data);
-        albums.push(album_response);
+        albums.push(album_data);
         setUser({...user, albums:albums});
     }
 
+    async function submitArtist() {
+        var artists = user.artists;
+        var artist = user.artist_name;
+        const artist_response = await getArtist(artist);
+        const artist_data = artist_response.result[0];
+        console.log(artist_data);
+        artists.push(artist_data);
+        setUser({...user, artists:artists});
+    }
+
+    //where we submit the website data
     function submitForm() {
         props.handleSubmit(user);
         setUser({username: '', bio: '', profile_url: ''});
@@ -113,15 +114,16 @@ function Form(props) {
             value={user.album_name}
             onChange={handleChange} />
             <label htmlFor="albums">albums</label>
-        <label htmlFor="albums">Enter the artist</label>
+        <label htmlFor="artists">Enter an artist</label>
         <input
             type="text"
             name="artists"
-            id="artists"
+            id="artist"
             value={user.artist_name}
             onChange={handleChange} />
         <label htmlFor="artists">artist</label>
         <input name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
+        <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
         </form>
     ); 
