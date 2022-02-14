@@ -52,9 +52,49 @@ function Form(props) {
             setUser({...user, albums:value});
     }
 
+    async function getAlbum(album_name) {
+        try {
+          const response = await axios.get(`http://localhost:5000/search/${album_name}`);
+          return response.data;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      }
+
+      async function getArtist(artist_name) {
+        try {
+          const response = await axios.get(`http://localhost:5000/search/${artist_name}`);
+          return response.data;
+        } catch (error) {
+          console.log(error);
+          return false;
+        }
+      }
+
     function submitForm() {
         props.handleSubmit(user);
         setUser({username: '', bio: '', profile_url: ''});
+    }
+
+    async function submitAlbum() {
+        var albums = user.albums;
+        var album = user.album_name;
+        const album_response = await getAlbum(album);
+        const album_data = album_response.result[0];
+        console.log(album_data);
+        albums.push(album_data);
+        setUser({...user, albums:albums});
+    }
+
+    async function submitArtist() {
+        var artists = user.artists;
+        var artist = user.artist_name;
+        const artist_response = await getArtist(artist);
+        const artist_data = artist_response.result[0];
+        console.log(artist_data);
+        artists.push(artist_data);
+        setUser({...user, artists:artists});
     }
 
     return (
@@ -88,10 +128,12 @@ function Form(props) {
                 id="album"
                 value={user.albums}
                 onChange={handleChange} />
-                
+            <input name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
+
             <label htmlFor="albums">Albums</label>
+            
             <Table characterData={users} />
-            <input
+            {/* <input
                 type="text"
                 name="title"
                 id="title"
@@ -102,7 +144,7 @@ function Form(props) {
                 name="artist"
                 id="artist"
                 value={user.artists.push}
-                onChange={handleChange} />
+                onChange={handleChange} /> */}
             <label htmlFor="albums">Enter an artist</label>
             <input
                 type="text"
@@ -110,13 +152,17 @@ function Form(props) {
                 id="artist"
                 value={user.artists.push}
                 onChange={handleChange} />
+            <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
+
             <Table2 characterData={users} />
-            <input
+            {/* <input
                 type="text"
                 name="artist"
                 id="artist"
                 value={user.artists.push}
-                onChange={handleChange} />
+                onChange={handleChange} /> */}
+        <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
+
             </form>
 
         </div>
