@@ -39,7 +39,7 @@ function Form(props) {
 
     async function getAlbum(album_name) {
         try {
-          const response = await axios.get(`http://localhost:5000/search/${album_name}`);
+          const response = await axios.get(`http://localhost:5000/search/album/${album_name}`);
           return response.data;
         } catch (error) {
           console.log(error);
@@ -49,7 +49,7 @@ function Form(props) {
 
       async function getArtist(artist_name) {
         try {
-          const response = await axios.get(`http://localhost:5000/search/${artist_name}`);
+          const response = await axios.get(`http://localhost:5000/search/artist/${artist_name}`);
           return response.data;
         } catch (error) {
           console.log(error);
