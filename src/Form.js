@@ -1,45 +1,39 @@
 import React, {useState} from 'react';
 import axios from "axios";
+import AlbumTable from './AlbumTable';
+import ArtistTable from './ArtistTable';
 
 
 function Form(props) {   
-   const [user, setUser] = useState(
-      {  
-         username: '',
-         bio: '',
-         profile_url: '',
-         album_name: '',
-         artist_name: '',
-         albums:[],
-         artists: [],
-         reviews: []
-      }
-   );
+    
+    const [user, setUser] = useState({
+        username: "",
+        bio: "",
+        profile_pic_url: "",
+        albums: [],
+        artists: [],
+        reviews: [],
+      });
+    
+    const [nameData, setName] = useState({ album: "", artist: "" });
 
     function handleChange(event) {
         const { name, value } = event.target;
-        if (name === "bio")
-            setUser({...user, bio:value});
-            // setUser(
-            //     {username: user['username'], bio: value}
-            // );
-        else if (name === 'username')
-            setUser({...user, username:value});
+        if (name === "bio") setUser({ ...user, bio: value });
+        // setUser(
+        //     {username: user['username'], bio: value}
+        // );
+        else if (name === "username") setUser({ ...user, username: value });
+        else if (name === "profile_url") setUser({ ...user, profile_url: value });
+        else if (name === "albums") setName({ ...nameData, album: value });
+        else if (name === "artists") setName({ ...nameData, artist: value });
+      }
 
-        else if(name === 'profile_url')
-            setUser({...user, profile_url:value});
-
-        else if(name === 'albums')
-            setUser({...user, album_name:value});
-
-        else if(name === 'artists')
-            setUser({...user, artist_name:value});
-            
-    }
-
-    async function getAlbum(album_name) {
+      async function getAlbum(album_name) {
         try {
-          const response = await axios.get(`http://localhost:5000/search/album/${album_name}`);
+          const response = await axios.get(
+            `http://localhost:5000/search/album/${album_name}`
+          );
           return response.data;
         } catch (error) {
           console.log(error);
@@ -57,25 +51,25 @@ function Form(props) {
         }
       }
 
-    async function submitAlbum() {
+
+      async function submitAlbum() {
         var albums = user.albums;
-        var album = user.album_name;
+        var album = nameData.album;
         const album_response = await getAlbum(album);
         const album_data = album_response.result[0];
-        console.log(album_data);
         albums.push(album_data);
-        setUser({...user, albums:albums});
-    }
-
-    async function submitArtist() {
+        setUser({ ...user, albums: albums });
+      }
+    
+      async function submitArtist() {
         var artists = user.artists;
-        var artist = user.artist_name;
+        var artist = nameData.artist;
         const artist_response = await getArtist(artist);
         const artist_data = artist_response.result[0];
-        console.log(artist_data);
         artists.push(artist_data);
-        setUser({...user, artists:artists});
-    }
+        setUser({ ...user, artists: artists });
+      }
+    
 
     //where we submit the website data
     function submitForm() {
@@ -113,7 +107,8 @@ function Form(props) {
             id="album"
             value={user.album_name}
             onChange={handleChange} />
-            <label htmlFor="albums">albums</label>
+        <AlbumTable userdata={user} />
+        <input text-align  = "right" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
         <label htmlFor="artists">Enter an artist</label>
         <input
             type="text"
@@ -121,8 +116,7 @@ function Form(props) {
             id="artist"
             value={user.artist_name}
             onChange={handleChange} />
-        <label htmlFor="artists">artist</label>
-        <input name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
+        <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
         </form>

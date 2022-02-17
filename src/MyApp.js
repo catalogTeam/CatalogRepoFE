@@ -5,57 +5,56 @@ import axios from "axios";
 
 const users = [
   {
-    user: 'Charlie',
-    id: '123ABC',
-    profile_pic: 'profile_pic.jpg',
-    bio: 'this is a bio',
+    user: "Charlie",
+    id: "123ABC",
+    profile_pic: "profile_pic.jpg",
+    bio: "this is a bio",
 
     albums: [
       {
-        name: 'The White Album',
-        id: '123ABC',
-        artist: 'The Beatles',
-        album_pic: 'url',
-        rating: 4.2
+        name: "The White Album",
+        id: "123ABC",
+        artist: "The Beatles",
+        album_pic: "url",
+        rating: 4.2,
       },
       {
-        name: 'Trick',
-        id: '123ABC',
-        artist: 'Alex G',
-        album_pic: 'url',
-        rating: 4.0
+        name: "Trick",
+        id: "123ABC",
+        artist: "Alex G",
+        album_pic: "url",
+        rating: 4.0,
       },
       {
-        name: 'In Rainbows',
-        id: '123ABC',
-        artist: 'Radiohead',
-        album_pic: 'url',
-        rating: 4.9
-      }
+        name: "In Rainbows",
+        id: "123ABC",
+        artist: "Radiohead",
+        album_pic: "url",
+        rating: 4.9,
+      },
     ],
     artists: [
       {
-        artist_name: 'The Beatles',
-        album_pic: 'url',
-        id: '123ABC'
+        artist_name: "The Beatles",
+        album_pic: "url",
+        id: "123ABC",
       },
       {
-        name: 'Trick',
-        artist: 'Alex G',
-        artist_name: 'The Beatles',
-        album_pic: 'url',
-        id: '123ABC'
+        name: "Trick",
+        artist: "Alex G",
+        artist_name: "The Beatles",
+        album_pic: "url",
+        id: "123ABC",
       },
       {
-        name: 'In Rainbows',
-        artist: 'Radiohead',
-        album_pic: 'url',
-        rating: 4.9
-      }
-    ]
-  }
+        name: "In Rainbows",
+        artist: "Radiohead",
+        album_pic: "url",
+        rating: 4.9,
+      },
+    ],
+  },
 ];
-
 
 function MyApp() {
   const [users, setUsers] = useState([]);
@@ -77,9 +76,19 @@ function MyApp() {
     }
   }
 
-  async function makePostCall(person) {
+  //   async function makeDeleteCall(id) {
+  //     try {
+  //       const response = await axios.delete("http://localhost:5000/users/" + id);
+  //       return response;
+  //     } catch (error) {
+  //       console.log(error);
+  //       return false;
+  //     }
+  //   }
+
+  async function makePostCall(user) {
     try {
-      const response = await axios.post("http://localhost:5000/users", person);
+      const response = await axios.post("http://localhost:5000/users", user);
       return response;
     } catch (error) {
       console.log(error);
@@ -87,20 +96,9 @@ function MyApp() {
     }
   }
 
-  async function makeDeleteCall(id) {
-    try {
-      const response = await axios.delete("http://localhost:5000/users/" + id);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
-  function updateList(person) {
-    makePostCall(person).then((result) => {
-      if (result && result.status === 201)
-        setUsers([...users, result.data]);
+  function updateList(user) {
+    makePostCall(user).then((result) => {
+      if (result && result.status === 201) setUsers([...users, result.data]);
     });
   }
 
