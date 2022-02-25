@@ -32,8 +32,8 @@ html {
 /**
  * Remove the margin in all browsers.
  */
-body {
-  margin: 0;
+ body {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
 /**

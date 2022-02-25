@@ -2,6 +2,9 @@ import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
+import Header from './Header';
+
+
 
 
 function Form(props) {   
@@ -43,7 +46,9 @@ function Form(props) {
 
       async function getArtist(artist_name) {
         try {
-          const response = await axios.get(`http://localhost:5000/search/artist/${artist_name}`);
+          const response = await axios.get(
+            `http://localhost:5000/search/artist/${artist_name}`
+          );
           return response.data;
         } catch (error) {
           console.log(error);
@@ -59,6 +64,7 @@ function Form(props) {
         const album_data = album_response.result[0];
         albums.push(album_data);
         setUser({ ...user, albums: albums });
+        setName({ album: "" });
       }
     
       async function submitArtist() {
@@ -66,8 +72,10 @@ function Form(props) {
         var artist = nameData.artist;
         const artist_response = await getArtist(artist);
         const artist_data = artist_response.result[0];
+        console.log(artist_data)
         artists.push(artist_data);
         setUser({ ...user, artists: artists });
+        setName({ artist: "" });
       }
     
 

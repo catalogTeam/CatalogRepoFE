@@ -57,60 +57,7 @@ const users = [
 ];
 
 function MyApp() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    fetchAll().then((result) => {
-      if (result) setUsers(result);
-    });
-  }, []);
-
-  async function fetchAll() {
-    try {
-      const response = await axios.get("http://localhost:5000/users");
-      return response.data.users_list;
-    } catch (error) {
-      //We're not handling errors. Just logging into the console.
-      console.log(error);
-      return false;
-    }
-  }
-
-  //   async function makeDeleteCall(id) {
-  //     try {
-  //       const response = await axios.delete("http://localhost:5000/users/" + id);
-  //       return response;
-  //     } catch (error) {
-  //       console.log(error);
-  //       return false;
-  //     }
-  //   }
-
-  async function makePostCall(user) {
-    try {
-      const response = await axios.post("http://localhost:5000/users", user);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
-  function updateList(user) {
-    makePostCall(user).then((result) => {
-      if (result && result.status === 201) setUsers([...users, result.data]);
-    });
-  }
-
-  function removeOneCharacter(index) {
-    const toDelete = users[index];
-    makeDeleteCall(toDelete["id"]).then((result) => {
-      const updated = users.filter((character, i) => {
-        return i !== index;
-      });
-      setUsers(updated);
-    });
-  }
+  
 
   return (
     <div className="container">

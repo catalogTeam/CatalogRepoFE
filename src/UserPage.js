@@ -1,22 +1,22 @@
+import Header from "./Header"
+import Cards from "./Cards"
 function UserPage(props){
-
-    function Table(list){
-        const rows = list.data.map((row, index) => {
-            return (
-                <tr key={index}>
-                    <td>{row}</td>
-                </tr>
-            );
-        });
-        return <table><tbody>{rows}</tbody></table>
-    }
     
     return(
-        <div>
-            <body>
-                <h1>User's Page</h1>
-            </body>
-            <Table props></Table>
-        </div>
+    <body>
+        {/* <title>
+            props.username
+        </title>
+        <h1>Music Catalog</h1>
+        <sub>Enter username to edit or click below to create new page</sub> */}
+        <Header/>
+        <header>Albums</header>
+        <Cards/>
+        <header>Artists</header>
+        <Cards/>
+        <header>Reviews</header>
+    </body>
     );
 }
+
+export default UserPage;
