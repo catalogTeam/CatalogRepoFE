@@ -86,6 +86,7 @@ function Form(props) {
         albums.push(album_data);
         setUser({...user, albums:albums});
     }
+<<<<<<< Updated upstream
 
     async function submitArtist() {
         var artists = user.artists;
@@ -167,6 +168,102 @@ function Form(props) {
 
         </div>
     ); 
+=======
+  }
+
+  async function submitAlbum() {
+    var albums = user.albums;
+    var album = nameData.album;
+    const album_response = await getAlbum(album);
+    const album_data = album_response.result[0];
+    console.log(album_data);
+    albums.push(album_data);
+    setUser({ ...user, albums: albums });
+    setName({ album: "" });
+  }
+
+  async function submitArtist() {
+    var artists = user.artists;
+    var artist = nameData.artist;
+    const artist_response = await getArtist(artist);
+    const artist_data = artist_response.result[0];
+    console.log(artist_data);
+    artists.push(artist_data);
+    setUser({ ...user, artists: artists });
+    setName({ artist: "" });
+  }
+
+  //where we submit the website data
+  function submitForm() {
+    props.handleSubmit(user);
+    setUser({ username: "", bio: "", profile_url: "" });
+  }
+
+  return (
+    <form>
+      <label htmlFor="Username">Username</label>
+      <input
+        type="text"
+        name="username"
+        id="username"
+        value={user.username}
+        onChange={handleChange}
+      />
+      <label htmlFor="Bio">Bio</label>
+      <input
+        type="text"
+        name="bio"
+        id="bio"
+        value={user.bio}
+        onChange={handleChange}
+      />
+      <label htmlFor="profile_url">Profile_url</label>
+      <input
+        type="text"
+        name="profile_url"
+        id="profile_url"
+        value={user.profile_url}
+        onChange={handleChange}
+      />
+      <label htmlFor="albums">Enter an album</label>
+      <input
+        type="text"
+        name="albums"
+        id="album"
+        value={user.album_name}
+        onChange={handleChange}
+      />
+      <input
+        name="album-button"
+        type="button"
+        value="Submit Album"
+        onClick={submitAlbum}
+      />
+      <label htmlFor="albums">albums</label>
+      <label htmlFor="artists">Enter an artist</label>
+      <input
+        type="text"
+        name="artists"
+        id="artist"
+        value={user.artist_name}
+        onChange={handleChange}
+      />
+      <input
+        name="artist-button"
+        type="button"
+        value="Submit Artist"
+        onClick={submitArtist}
+      />
+      <label htmlFor="artists">Artist</label>
+      <input
+        name="master-button"
+        type="button"
+        value="Submit All"
+        onClick={submitForm}
+      />
+    </form>
+  );
+>>>>>>> Stashed changes
 }
 
 export default Form;
