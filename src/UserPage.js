@@ -1,20 +1,3 @@
-<<<<<<< Updated upstream
-import React from "react";
-import useForm from "react-hook-form"
-import Table from "./Table";
-import Table2 from "./Table2";
-
-function UserPage(){
-    return(
-        <div>
-            <form>
-                <Table characterData={users} />
-            </form>
-        </div>
-    )
-
-};
-=======
 import Header from "./Header"
 import Cards from "./Cards"
 function UserPage(props){
@@ -35,6 +18,5 @@ function UserPage(props){
     </body>
     );
 }
->>>>>>> Stashed changes
 
 export default UserPage;
