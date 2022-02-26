@@ -4,7 +4,8 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import Form from "./Form";
 import axios from "axios";
 import UserPage from "./UserPage";
-
+import Home from "./Home";
+import ErrorPage from "./ErrorPage";
 
 function MyApp() {
   const [characters, setCharacters] = useState([])

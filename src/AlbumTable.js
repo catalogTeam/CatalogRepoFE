@@ -6,8 +6,6 @@ import ArtistTable from './ArtistTable';
 import Header from './Header';
 
 
-
-
 function Form(props) {   
     
     const [user, setUser] = useState({
