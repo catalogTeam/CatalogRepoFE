@@ -48,12 +48,24 @@ function Home() {
           if (result && result.status === 201) setUsers([...users, result.data]);
         });
         ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+
+        
       }
-    
+
+    function toUserPage(){
+        const username = nameData.user
+        const userResponse = getUser(username)
+        console.log(userResponse)
+        
+        ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
+
+    }
+
 
     let navigate = useNavigate();
 
     return (
+      <div>
         <html>
           <head>
             <title>HTML Elements Reference</title>
@@ -75,6 +87,8 @@ function Home() {
           <button onClick={() => navigate("/Form")}>Create New Account</button>
           <button onClick={() => navigate("/Home")}>HomePageTest</button>
         </html>
+
+      </div>
       );
     }
 
