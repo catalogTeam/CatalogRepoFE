@@ -20,7 +20,7 @@ function ErrorPage(){
                 <h1>User page not found.</h1>
                 <sub>Try again or create new user page by going back to the home page!</sub>
                 <html>
-                    <button onClick={() => navigate("/Form")}>Click to go back to Home Page</button>
+                    <button onClick={() => navigate("/Home")}>Click to go back to Home Page</button>
                 </html>
             </body>
         </html>

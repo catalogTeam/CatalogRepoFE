@@ -70,7 +70,7 @@ function Home() {
             id="user"
             value={nameData.user}
             onChange={handleChange} />
-            <input type="button" value="Submit" onClick={() => navigate("/Form")} />
+            <input type="button" value="Submit" onClick={() => navigate("/ErrorPage")} />
           </form>
           <button onClick={() => navigate("/Form")}>Create New Account</button>
           <button onClick={() => navigate("/Home")}>HomePageTest</button>
