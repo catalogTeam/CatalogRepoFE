@@ -2,8 +2,9 @@ import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
-import Header from './Header';
+import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 
+import Header from './Header';
 
 
 
@@ -129,7 +130,9 @@ function Form(props) {
             onChange={handleChange} />
         <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
-        <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
+        <input name = "master-button" type="button" value="Submit All" onClick={submitForm} 
+        />
+
         </form>
     ); 
 }

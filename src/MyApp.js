@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-
+import ReactDOM from 'react-dom';
 import Form from "./Form";
 import axios from "axios";
 import UserPage from "./UserPage";
@@ -9,6 +9,9 @@ import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 
 function MyApp() {
+  const [users, setUsers] = useState([]);
+
+  const [nameData, setName] = useState({ user: ""});
   const [characters, setCharacters] = useState([])
 
   useEffect(() => {
@@ -56,6 +59,13 @@ function MyApp() {
     })
   }
 
+  function addUser(user) {
+    makePostCall(user).then((result) => {
+      if (result && result.status === 201) setUsers([...users, result.data]);
+    });
+    ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+}
+
   return (
     <div className='container'>
       <BrowserRouter>
@@ -69,7 +79,7 @@ function MyApp() {
           <Route
             path='/Form'
             element={
-              <Form handleSubmit={updateList} />
+              <Form handleSubmit={addUser} />
             }
           />
           <Route

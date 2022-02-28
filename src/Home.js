@@ -48,9 +48,15 @@ function Home() {
           if (result && result.status === 201) setUsers([...users, result.data]);
         });
         ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+    }
 
-        
-      }
+    function createForm() {
+      ReactDOM.render(<Form />, document.getElementById("root"));
+      ReactDOM.render(
+        <Form handleSubmit={addUser} />,
+        document.getElementById("root")
+      );
+    }
 
     function toUserPage(){
         const username = nameData.user
@@ -85,7 +91,6 @@ function Home() {
             <input type="button" value="Submit" onClick={() => navigate("/ErrorPage")} />
           </form>
           <button onClick={() => navigate("/Form")}>Create New Account</button>
-          <button onClick={() => navigate("/Home")}>HomePageTest</button>
         </html>
 
       </div>
