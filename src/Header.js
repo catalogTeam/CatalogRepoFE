@@ -17,8 +17,10 @@ import {
   MDBCollapse
 } from 'mdb-react-ui-kit';
 
-export default function Header() {
+export default function Header(props) {
   const [showBasic, setShowBasic] = useState(false);
+
+  const user = props.userData
 
   return (
     <div>
@@ -82,8 +84,8 @@ export default function Header() {
       </MDBContainer>
     </MDBNavbar>
     <div className='p-5 text-center bg-light'>
-        <h1 className='mb-3'>Username</h1>
-        <h4 className='mb-3'>bio blah blah blah laejfklaefkajelfkjaflkj</h4>
+        <h1 className='mb-3'>{user['username']}</h1>
+        <h4 className='mb-3'>{user['bio']}</h4>
     </div>
     </div>
     
