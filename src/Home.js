@@ -1,5 +1,6 @@
 import Form from "./Form";
 import React, { useState, useEffect } from "react";
+import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 import ErrorPage from "./ErrorPage";
 import UserPage from "./UserPage";
 import ReactDOM from 'react-dom';
@@ -49,24 +50,8 @@ function Home() {
         ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
       }
     
-      function createForm() {
-        ReactDOM.render(<Form />, document.getElementById("root"));
-        ReactDOM.render(
-          <Form handleSubmit={addUser} />,
-          document.getElementById("root")
-        );
-      }
 
-    function toUserPage(){
-        const username = nameData.user
-        const userResponse = getUser(username)
-        console.log(userResponse)
-        ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
-    }
-
-    function createError(){
-        ReactDOM.render(<ErrorPage />, document.getElementById('root'));
-    }
+    let navigate = useNavigate();
 
     return (
         <html>
@@ -85,10 +70,10 @@ function Home() {
             id="user"
             value={nameData.user}
             onChange={handleChange} />
-            <input type="button" value="Submit" onClick={toUserPage} />
+            <input type="button" value="Submit" onClick={() => navigate("/Form")} />
           </form>
-          <button onClick={createForm}>Create New Account</button>
-          <button onClick={toUserPage}>HomePageTest</button>
+          <button onClick={() => navigate("/Form")}>Create New Account</button>
+          <button onClick={() => navigate("/Home")}>HomePageTest</button>
         </html>
       );
     }
