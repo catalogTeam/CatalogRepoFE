@@ -6,6 +6,7 @@ import axios from "axios";
 import UserPage from "./UserPage";
 import Home from "./Home";
 import ErrorPage from "./ErrorPage";
+import ReviewPage from "./ReviewPage";
 
 function MyApp() {
   const [characters, setCharacters] = useState([])
@@ -101,9 +102,9 @@ function MyApp() {
             }
           />
           <Route
-            path='/test'
+            path='/ReviewPage'
             element={
-              <test />
+              <ReviewPage />
             }
           />
         </Routes>

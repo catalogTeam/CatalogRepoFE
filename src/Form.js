@@ -87,7 +87,8 @@ function Form(props) {
     }
 
     return (
-        <form>
+      <form>
+        <h1>Create a page!</h1>
         <label htmlFor="Username">Username</label>
         <input
             type="text"
