@@ -48,17 +48,6 @@ function MyApp() {
     }
   }
 
-  function removeOneCharacter (index) {
-    makeDeleteCall(characters[index]._id).then(result => {
-      if (result && result.status === 204) {
-        const updated = characters.filter((character, i) => {
-          return i !== index
-        })
-        setCharacters(updated)
-      }
-    })
-  }
-
   function updateList (person) {
     makePostCall(person).then(result => {
       if (result && result.status === 201) {

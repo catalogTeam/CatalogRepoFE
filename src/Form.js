@@ -96,6 +96,7 @@ function Form(props) {
             id="username"
             value={user.username}
             onChange={handleChange} />
+        
         <label htmlFor="Bio">Bio</label>
         <input
             type="text"
