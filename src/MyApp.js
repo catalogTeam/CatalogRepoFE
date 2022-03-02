@@ -72,36 +72,36 @@ function MyApp() {
         <Routes>
           <Route 
           path='/'
-          element={
-            <h1>Root page. Nothing is here</h1>
-          }
+            element={
+              <h1>Root page. Nothing is here</h1>
+            }
           />
           <Route
-            path='/Form'
+            path='/form'
             element={
               <Form handleSubmit={addUser} />
             }
           />
           <Route
-            path='/Home'
+            path='/home'
             element={
               <Home />
             }
           />
           <Route
-            path='/UserPage'
+            path='/userPage'
             element={
               <UserPage />
             }
           />
           <Route
-            path='/ErrorPage'
+            path='/errorPage'
             element={
               <ErrorPage />
             }
           />
           <Route
-            path='/ReviewPage'
+            path='/reviewPage'
             element={
               <ReviewPage />
             }

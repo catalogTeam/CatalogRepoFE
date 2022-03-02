@@ -4,7 +4,7 @@ import { cloneElement } from "react";
 function UserPage(props){
     
     return(
-    <body>
+    <div>
         {/* <title>
             props.username
         </title>
@@ -16,7 +16,7 @@ function UserPage(props){
         <header>Artists</header>
         <AlbumCards albumData = {props.userData['artists']}/>
         <header>Reviews</header>
-    </body>
+    </div>
     );
 }
 
