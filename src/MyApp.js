@@ -70,11 +70,11 @@ function MyApp() {
     <div className='container'>
       <BrowserRouter>
         <Routes>
-          <Route
-            path='/'
-            element={
-              <h1>Root page. Nothing is here</h1>
-            }
+          <Route 
+          path='/'
+          element={
+            <h1>Root page. Nothing is here</h1>
+          }
           />
           <Route
             path='/Form'
