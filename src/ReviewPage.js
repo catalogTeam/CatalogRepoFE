@@ -1,6 +1,7 @@
 import React from "react";
 import Form from "./Form";
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { MDBInput } from 'mdb-react-ui-kit';
 
 import Home from "./Home";
 import ReactDOM from 'react-dom';
@@ -15,15 +16,11 @@ function ReviewPage(){
             <body>
                 <h1>Album Review </h1>
                 <label htmlFor="Username">Enter an Album</label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"/>
+                <MDBInput id='typeText' type='text' />
+
                 <label htmlFor="Username">Leave a short review</label>
-                <input
-                    type="text"
-                    name="username"
-                    id="username"/>
+                <MDBInput id='textAreaExample' textarea rows={4} />
+
                 </body>
         </html>
     );
