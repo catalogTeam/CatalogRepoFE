@@ -89,10 +89,7 @@ function MyApp() {
             }
           />
           <Route
-            path='/userPage'
-            element={
-              <UserPage />
-            }
+            path='/user/*'
           />
           <Route
             path='/errorPage'
