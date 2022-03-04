@@ -9,6 +9,8 @@ import axios from "axios";
 
 
 function Home() {
+    let navigate = useNavigate();
+
     
     const [nameData, setName] = useState({ user: ""});
 
@@ -19,7 +21,7 @@ function Home() {
 
     async function getUser(user) {
       try {
-        const response = await axios.get(`http://localhost:5000/${user}`)
+        const response = await axios.get(`http://localhost:5000/user/${user}`)
         console.log(response)
         return response.data
       } catch (error) {
@@ -37,6 +39,17 @@ function Home() {
         } catch (error) {
           console.log(error);
           return false;
+        }
+      }
+
+      function checkUser(username){
+        var user = getUser(username)
+        console.log(user);
+        if (user != false){
+          navigate(`/user/${username}`);
+        }
+        else{
+          navigate('/errorpage');
         }
       }
 
@@ -66,7 +79,6 @@ function Home() {
     // }
 
 
-    let navigate = useNavigate();
 
     return (
       <div>
@@ -86,9 +98,10 @@ function Home() {
             id="user"
             value={nameData.user}
             onChange={handleChange} />
-            <input type="button" value="Submit" onClick={() => navigate("/ErrorPage")} />
+            <input type="button"  value="Search" onClick={() => navigate(checkUser(nameData.user))} />
           </form>
-          <button onClick={() => navigate("/Form")}>Create New Account</button>
+
+          <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
         </html>
 
       </div>

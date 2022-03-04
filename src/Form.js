@@ -99,6 +99,7 @@ function Form(props) {
         
     }
 
+    let navigate = useNavigate();
 
     return (
       <form>
@@ -143,7 +144,7 @@ function Form(props) {
             onChange={handleChange} />
         <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
-        <input name = "master-button" type="button" value="Submit All" onClick={submitForm} 
+        <input name = "master-button" type="button" value="Submit All" onClick={ () => navigate(`/user/${user.username}`)} 
         />
 
         </form>

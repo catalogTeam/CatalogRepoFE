@@ -23,7 +23,7 @@ function MyApp() {
 
   async function fetchAll () {
     try {
-      const response = await axios.get('http://localhost:5000/users')
+      const response = await axios.get('http://localhost:5000/user')
       return response.data.users_list
     } catch (error) {
       // We're not handling errors. Just logging into the console.
@@ -34,7 +34,7 @@ function MyApp() {
 
   async function makePostCall (person) {
     try {
-      const response = await axios.post('http://localhost:5000/users', person)
+      const response = await axios.post('http://localhost:5000/user', person)
       return response
     } catch (error) {
       console.log(error)
@@ -44,7 +44,17 @@ function MyApp() {
 
   async function makeDeleteCall (id) {
     try {
-      const response = await axios.delete('http://localhost:5000/users/' + id)
+      const response = await axios.delete('http://localhost:5000/user/' + id)
+      return response
+    } catch (error) {
+      console.log(error)
+      return false
+    }
+  }
+
+  async function PopUserPage(person) {
+    try {
+      const response = await axios.get('http://localhost:5000/user/' + person)
       return response
     } catch (error) {
       console.log(error)
@@ -64,7 +74,7 @@ function MyApp() {
     makePostCall(user).then((result) => {
       if (result && result.status === 201) setUsers([...users, result.data]);
     });
-    ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+    // ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
 }
 
   return (
@@ -73,11 +83,9 @@ function MyApp() {
         <Routes>
           <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-          <Route path='/form' element={ <Form handleSubmit={addUser}/> }/>
+          <Route path='/form' element={  <Form handleSubmit={addUser}/> }/>
     
           <Route path='/home' element={ <Home />}/>
-
-          <Route path='/user/*'/>
 
           <Route path='*' element={ <ErrorPage />}/>
 
