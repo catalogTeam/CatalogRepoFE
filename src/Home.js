@@ -42,7 +42,6 @@ function Home() {
       }
 
       function addUser(user) {
-        console.log("adding user");
         makePostCall(user).then((result) => {
           if (result && result.status === 201) setUsers([...users, result.data]);
         });
@@ -88,7 +87,6 @@ function Home() {
             <input type="button" value="Submit" onClick={toUserPage} />
           </form>
           <button onClick={createForm}>Create New Account</button>
-          <button onClick={toUserPage}>HomePageTest</button>
         </html>
       );
     }

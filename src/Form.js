@@ -2,10 +2,6 @@ import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
-import Header from './Header';
-
-
-
 
 function Form(props) {   
     
@@ -61,21 +57,25 @@ function Form(props) {
         var albums = user.albums;
         var album = nameData.album;
         const album_response = await getAlbum(album);
-        const album_data = album_response.result[0];
-        albums.push(album_data);
-        setUser({ ...user, albums: albums });
-        setName({ album: "" });
+        const album_data = album_response.albums.items[0]
+        if (album_data !== undefined){
+          albums.push(album_data);
+          setUser({ ...user, albums: albums });
+          setName({ album: "" });
+        }
       }
     
       async function submitArtist() {
         var artists = user.artists;
         var artist = nameData.artist;
         const artist_response = await getArtist(artist);
-        const artist_data = artist_response.result[0];
+        const artist_data = artist_response.artists.items[0]
         console.log(artist_data)
-        artists.push(artist_data);
-        setUser({ ...user, artists: artists });
-        setName({ artist: "" });
+        if (artist_data !== undefined){
+          artists.push(artist_data);
+          setUser({ ...user, artists: artists });
+          setName({ artist: "" });
+        }
       }
     
 
@@ -113,8 +113,8 @@ function Form(props) {
         <input
             type="text"
             name="albums"
-            id="album"
-            value={user.album_name}
+            id="albums"
+            value={nameData.album}
             onChange={handleChange} />
         <AlbumTable userdata={user} />
         <input text-align  = "right" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
@@ -122,8 +122,8 @@ function Form(props) {
         <input
             type="text"
             name="artists"
-            id="artist"
-            value={user.artist_name}
+            id="artists"
+            value={nameData.artist}
             onChange={handleChange} />
         <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
