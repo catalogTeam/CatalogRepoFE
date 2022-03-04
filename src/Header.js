@@ -17,9 +17,13 @@ import {
   MDBCollapse
 } from 'mdb-react-ui-kit';
 
+import { useNavigate, useParams } from 'react-router-dom'
+
 export default function Header(props) {
   const [showBasic, setShowBasic] = useState(false);
-
+  let {username} = useParams;
+  let navigate = useNavigate;
+  
   const user = props.userData
 
   return (

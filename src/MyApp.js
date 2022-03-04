@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
+import { useParams, BrowserRouter, Link, Route, Routes, Outlet } from 'react-router-dom'
 import ReactDOM from 'react-dom';
 import Form from "./Form";
 import axios from "axios";
-import UserPage from "./UserPage";
+
 import Home from "./Home";
+import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 
@@ -19,6 +20,7 @@ function MyApp() {
       if (result) { setCharacters(result) }
     })
   }, [])
+  
 
   async function fetchAll () {
     try {
@@ -70,39 +72,18 @@ function MyApp() {
     <div className='container'>
       <BrowserRouter>
         <Routes>
-          <Route 
-          path='/'
-            element={
-              <h1>Root page. Nothing is here</h1>
-            }
-          />
-          <Route
-            path='/form'
-            element={
-              <Form handleSubmit={addUser} />
-            }
-          />
-          <Route
-            path='/home'
-            element={
-              <Home />
-            }
-          />
-          <Route
-            path='/user/*'
-          />
-          <Route
-            path='/errorPage'
-            element={
-              <ErrorPage />
-            }
-          />
-          <Route
-            path='/reviewPage'
-            element={
-              <ReviewPage />
-            }
-          />
+          <Route path='/' element={ <h1>Root page. Nothing is here</h1> }/>
+
+          <Route path='/form' element={ <Form handleSubmit={addUser}/>}/>
+    
+          <Route path='/home' element={ <Home />}/>
+
+          <Route path='/user/*'/>
+
+          <Route path='*' element={ <ErrorPage />}/>
+
+          <Route path='/reviewPage'element={<ReviewPage />}/>
+
         </Routes>
       </BrowserRouter>
     </div>

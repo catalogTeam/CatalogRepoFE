@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-
+import { useParams, useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import UserPage from "./UserPage";
+import ReactDOM from 'react-dom';
 import Header from './Header';
 
 
 
 function Form(props) {   
-    
+
     const [user, setUser] = useState({
         username: "",
         bio: "",
@@ -80,12 +81,24 @@ function Form(props) {
       }
     
 
+  async function fetchAll () {
+    try {
+      const response = await axios.get('http://localhost:5000/users')
+      return response.data.users_list
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error)
+      return false
+    }
+  }
+
     //where we submit the website data
     function submitForm() {
         props.handleSubmit(user);
         setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});
         
     }
+
 
     return (
       <form>

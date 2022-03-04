@@ -10,8 +10,6 @@ import axios from "axios";
 
 function Home() {
     
-    const [users, setUsers] = useState([]);
-
     const [nameData, setName] = useState({ user: ""});
 
     function handleChange(event) {
@@ -42,30 +40,30 @@ function Home() {
         }
       }
 
-      function addUser(user) {
-        console.log("adding user");
-        makePostCall(user).then((result) => {
-          if (result && result.status === 201) setUsers([...users, result.data]);
-        });
-        ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
-    }
+    //   function addUser(user) {
+    //     console.log("adding user");
+    //     makePostCall(user).then((result) => {
+    //       if (result && result.status === 201) setUsers([...users, result.data]);
+    //     });
+    //     ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+    // }
 
-    function createForm() {
-      ReactDOM.render(<Form />, document.getElementById("root"));
-      ReactDOM.render(
-        <Form handleSubmit={addUser} />,
-        document.getElementById("root")
-      );
-    }
+    // function createForm() {
+    //   ReactDOM.render(<Form />, document.getElementById("root"));
+    //   ReactDOM.render(
+    //     <Form handleSubmit={addUser} />,
+    //     document.getElementById("root")
+    //   );
+    // }
 
-    function toUserPage(){
-        const username = nameData.user
-        const userResponse = getUser(username)
-        console.log(userResponse)
+    // function toUserPage(){
+    //     const username = nameData.user
+    //     const userResponse = getUser(username)
+    //     console.log(userResponse)
         
-        ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
+    //     ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
 
-    }
+    // }
 
 
     let navigate = useNavigate();
