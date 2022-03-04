@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, BrowserRouter, Link, Route, Routes, Outlet } from 'react-router-dom'
+import { StaticRouter, useParams, BrowserRouter, Link, Route, Routes, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import Form from "./Form";
 import axios from "axios";
-
 import Home from "./Home";
 import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
@@ -72,9 +71,9 @@ function MyApp() {
     <div className='container'>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={ <h1>Root page. Nothing is here</h1> }/>
+          <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-          <Route path='/form' element={ <Form handleSubmit={addUser}/>}/>
+          <Route path='/form' element={ <Form handleSubmit={addUser}/> }/>
     
           <Route path='/home' element={ <Home />}/>
 
