@@ -5,6 +5,7 @@ import UserPage from "./UserPage";
 import ReactDOM from 'react-dom';
 import "./home.css";
 import axios from "axios";
+import { MDBAccordion, MDBAccordionItem, MDBBadge } from "mdb-react-ui-kit";
 
 
 function Home() {
@@ -68,14 +69,23 @@ function Home() {
     }
 
     return (
-        <html>
-          <head>
-            <title>HTML Elements Reference</title>
-          </head>
+        <>
           <body>
-            <h1>Music Catalog</h1>
-            <sub>Enter username to edit or click below to create new page</sub>
+            <h1>Catalog</h1>
+            <sub>Enter username below to search for an already created user page</sub>
           </body>
+          <MDBAccordion initialActive="AC1">
+            <MDBAccordionItem
+              collapseId="AC1"
+              headerTitle="Garsh #1"
+              >
+                Raise your hand if you like Imp baby!
+                </MDBAccordionItem>
+            <MDBAccordionItem
+              collapseId="AC2"
+              headerTitle="Garsh #2"
+              >Something will go here later. Will talk about features of catalog</MDBAccordionItem>
+            </MDBAccordion>
           <form>
             <label htmlFor="user">Username</label>
             <input
@@ -86,8 +96,9 @@ function Home() {
             onChange={handleChange} />
             <input type="button" value="Submit" onClick={toUserPage} />
           </form>
+          <sub>For new users, click below</sub>
           <button onClick={createForm}>Create New Account</button>
-        </html>
+        </>
       );
     }
 

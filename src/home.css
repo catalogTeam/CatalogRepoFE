@@ -1,7 +1,14 @@
-.header {
-    height: 69px;
-    left: 202px;
-    position: absolute;
-    top: 0;
-    width: 1440px;
-  }
+h1 {
+  color: rgb(0, 150, 219);
+  text-align: center;
+  height: 100px;
+  background-color: black;
+  font-size: 250px;
+}
+
+sub {
+  color: blueviolet;
+  text-align: center;
+  width: 1440px;
+  text-size-adjust: 20px;
+}
