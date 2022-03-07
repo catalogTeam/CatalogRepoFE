@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { StaticRouter, useParams, BrowserRouter, Link, Route, Routes, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import Form from "./Form";
@@ -9,30 +9,30 @@ import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 
 function MyApp() {
-  const [users, setUsers] = useState([]);
-
   const [user, setUser] = useState({});
 
   const [nameData, setName] = useState({ user: ""});
   const [characters, setCharacters] = useState([])
 
-  useEffect(() => {
-    fetchAll().then(result => {
-      if (result) { setCharacters(result) }
-    })
-  }, [])
+  // let navigate = useNavigate();
+
+  // useEffect(() => {
+  //   fetchAll().then(result => {
+  //     if (result) { setCharacters(result) }
+  //   })
+  // }, [])
   
 
-  async function fetchAll () {
-    try {
-      const response = await axios.get('http://localhost:5000/user')
-      return response.data.users_list
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
-      console.log(error)
-      return false
-    }
-  }
+  // async function fetchAll () {
+  //   try {
+  //     const response = await axios.get('http://localhost:5000/user')
+  //     return response.data.users_list
+  //   } catch (error) {
+  //     // We're not handling errors. Just logging into the console.
+  //     console.log(error)
+  //     return false
+  //   }
+  // }
 
   async function makePostCall (person) {
     try {
@@ -74,18 +74,18 @@ function MyApp() {
 
   function assignUser(user) {
     setUser(user);
+    console.log(user.username)
   }
 
   function addUser(user) {
     makePostCall(user).then((result) => {
       if (result && result.status === 201) {
-        setUsers([...users, result.data]);
-        setUser(result.data);
+        // setUsers([...users, result.data]);
+        // setUser(result.data);
       }
     });
     // ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
 }
-
 
   return (
     <div className='container'>
@@ -95,9 +95,9 @@ function MyApp() {
 
           <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
     
-          <Route path='/home' element={<Home assignUser={assignUser}/>}/>
+          <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-          <Route path='/user/*' element = { <UserPage user ={user}/>}/>
+          {/* <Route path='/user/*' element = { () => navigate('/user/', user.username)}/> */}
 
           <Route path='*' element={ <ErrorPage />}/>
 

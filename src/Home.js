@@ -43,16 +43,24 @@ function Home(props) {
       }
 
       async function checkUser(username){
+        console.log(username)
         var user = await getUser(username);
-        console.log(user);
-        props.assignUser(user);
+        // console.log(user);
+        // props.assignUser(user);
         if (user != false){
-          navigate(`/user/${username}`);
-          ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+          props.handleSubmit(user)
         }
         else{
-          navigate('/errorpage');
+          console.log("no user found")
         }
+        // if (user != false){
+        //   navigate(`/user/${username}`);
+        //   ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+        // }
+        // else{
+        //   navigate('/errorpage');
+        // }
+      
       }
 
     //   function addUser(user) {
