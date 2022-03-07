@@ -11,6 +11,8 @@ import ReviewPage from "./ReviewPage";
 function MyApp() {
   const [users, setUsers] = useState([]);
 
+  const [user, setUser] = useState({});
+
   const [nameData, setName] = useState({ user: ""});
   const [characters, setCharacters] = useState([])
 
@@ -70,12 +72,20 @@ function MyApp() {
     })
   }
 
+  function assignUser(user) {
+    setUser(user);
+  }
+
   function addUser(user) {
     makePostCall(user).then((result) => {
-      if (result && result.status === 201) setUsers([...users, result.data]);
+      if (result && result.status === 201) {
+        setUsers([...users, result.data]);
+        setUser(result.data);
+      }
     });
     // ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
 }
+
 
   return (
     <div className='container'>
@@ -83,9 +93,11 @@ function MyApp() {
         <Routes>
           <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-          <Route path='/form' element={  <Form handleSubmit={addUser}/> }/>
+          <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
     
-          <Route path='/home' element={ <Home />}/>
+          <Route path='/home' element={<Home assignUser={assignUser}/>}/>
+
+          <Route path='/user/*' element = { <UserPage user ={user}/>}/>
 
           <Route path='*' element={ <ErrorPage />}/>
 

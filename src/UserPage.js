@@ -8,9 +8,9 @@ import Form from "./Form";
 
 
 function UserPage(props){
-    let navigate = useNavigate;
-    return(
-    <div>
+    let navigate = useNavigate();
+    if (props.userData) {
+        return (<div>)
         
         {/* <title>
             props.username
@@ -19,14 +19,19 @@ function UserPage(props){
         <sub>Enter username to edit or click below to create new page</sub> */}
 
         
-        <Header userData = {props.userData}/>
-        <header>Albums</header>
-        <AlbumCards albumData = {props.userData['albums']}/>
-        <header>Artists</header>
-        <AlbumCards albumData = {props.userData['artists']}/>
-        <header>Reviews</header>
-    </div>
-    );
+            <Header userData = {props.userData}/>
+            <header>Albums</header>
+            <AlbumCards albumData = {props.userData['albums']}/>
+            <header>Artists</header>
+            <AlbumCards albumData = {props.userData['artists']}/>
+            <header>Reviews</header>
+        
+        </div>
+        );
+    } else {
+       return (<p>Waiting for data...</p>);
+    }
+
 }
 
 export default UserPage;

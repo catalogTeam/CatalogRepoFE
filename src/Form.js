@@ -144,8 +144,8 @@ function Form(props) {
             onChange={handleChange} />
         <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
-        <input name = "master-button" type="button" value="Submit All" onClick={ () => navigate(`/user/${user.username}`)} 
-        />
+        <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
+        {/* () => navigate(`/user/${user.username}`),  */}
 
         </form>
     ); 

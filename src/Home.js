@@ -8,7 +8,7 @@ import "./home.css";
 import axios from "axios";
 
 
-function Home() {
+function Home(props) {
     let navigate = useNavigate();
 
     
@@ -42,11 +42,13 @@ function Home() {
         }
       }
 
-      function checkUser(username){
-        var user = getUser(username)
+      async function checkUser(username){
+        var user = await getUser(username);
         console.log(user);
+        props.assignUser(user);
         if (user != false){
           navigate(`/user/${username}`);
+          ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
         }
         else{
           navigate('/errorpage');
@@ -98,7 +100,7 @@ function Home() {
             id="user"
             value={nameData.user}
             onChange={handleChange} />
-            <input type="button"  value="Search" onClick={() => navigate(checkUser(nameData.user))} />
+            <input type="button"  value="Search" onClick={() => checkUser(nameData.user)} />
           </form>
 
           <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
