@@ -77,14 +77,20 @@ function Home() {
           <MDBAccordion initialActive="AC1">
             <MDBAccordionItem
               collapseId="AC1"
-              headerTitle="Garsh #1"
-              >
-                Raise your hand if you like Imp baby!
-                </MDBAccordionItem>
+              headerTitle="Step 1: Enter a username, bio, and picture"
+              >Make it your page by adding a username, bio, and picture to give it
+              that charm that only you can give.</MDBAccordionItem>
             <MDBAccordionItem
               collapseId="AC2"
-              headerTitle="Garsh #2"
-              >Something will go here later. Will talk about features of catalog</MDBAccordionItem>
+              headerTitle="Step 2: List your favorite Artists and Ablums"
+              >Using our page creater you can easily type in any artist or album and
+              have it added to your page. Customize it even more by typing out and adding
+              a review to the albums on your page.</MDBAccordionItem>
+            <MDBAccordionItem
+              collapseId="AC3"
+              headerTitle="Step 3: Share with your friends!"
+              >After creating your personalized page, use your very own custom link
+              to send to your friends so they can see it, too.</MDBAccordionItem>
             </MDBAccordion>
           <form>
             <label htmlFor="user">Username</label>
