@@ -1,37 +1,24 @@
 import Header from "./Header"
 import AlbumCards from "./AlbumCards"
-import { useParams, useNavigate, BrowserRouter, Link, Route, Routes, Outlet } from 'react-router-dom'
-import ReactDOM from 'react-dom';
+import ArtistCards from "./ArtistCards"
 import { cloneElement } from "react";
-import Form from "./Form";
-
-
-
 function UserPage(props){
-    let navigate = useNavigate();
-    if (props.userData) {
-        return (<div>)
-        
+    
+    return(
+    <body>
         {/* <title>
             props.username
         </title>
         <h1>Music Catalog</h1>
         <sub>Enter username to edit or click below to create new page</sub> */}
-
-        
-            <Header userData = {props.userData}/>
-            <header>Albums</header>
-            <AlbumCards albumData = {props.userData['albums']}/>
-            <header>Artists</header>
-            <AlbumCards albumData = {props.userData['artists']}/>
-            <header>Reviews</header>
-        
-        </div>
-        );
-    } else {
-       return (<p>Waiting for data...</p>);
-    }
-
+        <Header userData = {props.userData}/>
+        <header>Albums</header>
+        <AlbumCards albumData = {props.userData['albums']}/>
+        <header>Artists</header>
+        <ArtistCards artistData = {props.userData['artists']}/>
+        <header>Reviews</header>
+    </body>
+    );
 }
 
 export default UserPage;

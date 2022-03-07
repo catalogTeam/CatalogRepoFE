@@ -8,12 +8,12 @@ function CardList (props) {
       background='white'
       className='mb-1'
       style={{ maxWidth: '18rem' }}>
-        <MDBCardImage src={album['images'][0]} alt='...' position='top' />
+        <MDBCardImage src={album['images'][0].url} alt='...' position='top' />
         <MDBCardBody>
           <MDBCardTitle>{album['name']}</MDBCardTitle>
         </MDBCardBody>
         <MDBCardFooter>
-          <small className='text-muted'>by {album['artistName']}</small>
+          <small className='text-muted'>by {album['artists'][0]['name']}</small>
         </MDBCardFooter>
       </MDBCard>
     );

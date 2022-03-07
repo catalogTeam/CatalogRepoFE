@@ -8,13 +8,15 @@ import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 
+
 function MyApp() {
   const [user, setUser] = useState({});
 
   const [nameData, setName] = useState({ user: ""});
   const [characters, setCharacters] = useState([])
 
-  // let navigate = useNavigate();
+
+  let navigate = useNavigate();
 
   // useEffect(() => {
   //   fetchAll().then(result => {
@@ -74,7 +76,9 @@ function MyApp() {
 
   function assignUser(user) {
     setUser(user);
-    console.log(user.username)
+    // console.log(user.username)
+    navigate(`/user/${user.username}`);
+
   }
 
   function addUser(user) {
@@ -89,7 +93,6 @@ function MyApp() {
 
   return (
     <div className='container'>
-      <BrowserRouter>
         <Routes>
           <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
@@ -97,14 +100,13 @@ function MyApp() {
     
           <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-          {/* <Route path='/user/*' element = { () => navigate('/user/', user.username)}/> */}
+          <Route path='/user/*' element = { <UserPage userData = {user}/>}/>
 
           <Route path='*' element={ <ErrorPage />}/>
 
           <Route path='/reviewPage'element={<ReviewPage />}/>
 
         </Routes>
-      </BrowserRouter>
     </div>
   );
 }

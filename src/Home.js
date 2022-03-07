@@ -48,7 +48,7 @@ function Home(props) {
         // console.log(user);
         // props.assignUser(user);
         if (user != false){
-          props.handleSubmit(user)
+          props.handleSubmit(user[0])
         }
         else{
           console.log("no user found")
