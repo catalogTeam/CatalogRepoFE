@@ -18,24 +18,6 @@ function MyApp() {
 
   let navigate = useNavigate();
 
-  // useEffect(() => {
-  //   fetchAll().then(result => {
-  //     if (result) { setCharacters(result) }
-  //   })
-  // }, [])
-  
-
-  // async function fetchAll () {
-  //   try {
-  //     const response = await axios.get('http://localhost:5000/user')
-  //     return response.data.users_list
-  //   } catch (error) {
-  //     // We're not handling errors. Just logging into the console.
-  //     console.log(error)
-  //     return false
-  //   }
-  // }
-
   async function makePostCall (person) {
     try {
       const response = await axios.post('http://localhost:5000/user', person)
@@ -81,13 +63,13 @@ function MyApp() {
   }
 
   function addUser(user) {
+    console.log(user)
     makePostCall(user).then((result) => {
       if (result && result.status === 201) {
-        // setUsers([...users, result.data]);
-        // setUser(result.data);
+        setUser(user);
+        navigate(`/user/${user.username}`);
       }
     });
-    // ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
 }
 
   return (
@@ -95,7 +77,7 @@ function MyApp() {
         <Routes>
           <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-          <Route path='/form' element={<Form handleSubmit={assignUser}/> }/>
+          <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
     
           <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
