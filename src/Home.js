@@ -6,7 +6,7 @@ import UserPage from "./UserPage";
 import ReactDOM from 'react-dom';
 import "./home.css";
 import axios from "axios";
-
+import { MDBAccordion, MDBAccordionItem, MDBBadge } from "mdb-react-ui-kit";
 
 function Home(props) {
     let navigate = useNavigate();
@@ -43,25 +43,35 @@ function Home(props) {
       }
 
       async function checkUser(username){
-        console.log(username)
         var user = await getUser(username);
-        // console.log(user);
-        // props.assignUser(user);
         if (user != false){
           props.handleSubmit(user[0])
         }
         else{
           console.log("no user found")
-        }
-        // if (user != false){
-        //   navigate(`/user/${username}`);
-        //   ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
-        // }
-        // else{
-        //   navigate('/errorpage');
-        // }
-      
+        }    
       }
+
+      function createForm() {
+        ReactDOM.render(<Form />, document.getElementById("root"));
+        ReactDOM.render(
+          <Form handleSubmit={addUser} />,
+          document.getElementById("root")
+        );
+      }
+
+      function addUser(user) {
+        makePostCall(user).then((result) => {
+          if (result && result.status === 201){
+            console.log(result.data)
+            props.handleSubmit(result.data)
+          }
+        });
+      }
+    
+      function createError(){
+        ReactDOM.render(<ErrorPage />, document.getElementById('root'));
+    }
 
     //   function addUser(user) {
     //     console.log("adding user");
@@ -97,9 +107,27 @@ function Home(props) {
             <title>HTML Elements Reference</title>
           </head>
           <body>
-            <h1>Music Catalog</h1>
-            <sub>Enter username to edit or click below to create new page</sub>
+            <h1>Catalog</h1>
+            <sub>Enter username below to search for an already created user page</sub>
           </body>
+          <MDBAccordion initialActive="AC1">
+            <MDBAccordionItem
+              collapseId="AC1"
+              headerTitle="Step 1: Enter a username, bio, and picture"
+              >Make it your page by adding a username, bio, and picture to give it
+              that charm that only you can give.</MDBAccordionItem>
+            <MDBAccordionItem
+              collapseId="AC2"
+              headerTitle="Step 2: List your favorite Artists and Ablums"
+              >Using our page creater you can easily type in any artist or album and
+              have it added to your page. Customize it even more by typing out and adding
+              a review to the albums on your page.</MDBAccordionItem>
+            <MDBAccordionItem
+              collapseId="AC3"
+              headerTitle="Step 3: Share with your friends!"
+              >After creating your personalized page, use your very own custom link
+              to send to your friends so they can see it, too.</MDBAccordionItem>
+            </MDBAccordion>
           <form>
             <label htmlFor="user">Username</label>
             <input

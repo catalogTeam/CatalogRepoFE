@@ -1,16 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
-import { useParams, useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import UserPage from "./UserPage";
-import ReactDOM from 'react-dom';
-import Header from './Header';
-
-
 
 function Form(props) {   
-
+    
     const [user, setUser] = useState({
         username: "",
         bio: "",
@@ -63,34 +57,27 @@ function Form(props) {
         var albums = user.albums;
         var album = nameData.album;
         const album_response = await getAlbum(album);
-        const album_data = album_response.result[0];
-        albums.push(album_data);
-        setUser({ ...user, albums: albums });
-        setName({ album: "" });
+        const album_data = album_response.albums.items[0]
+        if (album_data !== undefined){
+          albums.push(album_data);
+          setUser({ ...user, albums: albums });
+          setName({ album: "" });
+        }
       }
     
       async function submitArtist() {
         var artists = user.artists;
         var artist = nameData.artist;
         const artist_response = await getArtist(artist);
-        const artist_data = artist_response.result[0];
+        const artist_data = artist_response.artists.items[0]
         console.log(artist_data)
-        artists.push(artist_data);
-        setUser({ ...user, artists: artists });
-        setName({ artist: "" });
+        if (artist_data !== undefined){
+          artists.push(artist_data);
+          setUser({ ...user, artists: artists });
+          setName({ artist: "" });
+        }
       }
     
-
-  async function fetchAll () {
-    try {
-      const response = await axios.get('http://localhost:5000/users')
-      return response.data.users_list
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
-      console.log(error)
-      return false
-    }
-  }
 
     //where we submit the website data
     function submitForm() {
@@ -99,11 +86,8 @@ function Form(props) {
         
     }
 
-    let navigate = useNavigate();
-
     return (
-      <form>
-        <h1>Create a page!</h1>
+        <form>
         <label htmlFor="Username">Username</label>
         <input
             type="text"
@@ -111,7 +95,6 @@ function Form(props) {
             id="username"
             value={user.username}
             onChange={handleChange} />
-        
         <label htmlFor="Bio">Bio</label>
         <input
             type="text"
@@ -130,8 +113,8 @@ function Form(props) {
         <input
             type="text"
             name="albums"
-            id="album"
-            value={user.album_name}
+            id="albums"
+            value={nameData.album}
             onChange={handleChange} />
         <AlbumTable userdata={user} />
         <input text-align  = "right" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
@@ -139,14 +122,12 @@ function Form(props) {
         <input
             type="text"
             name="artists"
-            id="artist"
-            value={user.artist_name}
+            id="artists"
+            value={nameData.artist}
             onChange={handleChange} />
         <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
-        {/* () => navigate(`/user/${user.username}`),  */}
-
         </form>
     ); 
 }

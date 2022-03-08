@@ -76,9 +76,8 @@ function MyApp() {
 
   function assignUser(user) {
     setUser(user);
-    // console.log(user.username)
+    console.log(user)
     navigate(`/user/${user.username}`);
-
   }
 
   function addUser(user) {
@@ -96,7 +95,7 @@ function MyApp() {
         <Routes>
           <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-          <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
+          <Route path='/form' element={<Form handleSubmit={assignUser}/> }/>
     
           <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
