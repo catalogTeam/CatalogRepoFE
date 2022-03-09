@@ -48,6 +48,7 @@ function Home(props) {
           props.handleSubmit(user[0])
         }
         else{
+          navigate(`/errorPage`);
           console.log("no user found")
         }    
       }
@@ -68,41 +69,10 @@ function Home(props) {
           }
         });
       }
-    
-      function createError(){
-        ReactDOM.render(<ErrorPage />, document.getElementById('root'));
-    }
-
-    //   function addUser(user) {
-    //     console.log("adding user");
-    //     makePostCall(user).then((result) => {
-    //       if (result && result.status === 201) setUsers([...users, result.data]);
-    //     });
-    //     ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
-    // }
-
-    // function createForm() {
-    //   ReactDOM.render(<Form />, document.getElementById("root"));
-    //   ReactDOM.render(
-    //     <Form handleSubmit={addUser} />,
-    //     document.getElementById("root")
-    //   );
-    // }
-
-    // function toUserPage(){
-    //     const username = nameData.user
-    //     const userResponse = getUser(username)
-    //     console.log(userResponse)
-        
-    //     ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
-
-    // }
-
 
 
     return (
       <div>
-        <html>
           <head>
             <title>HTML Elements Reference</title>
           </head>
@@ -140,7 +110,7 @@ function Home(props) {
           </form>
 
           <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
-        </html>
+
 
       </div>
       );

@@ -3,7 +3,8 @@ import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
 
-function Form(props) {   
+
+function Form(props) {  
     
     const [user, setUser] = useState({
         username: "",
@@ -14,6 +15,8 @@ function Form(props) {
         reviews: [],
       });
     
+    
+
     const [nameData, setName] = useState({ album: "", artist: "" });
 
     function handleChange(event) {
@@ -131,5 +134,6 @@ function Form(props) {
         </form>
     ); 
 }
+
 
 export default Form;

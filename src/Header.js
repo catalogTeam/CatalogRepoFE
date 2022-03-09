@@ -26,6 +26,10 @@ export default function Header(props) {
   
   const user = props.userData
 
+  function submit(){
+    props.handleSubmit()
+  }
+
   return (
     <div>
     <MDBNavbar expand='lg' light bgColor='light'>
@@ -44,38 +48,15 @@ export default function Header(props) {
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='page' href='#'>
+              <MDBNavbarLink active aria-current='page' href='/home'>
                 Home
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <MDBNavbarLink href='#'>Make a review</MDBNavbarLink>
+            <input name = "master-button" type="button" value="Make a Review" 
+        onClick={() => submit()} 
+      />
             </MDBNavbarItem>
-
-            {/* <MDBNavbarItem>
-              <MDBDropdown>
-                <MDBDropdownToggle tag='a' className='nav-link'>
-                  Dropdown
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem>
-                    <MDBDropdownLink>Action</MDBDropdownLink>
-                  </MDBDropdownItem>
-                  <MDBDropdownItem>
-                    <MDBDropdownLink>Another action</MDBDropdownLink>
-                  </MDBDropdownItem>
-                  <MDBDropdownItem>
-                    <MDBDropdownLink>Something else here</MDBDropdownLink>
-                  </MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
-            </MDBNavbarItem> */}
-
-            {/* <MDBNavbarItem>
-              <MDBNavbarLink disabled href='#' tabIndex={-1} aria-disabled='true'>
-                Disabled
-              </MDBNavbarLink>
-            </MDBNavbarItem> */}
           </MDBNavbarNav>
 
 

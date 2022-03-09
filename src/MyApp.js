@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StaticRouter, useParams, BrowserRouter, Link, Route, Routes, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import Form from "./Form";
@@ -12,11 +12,9 @@ import ReviewPage from "./ReviewPage";
 function MyApp() {
   const [user, setUser] = useState({});
 
-  const [nameData, setName] = useState({ user: ""});
-  const [characters, setCharacters] = useState([])
-
-
   let navigate = useNavigate();
+
+ 
 
   async function makePostCall (person) {
     try {
@@ -28,37 +26,13 @@ function MyApp() {
     }
   }
 
-  async function makeDeleteCall (id) {
-    try {
-      const response = await axios.delete('http://localhost:5000/user/' + id)
-      return response
-    } catch (error) {
-      console.log(error)
-      return false
-    }
-  }
-
-  async function PopUserPage(person) {
-    try {
-      const response = await axios.get('http://localhost:5000/user/' + person)
-      return response
-    } catch (error) {
-      console.log(error)
-      return false
-    }
-  }
-
-  function updateList (person) {
-    makePostCall(person).then(result => {
-      if (result && result.status === 201) {
-        setCharacters([...characters, result.data])
-      }
-    })
-  }
-
   function assignUser(user) {
     setUser(user);
     console.log(user)
+    navigate(`/user/${user.username}`);
+  }
+
+  function toUser() {
     navigate(`/user/${user.username}`);
   }
 
@@ -72,6 +46,13 @@ function MyApp() {
     });
 }
 
+function toReviewPage(){
+  console.log("going to review page")
+  navigate(`/reviewPage`);
+
+}
+
+
   return (
     <div className='container'>
         <Routes>
@@ -81,11 +62,11 @@ function MyApp() {
     
           <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-          <Route path='/user/*' element = { <UserPage userData = {user}/>}/>
+          <Route path='/user/*' element = { <UserPage userData = {user} handleSubmit = {toReviewPage}/>}/>
 
           <Route path='*' element={ <ErrorPage />}/>
 
-          <Route path='/reviewPage'element={<ReviewPage />}/>
+          <Route path='/reviewPage'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
         </Routes>
     </div>
