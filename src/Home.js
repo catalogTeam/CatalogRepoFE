@@ -73,13 +73,13 @@ function Home(props) {
 
     return (
       <div>
-          <head>
+          <div>
             <title>HTML Elements Reference</title>
-          </head>
-          <body>
+          </div>
+          <div>
             <h1>Catalog</h1>
             <sub>Enter username below to search for an already created user page</sub>
-          </body>
+          </div>
           <MDBAccordion initialActive="AC1">
             <MDBAccordionItem
               collapseId="AC1"

@@ -12,6 +12,21 @@ import ReviewPage from "./ReviewPage";
 function MyApp() {
   const [user, setUser] = useState({});
 
+  // useEffect(() => {
+  //   console.log("rerender")
+  //   if (user.username != "" && user.username){
+  //     console.log(user.username)
+  //     var newUser = getUser(user.username);
+  //       if (user != false){
+  //         setUser(newUser)
+  //       }
+  //       else{
+  //         console.log("no user found")
+  //       }   
+  //   }
+  // });
+  
+
   let navigate = useNavigate();
 
  
@@ -26,13 +41,30 @@ function MyApp() {
     }
   }
 
+  async function getUser(user) {
+    try {
+      const response = await axios.get(`http://localhost:5000/user/${user}`)
+      console.log(response)
+      return response.data
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error)
+      return false
+    }
+  }
+
   function assignUser(user) {
     setUser(user);
     console.log(user)
     navigate(`/user/${user.username}`);
   }
 
-  function toUser() {
+  async function toUser(reviewData) {
+    console.log(user.reviews)
+    var reviewList = user.reviews
+    reviewList.push(reviewData)
+    user.reviews = reviewList
+    console.log(user.reviews)
     navigate(`/user/${user.username}`);
   }
 

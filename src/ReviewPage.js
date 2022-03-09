@@ -28,10 +28,16 @@ function ReviewPage(props){
 
 
     function submitReview(){
-        const response = makeReviewCall();
-        console.log(response)
-        props.handleSubmit()
-
+        makeReviewCall().then( result => {
+            console.log(result.status)
+            if (result.status == 201){
+                props.handleSubmit(reviewData)
+            }
+            else {
+                console.log("error in review post")
+            }
+            
+        });
     }
 
     return(

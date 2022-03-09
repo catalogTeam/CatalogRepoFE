@@ -1,6 +1,8 @@
 import Header from "./Header"
 import AlbumCards from "./AlbumCards"
 import ArtistCards from "./ArtistCards"
+import ReviewCards from "./ReviewCards"
+// import ArtistCards from "./ReviewCards"
 import { cloneElement } from "react";
 
 function UserPage(props){
@@ -11,7 +13,7 @@ function UserPage(props){
     }
 
     return(
-    <body>
+    <div>
         {/* <title>
             props.username
         </title>
@@ -24,8 +26,10 @@ function UserPage(props){
         <header>Artists</header>
         <ArtistCards artistData = {props.userData['artists']}/>
         <header>Reviews</header>
+        <ReviewCards reviewData = {props.userData['reviews']}/>
 
-    </body>
+
+    </div>
     );
 }
 
