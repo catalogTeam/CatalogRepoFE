@@ -1,34 +1,25 @@
 import Header from "./Header"
 import AlbumCards from "./AlbumCards"
 import ArtistCards from "./ArtistCards"
-import ReviewCards from "./ReviewCards"
-// import ArtistCards from "./ReviewCards"
 import { cloneElement } from "react";
+import "./userpage.css";
 
 function UserPage(props){
-
-    
-    function Submit(){
-        props.handleSubmit()
-    }
-
     return(
-    <div>
-        {/* <title>
-            props.username
-        </title>
-        <h1>Music Catalog</h1>
-        <sub>Enter username to edit or click below to create new page</sub> */}
-        {/* <Header userData = {props.userData} handleSumbit= {props.handleSubmit()}/> */}
-        <Header userData = {props.userData} handleSubmit = {() => Submit()} />
-        <header>Albums</header>
-        <AlbumCards albumData = {props.userData['albums']}/>
-        <header>Artists</header>
-        <ArtistCards artistData = {props.userData['artists']}/>
-        <header>Reviews</header>
-        <ReviewCards reviewData = {props.userData['reviews']}/>
-
-
+    <div class ='userpage'>
+        <body>
+            {/* <title>
+                props.username
+            </title>
+            <h1>Music Catalog</h1>
+            <sub>Enter username to edit or click below to create new page</sub> */}
+            <Header userData = {props.userData}/>
+            <header class ="p1">Albums</header>
+            <AlbumCards albumData = {props.userData['albums']}/>
+            <header class ="p1">Artists</header>
+            <ArtistCards class ="p1" artistData = {props.userData['artists']}/>
+            <header class ="p1">Reviews</header>
+        </body>
     </div>
     );
 }

@@ -5,6 +5,7 @@ import ErrorPage from "./ErrorPage";
 import UserPage from "./UserPage";
 import ReactDOM from 'react-dom';
 import "./home.css";
+import "./index.css"
 import axios from "axios";
 import { MDBAccordion, MDBAccordionItem, MDBBadge } from "mdb-react-ui-kit";
 
@@ -48,7 +49,6 @@ function Home(props) {
           props.handleSubmit(user[0])
         }
         else{
-          navigate(`/errorPage`);
           console.log("no user found")
         }    
       }
@@ -69,17 +69,48 @@ function Home(props) {
           }
         });
       }
+    
+      function createError(){
+        ReactDOM.render(<ErrorPage />, document.getElementById('root'));
+    }
+
+    //   function addUser(user) {
+    //     console.log("adding user");
+    //     makePostCall(user).then((result) => {
+    //       if (result && result.status === 201) setUsers([...users, result.data]);
+    //     });
+    //     ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
+    // }
+
+    // function createForm() {
+    //   ReactDOM.render(<Form />, document.getElementById("root"));
+    //   ReactDOM.render(
+    //     <Form handleSubmit={addUser} />,
+    //     document.getElementById("root")
+    //   );
+    // }
+
+    // function toUserPage(){
+    //     const username = nameData.user
+    //     const userResponse = getUser(username)
+    //     console.log(userResponse)
+        
+    //     ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
+
+    // }
+
 
 
     return (
       <div>
-          <div>
+        <html>
+          <head>
             <title>HTML Elements Reference</title>
-          </div>
-          <div>
+          </head>
+          <body>
             <h1>Catalog</h1>
             <sub>Enter username below to search for an already created user page</sub>
-          </div>
+          </body>
           <MDBAccordion initialActive="AC1">
             <MDBAccordionItem
               collapseId="AC1"
@@ -98,19 +129,21 @@ function Home(props) {
               >After creating your personalized page, use your very own custom link
               to send to your friends so they can see it, too.</MDBAccordionItem>
             </MDBAccordion>
-          <form>
-            <label htmlFor="user">Username</label>
-            <input
-            type="text"
-            name="user"
-            id="user"
-            value={nameData.user}
-            onChange={handleChange} />
-            <input type="button"  value="Search" onClick={() => checkUser(nameData.user)} />
-          </form>
+
+            <form>
+              <label class = "searchtext" htmlFor="user">Search for a username!</label>
+              <input class = "searchbar"
+              type="text"
+              name="user"
+              id="user"
+              value={nameData.user}
+              onChange={handleChange} />
+            </form>
+
+          <input type="button"  value="Search" onClick={() => checkUser(nameData.user)} />
 
           <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
-
+        </html>
 
       </div>
       );

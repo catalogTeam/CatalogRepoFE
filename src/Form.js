@@ -2,9 +2,8 @@ import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
-
-
-function Form(props) {  
+import { useNavigate } from 'react-router-dom';
+function Form(props) {   
     
     const [user, setUser] = useState({
         username: "",
@@ -15,8 +14,6 @@ function Form(props) {
         reviews: [],
       });
     
-    
-
     const [nameData, setName] = useState({ album: "", artist: "" });
 
     function handleChange(event) {
@@ -88,52 +85,78 @@ function Form(props) {
         setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});
         
     }
+    let navigate = useNavigate();
 
     return (
-        <form>
-        <label htmlFor="Username">Username</label>
-        <input
-            type="text"
-            name="username"
-            id="username"
-            value={user.username}
-            onChange={handleChange} />
-        <label htmlFor="Bio">Bio</label>
-        <input
-            type="text"
-            name="bio"
-            id="bio"
-            value={user.bio}
-            onChange={handleChange} />
-        <label htmlFor="profile_url">Profile_url</label>
-        <input
-            type="text"
-            name="profile_url"
-            id="profile_url"
-            value={user.profile_url}
-            onChange={handleChange} />
-        <label htmlFor="albums">Enter an album</label>
-        <input
-            type="text"
-            name="albums"
-            id="albums"
-            value={nameData.album}
-            onChange={handleChange} />
-        <AlbumTable userdata={user} />
+      <div class = "form">
+        <form class = "formtext">
+        <h1 class = "formtext">Create A Page!
+          <input name = "artist-button" type="button" value="Home" onClick={() => navigate('/home')} />
+        </h1>
+
+        <label class = "formtext" htmlFor="Username">Username</label>
+        <div class = "inputcontainer">  
+          <input class = "formtext"
+              type="text"
+              name="username"
+              id="username"
+              value={user.username}
+              onChange={handleChange} />
+        </div>
+
+        <label class = "formtext" htmlFor="Bio">Bio</label>
+
+        <div class = "inputcontainer">  
+          <input class = "formtext"
+              type="text"
+              name="bio"
+              id="bio"
+              value={user.bio}
+              onChange={handleChange} />
+        </div>
+
+        <label class = "formtext" htmlFor="profile_url">Enter profile picture URL</label>
+
+        <div class = "inputcontainer">
+          <input class = "formtext"
+              type="text"
+              name="profile_url"
+              id="profile_url"
+              value={user.profile_url}
+              onChange={handleChange} />
+        </div>      
+
+        <label class = "formtext" htmlFor="albums">Enter an album</label>
+        <div class = "inputcontainer">  
+          <input class = "formtext"
+              type="text"
+              name="albums"
+              id="albums"
+              value={nameData.album}
+              onChange={handleChange} />
+        </div>
+        
         <input text-align  = "right" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
-        <label htmlFor="artists">Enter an artist</label>
-        <input
-            type="text"
-            name="artists"
-            id="artists"
-            value={nameData.artist}
-            onChange={handleChange} />
-        <ArtistTable userdata={user} />
+
+        <AlbumTable userdata={user} />
+        <label class = "formtext" htmlFor="artists">Enter an artist</label>
+        <div class = "inputcontainer">  
+
+          <input class = "formtext"
+              type="text"
+              name="artists"
+              id="artists"
+              value={nameData.artist}
+              onChange={handleChange} />
+        </div>
+
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
+
+        <ArtistTable userdata={user} />
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
         </form>
+      </div>
     ); 
 }
-
 
 export default Form;

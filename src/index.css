@@ -20,7 +20,7 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
-html {
+ html {
   line-height: 1.15;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -781,15 +781,15 @@ dd {
 .button, a.button, button, [type=submit], [type=reset], [type=button] {
   -webkit-appearance: none;
   display: inline-block;
-  border: 1px solid #0366ee;
-  border-radius: 4px;
-  background: #0366ee;
+  border: 1px solid white;
+  border-radius: 5px;
+  background: #048b75;
   color: #ffffff;
   font-weight: 600;
   font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 1rem;
   text-transform: none;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 1.50rem;
   margin: 0 0 0.5rem 0;
   vertical-align: middle;
   text-align: center;
