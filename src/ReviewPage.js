@@ -10,18 +10,26 @@ function ReviewPage(){
     return(
       <div class = "reviewform">
         <html>
+        <header>
+          <nav>
+            <ul>
+              <li><a href='home'>Home</a></li>
+            </ul>
+          </nav>
+        </header>
             <body>
-                <h1>Album Review 
-                <input name = "artist-button" type="button" value="Home" onClick={() => navigate('/home')} />
-
-                </h1>
+                <h1>Album Review </h1>
+                <form class = 'Album'>
                 <label htmlFor="Username">Enter an Album</label>
-                <MDBInput id='typeText' type='text' />
-
+                <input class = 'AEntry' type='text'></input>
+                </form>
+                
+                <form class = 'Review'>
                 <label htmlFor="Username">Leave a short review</label>
-                <MDBInput id='textAreaExample' textarea rows={4} />
-
-                </body>
+                <input class = 'REntry' type='text'></input>
+                </form>
+            </body>
+                <button id="submit" >Submit Review</button>
         </html>
         </div>
     );

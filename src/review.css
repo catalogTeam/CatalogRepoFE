@@ -1,0 +1,69 @@
+h1 {
+    text-align: center;
+    font-size: 70px;
+    margin-bottom: 50px;
+}
+
+label {
+    color: black;
+}
+
+input[type='text']{
+    width: 30%;
+    margin-left: 35%;
+}
+
+.REntry{
+    padding: 5%;
+}
+
+#submit {
+    margin-top: 30px;
+    margin-right: 12px;
+    background-color: black;
+}
+
+th {
+    font-size: 30px;
+}
+
+nav {
+    background: black;
+  }
+
+nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+  }
+
+nav li a:hover {
+    text-decoration: none;
+    color: pink;
+    font-size: 25px;
+  }
+
+header{
+    margin: 0 auto;
+    width: 100%;
+    padding: 25px;
+  }
+  
+nav {
+    align-items: center;
+    border: 1px solid #ccc;
+    display: flex;
+    height: 75px;
+    margin: 25px 0;
+    padding: 0 25px;
+  }
+  
+nav ul {
+    padding: 0;
+  }
+  
+nav li {
+    display: inline-block;
+    margin-right: 15px;
+  }
+  
