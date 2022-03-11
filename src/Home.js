@@ -1,9 +1,5 @@
-import Form from "./Form";
-import React, { useState, useEffect } from "react";
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import ErrorPage from "./ErrorPage";
-import UserPage from "./UserPage";
-import ReactDOM from 'react-dom';
+import React, { useState } from "react";
+import { useNavigate} from 'react-router-dom'
 import "./home.css";
 import axios from "axios";
 import { MDBAccordion, MDBAccordionItem} from "mdb-react-ui-kit";
@@ -31,20 +27,9 @@ function Home(props) {
       }
     }
 
-    async function makePostCall(user) {
-        try {
-          console.log(user);
-          const response = await axios.post("http://localhost:5000/user", user);
-          return response;
-        } catch (error) {
-          console.log(error);
-          return false;
-        }
-      }
-
       async function checkUser(username){
         var user = await getUser(username);
-        if (user != false){
+        if (user !== false){
           props.handleSubmit(user[0])
         }
         else{
@@ -52,56 +37,9 @@ function Home(props) {
         }    
       }
 
-      function createForm() {
-        ReactDOM.render(<Form />, document.getElementById("root"));
-        ReactDOM.render(
-          <Form handleSubmit={addUser} />,
-          document.getElementById("root")
-        );
-      }
-
-      function addUser(user) {
-        makePostCall(user).then((result) => {
-          if (result && result.status === 201){
-            console.log(result.data)
-            props.handleSubmit(result.data)
-          }
-        });
-      }
-    
-      function createError(){
-        ReactDOM.render(<ErrorPage />, document.getElementById('root'));
-    }
-
-    //   function addUser(user) {
-    //     console.log("adding user");
-    //     makePostCall(user).then((result) => {
-    //       if (result && result.status === 201) setUsers([...users, result.data]);
-    //     });
-    //     ReactDOM.render(<UserPage userData = {user}/>, document.getElementById('root'));
-    // }
-
-    // function createForm() {
-    //   ReactDOM.render(<Form />, document.getElementById("root"));
-    //   ReactDOM.render(
-    //     <Form handleSubmit={addUser} />,
-    //     document.getElementById("root")
-    //   );
-    // }
-
-    // function toUserPage(){
-    //     const username = nameData.user
-    //     const userResponse = getUser(username)
-    //     console.log(userResponse)
-        
-    //     ReactDOM.render(<UserPage userData = {userResponse.data}/>, document.getElementById('root'));
-
-    // }
-
-
 
     return (
-        <html>
+        <section class = "Home">
           <head>
             <title>HTML Elements Reference</title>
           </head>
@@ -145,7 +83,7 @@ function Home(props) {
           <div id="userCreate">Don't have a page? Click below.</div>
           <br></br>
           <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
-        </html>
+        </section>
       );
     }
 

@@ -1,6 +1,5 @@
 import React from "react";
-import Form from "./Form";
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { MDBInput } from 'mdb-react-ui-kit';
 import "./review.css";
 
