@@ -110,6 +110,7 @@ function Home(props) {
             <h1>Catalog</h1>
             <div id="belowTitle">Enter username below to search for an already created user page</div>
           </body>
+          <div id="jawn">
           <MDBAccordion initialActive="AC1">
             <MDBAccordionItem
               collapseId="AC1"
@@ -128,6 +129,7 @@ function Home(props) {
               >After creating your personalized page, use your very own custom link
               to send to your friends so they can see it, too.</MDBAccordionItem>
             </MDBAccordion>
+            </div>
 
             <form>
               <label class = "searchtext" htmlFor="user">Search for a username!</label>
