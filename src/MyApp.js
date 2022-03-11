@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { StaticRouter, useParams, BrowserRouter, Link, Route, Routes, Outlet, useNavigate, Navigate } from 'react-router-dom';
-import ReactDOM from 'react-dom';
+import React, { useState } from "react";
+import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import Form from "./Form";
 import axios from "axios";
 import Home from "./Home";
@@ -12,42 +11,15 @@ import ReviewPage from "./ReviewPage";
 function MyApp() {
   const [user, setUser] = useState({});
 
-  // useEffect(() => {
-  //   console.log("rerender")
-  //   if (user.username != "" && user.username){
-  //     console.log(user.username)
-  //     var newUser = getUser(user.username);
-  //       if (user != false){
-  //         setUser(newUser)
-  //       }
-  //       else{
-  //         console.log("no user found")
-  //       }   
-  //   }
-  // });
-  
 
   let navigate = useNavigate();
 
  
-
   async function makePostCall (person) {
     try {
       const response = await axios.post('http://localhost:5000/user', person)
       return response
     } catch (error) {
-      console.log(error)
-      return false
-    }
-  }
-
-  async function getUser(user) {
-    try {
-      const response = await axios.get(`http://localhost:5000/user/${user}`)
-      console.log(response)
-      return response.data
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
       console.log(error)
       return false
     }

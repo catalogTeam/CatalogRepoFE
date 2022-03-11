@@ -42,6 +42,10 @@ div{
   margin: 0.1em;
   text-align: center;
 }
+div.id{
+  font-size: 0.5em;
+}
+
 
 #jawn {
   margin-left: 28%;

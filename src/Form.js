@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
-import { useNavigate } from 'react-router-dom';
 import "./Form.css";
 function Form(props) {   
     
@@ -20,9 +19,6 @@ function Form(props) {
     function handleChange(event) {
         const { name, value } = event.target;
         if (name === "bio") setUser({ ...user, bio: value });
-        // setUser(
-        //     {username: user['username'], bio: value}
-        // );
         else if (name === "username") setUser({ ...user, username: value });
         else if (name === "profile_url") setUser({ ...user, profile_url: value });
         else if (name === "albums") setName({ ...nameData, album: value });
@@ -86,7 +82,6 @@ function Form(props) {
         setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});
         
     }
-    let navigate = useNavigate();
 
     return (
       <div class = "form">

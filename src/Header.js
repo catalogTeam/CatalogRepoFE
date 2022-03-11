@@ -1,27 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import "./header.css";
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'
 
 import {
-  MDBContainer,
-  MDBNavbar,
-  MDBNavbarBrand,
-  MDBNavbarToggler,
-  MDBIcon,
-  MDBNavbarNav,
-  MDBNavbarItem,
-  MDBNavbarLink,
   MDBBtn,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBDropdownLink,
-  MDBCollapse
 } from 'mdb-react-ui-kit';
 
 export default function Header(props) {
-  const [showBasic, setShowBasic] = useState(false);
 
   const user = props.userData
 
@@ -29,7 +13,7 @@ export default function Header(props) {
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Catalog</a>
+          <a class="navbar-brand" href="/Home">Catalog</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -63,9 +47,6 @@ export default function Header(props) {
           </div>
         </div>
       </nav>
-            
-
-
     <div className='p-5 text-center bg-light'>
         <h1 className='mb-3'>{user['username']}</h1>
         <h4 className='mb-3'>{user['bio']}</h4>
