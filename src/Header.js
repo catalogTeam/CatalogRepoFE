@@ -9,20 +9,12 @@ import {
   MDBNavbarItem,
   MDBNavbarLink,
   MDBBtn,
-  MDBDropdown,
-  MDBDropdownToggle,
-  MDBDropdownMenu,
-  MDBDropdownItem,
-  MDBDropdownLink,
   MDBCollapse
 } from 'mdb-react-ui-kit';
 
-import { useNavigate, useParams } from 'react-router-dom'
 
 export default function Header(props) {
   const [showBasic, setShowBasic] = useState(false);
-  let {username} = useParams;
-  let navigate = useNavigate;
   
   const user = props.userData
 

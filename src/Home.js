@@ -1,12 +1,8 @@
-import Form from "./Form";
-import React, { useState, useEffect } from "react";
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-import ErrorPage from "./ErrorPage";
-import UserPage from "./UserPage";
-import ReactDOM from 'react-dom';
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom'
 import "./home.css";
 import axios from "axios";
-import { MDBAccordion, MDBAccordionItem, MDBBadge } from "mdb-react-ui-kit";
+import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 
 function Home(props) {
     let navigate = useNavigate();
@@ -25,49 +21,20 @@ function Home(props) {
         console.log(response)
         return response.data
       } catch (error) {
-        // We're not handling errors. Just logging into the console.
         console.log(error)
         return false
       }
     }
 
-    async function makePostCall(user) {
-        try {
-          console.log(user);
-          const response = await axios.post("http://localhost:5000/user", user);
-          return response;
-        } catch (error) {
-          console.log(error);
-          return false;
-        }
-      }
-
       async function checkUser(username){
         var user = await getUser(username);
-        if (user != false){
+        if (user !== false){
           props.handleSubmit(user[0])
         }
         else{
           navigate(`/errorPage`);
           console.log("no user found")
         }    
-      }
-
-      function createForm() {
-        ReactDOM.render(<Form />, document.getElementById("root"));
-        ReactDOM.render(
-          <Form handleSubmit={addUser} />,
-          document.getElementById("root")
-        );
-      }
-
-      function addUser(user) {
-        makePostCall(user).then((result) => {
-          if (result && result.status === 201){
-            console.log(result.data)
-            props.handleSubmit(result.data)
-          }
-        });
       }
 
 

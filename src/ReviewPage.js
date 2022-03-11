@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { MDBInput } from 'mdb-react-ui-kit';
 import axios from "axios";
 
@@ -30,7 +29,7 @@ function ReviewPage(props){
     function submitReview(){
         makeReviewCall().then( result => {
             console.log(result.status)
-            if (result.status == 201){
+            if (result.status === 201){
                 props.handleSubmit(reviewData)
             }
             else {

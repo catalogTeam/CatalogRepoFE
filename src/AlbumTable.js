@@ -18,7 +18,7 @@ function TableBody(props) {
   return (
     <tr key={index}>
       <td>{row.name}</td>
-      <td>{row.artistName}</td>
+      <td>{row.artists[0].name}</td>
     </tr>
     );
   });

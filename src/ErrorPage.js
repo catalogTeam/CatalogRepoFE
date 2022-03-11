@@ -1,16 +1,7 @@
 import React from "react";
-import Form from "./Form";
-import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom'
-
-import Home from "./Home";
-import ReactDOM from 'react-dom';
-import UserPage from "./UserPage";
+import { useNavigate } from 'react-router-dom'
 
 function ErrorPage(){
-    
-    function createPage(page){
-        ReactDOM.render(page, document.getElementById('root'));
-    }
 
     let navigate = useNavigate(); 
 
