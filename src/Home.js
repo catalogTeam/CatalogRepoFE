@@ -5,9 +5,8 @@ import ErrorPage from "./ErrorPage";
 import UserPage from "./UserPage";
 import ReactDOM from 'react-dom';
 import "./home.css";
-import "./index.css"
 import axios from "axios";
-import { MDBAccordion, MDBAccordionItem, MDBBadge } from "mdb-react-ui-kit";
+import { MDBAccordion, MDBAccordionItem} from "mdb-react-ui-kit";
 
 function Home(props) {
     let navigate = useNavigate();

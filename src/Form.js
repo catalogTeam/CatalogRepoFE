@@ -3,6 +3,7 @@ import axios from "axios";
 import AlbumTable from './AlbumTable';
 import ArtistTable from './ArtistTable';
 import { useNavigate } from 'react-router-dom';
+import "./Form.css";
 function Form(props) {   
     
     const [user, setUser] = useState({
@@ -90,11 +91,15 @@ function Form(props) {
     return (
       <div class = "form">
         <form class = "formtext">
-        <h1 class = "formtext">Create A Page!
-          <input name = "artist-button" type="button" value="Home" onClick={() => navigate('/home')} />
-        </h1>
-
-        <label class = "formtext" htmlFor="Username">Username</label>
+        <header>
+          <nav>
+            <ul>
+              <li><a href='home'>Home</a></li>
+            </ul>
+          </nav>
+        </header>
+        <h1 class = "formtext">Create A Page!</h1>
+        <label class = "title" htmlFor="Username">Username</label>
         <div class = "inputcontainer">  
           <input class = "formtext"
               type="text"
@@ -104,7 +109,7 @@ function Form(props) {
               onChange={handleChange} />
         </div>
 
-        <label class = "formtext" htmlFor="Bio">Bio</label>
+        <label class = "title" htmlFor="Bio">Bio</label>
 
         <div class = "inputcontainer">  
           <input class = "formtext"
@@ -115,7 +120,7 @@ function Form(props) {
               onChange={handleChange} />
         </div>
 
-        <label class = "formtext" htmlFor="profile_url">Enter profile picture URL</label>
+        <label class = "title" htmlFor="profile_url">Enter profile picture URL</label>
 
         <div class = "inputcontainer">
           <input class = "formtext"
@@ -126,7 +131,7 @@ function Form(props) {
               onChange={handleChange} />
         </div>      
 
-        <label class = "formtext" htmlFor="albums">Enter an album</label>
+        <label class = "title" htmlFor="albums">Enter an album</label>
         <div class = "inputcontainer">  
           <input class = "formtext"
               type="text"
@@ -139,7 +144,7 @@ function Form(props) {
         <input text-align  = "right" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
 
         <AlbumTable userdata={user} />
-        <label class = "formtext" htmlFor="artists">Enter an artist</label>
+        <label class = "title" htmlFor="artists">Enter an artist</label>
         <div class = "inputcontainer">  
 
           <input class = "formtext"
