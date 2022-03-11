@@ -102,14 +102,13 @@ function Home(props) {
 
 
     return (
-      <div>
         <html>
           <head>
             <title>HTML Elements Reference</title>
           </head>
           <body>
             <h1>Catalog</h1>
-            <sub>Enter username below to search for an already created user page</sub>
+            <div id="belowTitle">Enter username below to search for an already created user page</div>
           </body>
           <MDBAccordion initialActive="AC1">
             <MDBAccordionItem
@@ -141,11 +140,11 @@ function Home(props) {
             </form>
 
           <input type="button"  value="Search" onClick={() => checkUser(nameData.user)} />
-
+          <br></br>
+          <div id="userCreate">Don't have a page? Click below.</div>
+          <br></br>
           <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
         </html>
-
-      </div>
       );
     }
 
