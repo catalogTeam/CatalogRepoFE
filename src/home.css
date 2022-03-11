@@ -1,7 +1,68 @@
-.header {
-    height: 69px;
-    left: 202px;
-    position: absolute;
-    top: 0;
-    width: 1440px;
-  }
+h1 {
+  color: black;
+  font-size: 80px;
+  margin: 0.1em;
+  font-family: "Helvetica";
+  text-align: center;
+}
+
+#AC1, #AC2, #AC3 {
+  font-size: 12px;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* background-image: url("./background/galaxy.jpg"); */
+  background-color: rgb(150, 150, 150);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "Helvetica";
+  font-size: 5px;
+}
+
+#userCreate{
+ padding-top: 20px;
+}
+
+.searchbar{
+  width: 10%;
+  margin-left: 35%;
+  text-align: center;
+  background-color: white;
+}
+
+form{
+    width: 40%;
+    margin-left: 30%;
+    font-size: 20px;
+    text-align: center;
+};
+
+AC{
+    width: 40%
+}
+
+create{
+    text-align: center;
+}
+
+div{
+  color: black;
+  font-family: "Times New Roman";
+  font-size: 1.5em;
+  margin: 0.1em;
+  text-align: center;
+}
+div.id{
+  font-size: 0.5em;
+}
+
+
+#jawn {
+  margin-left: 28%;
+  width: 45%;
+}

@@ -42,7 +42,7 @@ function ReviewPage(props){
     return(
         <div>
             <body>
-                <h1>Album Review </h1>
+                <h1>Album Review</h1>
                 <label htmlFor="Username">Enter an Album</label>
                 <MDBInput  type='text'
                 name="album"

@@ -13,7 +13,7 @@ function CardList (props) {
           <MDBCardTitle>{album['name']}</MDBCardTitle>
         </MDBCardBody>
         <MDBCardFooter>
-          <small className='text-muted'>by {album['artists'][0]['name']}</small>
+          <small className='text-muted text-center'>by {album['artists'][0]['name']}</small>
         </MDBCardFooter>
       </MDBCard>
     );

@@ -45,8 +45,9 @@ function Home(props) {
           </div>
           <div>
             <h1>Catalog</h1>
-            <sub>Enter username below to search for an already created user page</sub>
+            <sub>Enter username below to search for a user page or create a new page</sub>
           </div>
+          <div class="AC" >
           <MDBAccordion initialActive="AC1">
             <MDBAccordionItem
               collapseId="AC1"
@@ -65,6 +66,7 @@ function Home(props) {
               >After creating your personalized page, use your very own custom link
               to send to your friends so they can see it, too.</MDBAccordionItem>
             </MDBAccordion>
+            </div>
           <form>
             <label htmlFor="user">Username</label>
             <input
@@ -76,7 +78,7 @@ function Home(props) {
             <input type="button"  value="Search" onClick={() => checkUser(nameData.user)} />
           </form>
 
-          <input name = "Create" type="button" value="Create An Account" onClick={() => navigate("/Form")} />
+          <input name = "Create" type="button" value="Create A Page" onClick={() => navigate("/Form")} />
 
 
       </div>

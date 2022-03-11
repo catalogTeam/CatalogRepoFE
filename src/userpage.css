@@ -1,0 +1,23 @@
+h1 {
+  color: black;
+  font-size: 2em;
+  margin: 0.1em;
+  font-size: 35px;
+  font: "Times New Roman";
+
+}
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* background-image: url("./background/galaxy.jpg"); */
+  background-color: rgb(4, 139, 117);
+  font-family: "lato", sans-serif;
+}
+
+.p1 {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 25px;
+  color: Black;
+
+}

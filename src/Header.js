@@ -60,7 +60,7 @@ export default function Header(props) {
         </MDBCollapse>
       </MDBContainer>
     </MDBNavbar>
-    <div className='p-5 text-center bg-light'>
+    <div className='p-5 text-center'>
         <h1 className='mb-3'>{user['username']}</h1>
         <h4 className='mb-3'>{user['bio']}</h4>
     </div>

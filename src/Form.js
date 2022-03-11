@@ -120,7 +120,8 @@ function Form(props) {
             value={nameData.album}
             onChange={handleChange} />
         <AlbumTable userdata={user} />
-        <input text-align  = "right" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
+        <input text-align  = "center" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
+        <br></br>
         <label htmlFor="artists">Enter an artist</label>
         <input
             type="text"
@@ -130,6 +131,7 @@ function Form(props) {
             onChange={handleChange} />
         <ArtistTable userdata={user} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
+        <br></br>
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
         </form>
     ); 
