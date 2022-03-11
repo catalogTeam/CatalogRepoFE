@@ -1,36 +1,67 @@
-import React from "react";
-import { useNavigate} from 'react-router-dom';
+import React, {useState} from 'react';
+
+import { useNavigate, BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import { MDBInput } from 'mdb-react-ui-kit';
-import "./review.css";
+import axios from "axios";
 
-function ReviewPage(){
 
-    let navigate = useNavigate(); 
+function ReviewPage(props){
+
+    const [reviewData, setReview] = useState({ username: props.userData.username, album: "", review: "" , rating: ""});
+
+    async function makeReviewCall () {
+        try {
+          const response = await axios.post('http://localhost:5000/reviews', reviewData)
+          return response
+        } catch (error) {
+          console.log(error)
+          return false
+        }
+      }
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        if (name === "album") setReview({ ...reviewData, album: value });
+        else if (name === "review") setReview({ ...reviewData, review: value });
+        else if (name === "rating") setReview({ ...reviewData, rating: value });
+      }
+
+
+    function submitReview(){
+        makeReviewCall().then( result => {
+            console.log(result.status)
+            if (result.status == 201){
+                props.handleSubmit(reviewData)
+            }
+            else {
+                console.log("error in review post")
+            }
+            
+        });
+    }
 
     return(
-      <div class = "reviewform">
-        <html>
-        <header>
-          <nav>
-            <ul>
-              <li><a href='home'>Home</a></li>
-            </ul>
-          </nav>
-        </header>
+        <div>
             <body>
                 <h1>Album Review </h1>
-                <form class = 'Album'>
                 <label htmlFor="Username">Enter an Album</label>
-                <input class = 'AEntry' type='text'></input>
-                </form>
-                
-                <form class = 'Review'>
+                <MDBInput  type='text'
+                name="album"
+                id="album"
+                value={reviewData.album}
+                onChange={handleChange} />
+
                 <label htmlFor="Username">Leave a short review</label>
-                <input class = 'REntry' type='text'></input>
-                </form>
-            </body>
-                <button id="submit" >Submit Review</button>
-        </html>
+                <MDBInput textarea rows={4}
+                type='text'
+                name="review"
+                id="review"
+                value={reviewData.review}
+                onChange={handleChange} />
+
+                <input type="button"  value="Submit Review" onClick={() => {submitReview()}} />
+
+                </body>
         </div>
     );
 }
