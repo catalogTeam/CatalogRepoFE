@@ -16,7 +16,7 @@ function ErrorPage(){
     let navigate = useNavigate(); 
 
     return(
-        <html>
+        <html className="error">
             <body>
                 <h1>User page not found</h1>
                 <sub>Try again or create new user page by going back to the home page!</sub>
