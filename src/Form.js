@@ -22,9 +22,6 @@ function Form(props) {
     function handleChange(event) {
         const { name, value } = event.target;
         if (name === "bio") setUser({ ...user, bio: value });
-        // setUser(
-        //     {username: user['username'], bio: value}
-        // );
         else if (name === "username") setUser({ ...user, username: value });
         else if (name === "profile_url") setUser({ ...user, profile_url: value });
         else if (name === "albums") setName({ ...nameData, album: value });
@@ -82,7 +79,6 @@ function Form(props) {
       }
     
 
-    //where we submit the website data
     function submitForm() {
         props.handleSubmit(user);
         setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});

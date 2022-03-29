@@ -1,5 +1,5 @@
 import React from 'react';
-import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardText, MDBCardFooter, MDBCardGroup } from 'mdb-react-ui-kit';
+import { MDBCard, MDBCardImage, MDBCardBody, MDBCardTitle, MDBCardFooter, MDBCardGroup } from 'mdb-react-ui-kit';
 
 function CardList (props) {
   const cards = props.albums?.map((album) => {
