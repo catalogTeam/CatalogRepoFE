@@ -10,11 +10,8 @@ import ReviewPage from "./ReviewPage";
 
 function MyApp() {
   const [user, setUser] = useState({});
-  
 
-  let navigate = useNavigate();
-
- 
+  let navigate = useNavigate(); 
 
   async function makePostCall (person) {
     try {
