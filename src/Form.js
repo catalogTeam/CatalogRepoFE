@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import axios from "axios";
-import AlbumTable from './AlbumTable';
-import ArtistTable from './ArtistTable';
+import AlbumTable from './Tables/AlbumTable';
+import ArtistTable from './Tables/ArtistTable';
 
 
 function Form(props) {  

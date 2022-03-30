@@ -1,7 +1,7 @@
 import Header from "./Header"
-import AlbumCards from "./AlbumCards"
-import ArtistCards from "./ArtistCards"
-import ReviewCards from "./ReviewCards"
+import AlbumCards from "./Cards/AlbumCards"
+import ArtistCards from "./Cards/ArtistCards"
+import ReviewCards from "./Cards/ReviewCards"
 
 function UserPage(props){
 

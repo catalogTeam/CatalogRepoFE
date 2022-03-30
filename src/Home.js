@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
-import "./home.css";
+import "./CSS/home.css";
 import axios from "axios";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 
