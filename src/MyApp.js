@@ -50,7 +50,7 @@ function MyApp() {
 
 function toReviewPage(){
   console.log("going to review page")
-  navigate(`/reviewPage`);
+  navigate(`/review`);
 
 }
 
@@ -68,7 +68,7 @@ function toReviewPage(){
 
           <Route path='*' element={ <ErrorPage />}/>
 
-          <Route path='/reviewPage'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
+          <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
         </Routes>
     </div>
