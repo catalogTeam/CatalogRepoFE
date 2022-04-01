@@ -6,6 +6,7 @@ import Home from "./Home";
 import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
+import SignUpPage from "./SignUpPage";
 
 
 function MyApp() {
@@ -69,6 +70,9 @@ function toReviewPage(){
           <Route path='*' element={ <ErrorPage />}/>
 
           <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
+
+          <Route path='/signup' element={ <SignUpPage />}/>
+
 
         </Routes>
     </div>
