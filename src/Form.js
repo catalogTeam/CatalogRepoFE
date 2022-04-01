@@ -82,7 +82,6 @@ function Form(props) {
     function submitForm() {
         props.handleSubmit(user);
         setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});
-        
     }
 
     return (
