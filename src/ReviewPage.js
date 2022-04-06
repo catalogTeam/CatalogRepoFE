@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import './CSS/reviewpage.css';
 import { MDBInput } from 'mdb-react-ui-kit';
 import axios from "axios";
 
