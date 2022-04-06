@@ -71,7 +71,7 @@ function toReviewPage(){
 
           <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-          <Route path='/signup' element={ <SignUpPage />}/>
+          <Route path='/login' element={ <SignUpPage />}/>
 
 
         </Routes>

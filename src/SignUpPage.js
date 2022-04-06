@@ -1,5 +1,4 @@
 import React, { useState} from "react";
-import { useNavigate } from 'react-router-dom'
 import './CSS/signup.css';
 import styled from "styled-components";
 import { AccountBox } from "./components/accountBox";
