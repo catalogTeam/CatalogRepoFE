@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import "./CSS/home.css";
-import axios from "axios";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 
 function Home(props) {
@@ -15,27 +14,6 @@ function Home(props) {
       if (name === "user") setName({ ...nameData, user: value });
     }
 
-    async function getUser(user) {
-      try {
-        const response = await axios.get(`http://localhost:5000/user/${user}`)
-        console.log(response)
-        return response.data
-      } catch (error) {
-        console.log(error)
-        return false
-      }
-    }
-
-      async function checkUser(username){
-        var user = await getUser(username);
-        if (user !== false){
-          props.handleSubmit(user[0])
-        }
-        else{
-          navigate(`/errorPage`);
-          console.log("no user found")
-        }    
-      }
 
 
     return (
@@ -75,7 +53,7 @@ function Home(props) {
             id="user"
             value={nameData.user}
             onChange={handleChange} />
-            <input type="button"  value="Search" onClick={() => checkUser(nameData.user)} />
+            <input type="button"  value="Search" onClick={() => navigate(`/user/${nameData.user}`)} />
           </form>
 
           <input name = "Create" type="button" value="Create A Page" onClick={() => navigate("/Form")} />

@@ -8,15 +8,35 @@ import {
   MDBNavbarNav,
   MDBNavbarItem,
   MDBNavbarLink,
-  MDBBtn,
-  MDBCollapse
+  MDBCollapse, 
 } from 'mdb-react-ui-kit';
+
+import { useNavigate } from 'react-router-dom'
+
 
 
 export default function Header(props) {
+
+  let navigate = useNavigate();
+
+  const [nameData, setName] = useState({ user: ""});
+
   const [showBasic, setShowBasic] = useState(false);
   
   const user = props.userData
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    if (name === "user") setName({ ...nameData, user: value });
+  }
+
+  function search(){
+
+    let name = nameData.user
+    setName({ user: "" });
+    navigate(`/user/${name}`)
+    
+  }
 
   function submit(){
     props.handleSubmit()
@@ -54,8 +74,13 @@ export default function Header(props) {
 
 
           <form className='d-flex input-group w-auto'>
-            <input type='search' className='form-control' placeholder='Type query' aria-label='Search' />
-            <MDBBtn color='primary'>Search</MDBBtn>
+            <input
+            type="text"
+            name="user"
+            id="user"
+            value={nameData.user}
+            onChange={handleChange} />
+            <input type="button"  value="Search" onClick={search} />
           </form>
         </MDBCollapse>
       </MDBContainer>

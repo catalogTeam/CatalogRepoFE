@@ -3,6 +3,7 @@ import {  Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import Form from "./Form";
 import axios from "axios";
 import Home from "./Home";
+import ProfilePage from "./ProfilePage";
 import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
@@ -29,7 +30,7 @@ function MyApp() {
   function assignUser(user) {
     setUser(user);
     console.log(user)
-    navigate(`/user/${user.username}`);
+    navigate(`/profile/${user.username}`);
   }
 
   async function toUser(reviewData) {
@@ -38,7 +39,7 @@ function MyApp() {
     reviewList.push(reviewData)
     user.reviews = reviewList
     console.log(user.reviews)
-    navigate(`/user/${user.username}`);
+    navigate(`/profile/${user.username}`);
   }
 
   function addUser(user) {
@@ -46,10 +47,11 @@ function MyApp() {
     makePostCall(user).then((result) => {
       if (result && result.status === 201) {
         setUser(user);
-        navigate(`/user/${user.username}`);
+        navigate(`/profile/${user.username}`);
       }
     });
 }
+
 
 function toReviewPage(){
   console.log("going to review page")
@@ -67,7 +69,9 @@ function toReviewPage(){
     
           <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-          <Route path='/user/*' element = { <UserPage userData = {user} handleSubmit = {toReviewPage}/>}/>
+          <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>
+
+          <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
           <Route path='*' element={ <ErrorPage />}/>
 
