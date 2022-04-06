@@ -6,7 +6,7 @@ import { AccountContext } from "./accountContext";
 import { SignupForm } from "./signupForm";
 
 const BoxContainer = styled.div`
-  width: 300px;
+  width: 330px;
   min-height: 550px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,8 @@ const TopContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: 5em;
+  padding-bottom: .5em;
+  paddding-top: 0em;
 `;
 
 const BackDrop = styled(motion.div)`

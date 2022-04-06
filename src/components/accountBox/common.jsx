@@ -9,7 +9,7 @@ export const BoxContainer = styled.div`
 `;
 
 export const FormContainer = styled.form`
-  width: 100%;
+  width: 120%;
   display: flex;
   flex-direction: column;
   box-shadow: 0px 0px 2.5px rgba(15, 15, 15, 0.19);
@@ -32,14 +32,13 @@ export const BoldLink = styled.a`
 
 export const Input = styled.input`
   width: 100%;
-  height: 42px;
+  height: 40px;
   outline: none;
   border: 1px solid rgba(200, 200, 200, 0.3);
   padding: 0px 10px;
   border-bottom: 1.4px solid transparent;
   transition: all 200ms ease-in-out;
   font-size: 12px;
-
   &::placeholder {
     color: rgba(200, 200, 200, 1);
   }
@@ -56,7 +55,7 @@ export const Input = styled.input`
 
 export const SubmitButton = styled.button`
   width: 100%;
-  padding: 11px 40%;
+  padding: 15px 30%;
   color: #fff;
   font-size: 15px;
   font-weight: 600;

@@ -4,7 +4,7 @@ import './CSS/signup.css';
 import styled from "styled-components";
 import { AccountBox } from "./components/accountBox";
 
-const SignUpPageContainer = styled.div`
+const AppContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -13,12 +13,12 @@ const SignUpPageContainer = styled.div`
   justify-content: center;
 `;
 
-function SignUpPage() {
+function App() {
   return (
-    <SignUpPageContainer>
+    <AppContainer>
       <AccountBox />
-    </SignUpPageContainer>
+    </AppContainer>
   );
 }
 
-export default SignUpPage;
+export default App;
