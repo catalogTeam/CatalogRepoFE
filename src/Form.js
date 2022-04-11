@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import axios from "axios";
 import AlbumTable from './Tables/AlbumTable';
 import ArtistTable from './Tables/ArtistTable';
+// Importing default pfp
+import defPfp from './default.png'
 
 
 function Form(props) {  
@@ -9,13 +11,11 @@ function Form(props) {
     const [user, setUser] = useState({
         username: "",
         bio: "",
-        profile_pic_url: "",
+        profile: defPfp, // initialize pfp to default
         albums: [],
         artists: [],
         reviews: [],
       });
-    
-    
 
     const [nameData, setName] = useState({ album: "", artist: "" });
 
@@ -23,7 +23,10 @@ function Form(props) {
         const { name, value } = event.target;
         if (name === "bio") setUser({ ...user, bio: value });
         else if (name === "username") setUser({ ...user, username: value });
-        else if (name === "profile_url") setUser({ ...user, profile_url: value });
+        else if (name === "profile") {
+          let img = event.target.files[0];
+          setUser({...user, profile: URL.createObjectURL(img)});
+        }
         else if (name === "albums") setName({ ...nameData, album: value });
         else if (name === "artists") setName({ ...nameData, artist: value });
       }
@@ -77,7 +80,6 @@ function Form(props) {
           setName({ artist: "" });
         }
       }
-    
 
     function submitForm() {
         props.handleSubmit(user);
@@ -101,12 +103,12 @@ function Form(props) {
             id="bio"
             value={user.bio}
             onChange={handleChange} />
-        <label htmlFor="profile_url">Profile_url</label>
+        {user.profile && <img src={user.profile} />}
+        <label htmlFor="profile">Select Image</label>
         <input
-            type="text"
-            name="profile_url"
-            id="profile_url"
-            value={user.profile_url}
+            type="file"
+            name="profile"
+            id="profile"
             onChange={handleChange} />
         <label htmlFor="albums">Enter an album</label>
         <input
