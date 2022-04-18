@@ -8,6 +8,9 @@ import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import SignUpPage from "./SignUpPage";
 
+import TestSignup from "./TestSignup";
+import TestLogin from "./TestLogin";
+
 
 function MyApp() {
   const [user, setUser] = useState({});
@@ -72,6 +75,10 @@ function toReviewPage(){
           <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
           <Route path='/login' element={ <SignUpPage />}/>
+
+          <Route path='/testingsignup' element={ <TestSignup />}/>
+          <Route path='/testinglogin' element={ <TestLogin />}/>
+
 
 
         </Routes>
