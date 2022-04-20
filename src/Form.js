@@ -55,6 +55,13 @@ function Form(props) {
         }
       }
 
+      function removeOneAlbum(index) {
+          
+      }
+
+      function removeOneArtist(index) {
+
+      }
 
       async function submitAlbum() {
         var albums = user.albums;
