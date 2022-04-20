@@ -55,14 +55,6 @@ function Form(props) {
         }
       }
 
-      function removeOneAlbum(index) {
-          
-      }
-
-      function removeOneArtist(index) {
-
-      }
-
       async function submitAlbum() {
         var albums = user.albums;
         var album = nameData.album;
@@ -73,6 +65,13 @@ function Form(props) {
           setUser({ ...user, albums: albums });
           setName({ album: "" });
         }
+      }
+
+      function removeAlbum(index) {
+        const updated = user.albums.filter((character, i) => {
+          return i !== index
+        });
+        setUser({ ...user, albums: updated});
       }
     
       async function submitArtist() {
@@ -86,6 +85,13 @@ function Form(props) {
           setUser({ ...user, artists: artists });
           setName({ artist: "" });
         }
+      }
+
+      function removeArtist(index) {
+        const updated = user.artists.filter((character, i) => {
+          return i !== index
+        });
+        setUser({ ...user, artists: updated});
       }
 
     function submitForm() {
@@ -124,7 +130,7 @@ function Form(props) {
             id="albums"
             value={nameData.album}
             onChange={handleChange} />
-        <AlbumTable userdata={user} />
+        <AlbumTable userdata={user} deleteAlbum={removeAlbum} />
         <input text-align  = "center" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
         <br></br>
         <label htmlFor="artists">Enter an artist</label>
@@ -134,7 +140,7 @@ function Form(props) {
             id="artists"
             value={nameData.artist}
             onChange={handleChange} />
-        <ArtistTable userdata={user} />
+        <ArtistTable userdata={user} removeArtist={removeArtist} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <br></br>
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />

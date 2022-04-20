@@ -17,6 +17,9 @@ function TableBody(props) {
   return (
     <tr key={index}>
       <td>{row.name}</td>
+      <td>
+        <input type="button" value="Delete" onClick={ () => props.removeArtist(index) } />
+      </td>
     </tr>
     );
   });
@@ -30,6 +33,7 @@ function ArtistTable(props) {
         <TableHeader />
         <TableBody
         user={props.userdata}
+        removeArtist={props.removeArtist}
       />
       </table>
     </div>

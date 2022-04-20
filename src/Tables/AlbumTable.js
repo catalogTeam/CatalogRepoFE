@@ -1,12 +1,4 @@
 import React from "react";
-import { Form } from "react-bootstrap";
-
-function deleteRow(list, index) {
-    const updated = list.filter((i) => {
-      return i !== index
-    });
-    list = updated;
-}
 
 function TableHeader() {
   return (
@@ -28,7 +20,9 @@ function TableBody(props) {
     <tr key={index}>
       <td>{row.name}</td>
       <td>{row.artists[0].name}</td>
-      <td><button onClick={() => deleteRow(albums, index)}>Delete</button></td>
+      <td>
+        <input type="button" value="Delete" onClick={() => props.removeAlbum(index)} />
+      </td>
     </tr>
     );
   });
@@ -42,6 +36,7 @@ function AlbumTable(props) {
         <TableHeader />
         <TableBody
         user={props.userdata}
+        removeAlbum={props.deleteAlbum}
       />
       </table>
     </div>
