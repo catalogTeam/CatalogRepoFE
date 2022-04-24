@@ -5,7 +5,6 @@ import ArtistTable from './Tables/ArtistTable';
 // Importing default pfp
 import defPfp from './default.png'
 
-
 function Form(props) {  
     
     const [user, setUser] = useState({
@@ -19,13 +18,33 @@ function Form(props) {
 
     const [nameData, setName] = useState({ album: "", artist: "" });
 
+    const uploadImage = async (e) => {
+      const file = e.target.files[0];
+      const base64 = await convertBase64(file);
+      setUser({ ...user, profile: base64});
+    }
+
+    const convertBase64 = (file) => {
+      return new Promise((resolve, reject) => {
+        const filereader = new FileReader();
+        filereader.readAsDataURL(file);
+
+        filereader.onload = () => {
+          resolve(filereader.result);
+        };
+
+        filereader.onerror = (error) => {
+          reject(error);
+        };
+      });
+    };
+    
     function handleChange(event) {
         const { name, value } = event.target;
         if (name === "bio") setUser({ ...user, bio: value });
         else if (name === "username") setUser({ ...user, username: value });
         else if (name === "profile") {
-          let img = event.target.files[0];
-          setUser({...user, profile: URL.createObjectURL(img)});
+          uploadImage(event);
         }
         else if (name === "albums") setName({ ...nameData, album: value });
         else if (name === "artists") setName({ ...nameData, artist: value });
@@ -116,7 +135,7 @@ function Form(props) {
             id="bio"
             value={user.bio}
             onChange={handleChange} />
-        {user.profile && <img src={user.profile} />}
+        {user.profile && <img src={user.profile} height="200px"/>}
         <label htmlFor="profile">Select Image</label>
         <input
             type="file"
