@@ -3,7 +3,6 @@ h1 {
   font-size: 80px;
   margin: 0.1em;
   font-family: "Helvetica";
-  text-align: center;
 }
 
 #AC1, #AC2, #AC3 {
@@ -15,7 +14,6 @@ body {
   margin: 0;
   padding: 0;
   /* background-image: url("./background/galaxy.jpg"); */
-  background-color: rgb(150, 150, 150);
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -55,7 +53,6 @@ div{
   font-family: "Times New Roman";
   font-size: 1.5em;
   margin: 0.1em;
-  text-align: center;
 }
 div.id{
   font-size: 0.5em;
