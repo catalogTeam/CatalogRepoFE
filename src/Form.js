@@ -1,21 +1,26 @@
 import React, {useState} from 'react';
-import axios from "axios";
 import AlbumTable from './Tables/AlbumTable';
 import ArtistTable from './Tables/ArtistTable';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 // Importing default pfp
 import defPfp from './default.png'
+import {useLocation } from 'react-router-dom';
 
 function Form(props) {  
+
+  const location = useLocation();
+  console.log(location.state.user);
+
+  let navigate = useNavigate();
     
     const [user, setUser] = useState({
-        username: "",
         bio: "",
         profile: defPfp, // initialize pfp to default
         albums: [],
         artists: [],
         reviews: [],
       });
-
     const [nameData, setName] = useState({ album: "", artist: "" });
 
     const uploadImage = async (e) => {
@@ -114,19 +119,21 @@ function Form(props) {
       }
 
     function submitForm() {
-        props.handleSubmit(user);
-        setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});
+        var fullUser = {...user,...location.state.user};
+        console.log(fullUser)
+        navigate(`/profile/${fullUser.username}`, {state: {user: fullUser}})
+        setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
         
     }
 
     return (
         <form>
-        <label htmlFor="Username">Username</label>
+        <label htmlFor="pagename">pagename</label>
         <input
             type="text"
-            name="username"
-            id="username"
-            value={user.username}
+            name="pagename"
+            id="pagename"
+            value={user.pagename}
             onChange={handleChange} />
         <label htmlFor="Bio">Bio</label>
         <input

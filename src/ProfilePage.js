@@ -2,8 +2,12 @@ import Header from "./Headers/Header"
 import AlbumCards from "./Cards/AlbumCards"
 import ArtistCards from "./Cards/ArtistCards"
 import ReviewCards from "./Cards/ReviewCards"
+import { useLocation } from 'react-router-dom'
 
 function ProfilePage(props){
+    
+    const location = useLocation();
+    //console.log(location.state.user);
 
     
     function Submit(){
@@ -12,13 +16,13 @@ function ProfilePage(props){
 
     return(
     <div>
-        <Header userData = {props.userData} handleSubmit = {() => Submit()} />
+        <Header userData = {location.state.user} handleSubmit = {() => Submit()} />
         <header>Albums</header>
-        <AlbumCards albumData = {props.userData['albums']}/>
+        <AlbumCards albumData = {location.state.user['albums']}/>
         <header>Artists</header>
-        <ArtistCards artistData = {props.userData['artists']}/>
+        <ArtistCards artistData = {location.state.user['artists']}/>
         <header>Reviews</header>
-        <ReviewCards reviewData = {props.userData['reviews']}/>
+        <ReviewCards reviewData = {location.state.user['reviews']}/>
     </div>
     );
 }
