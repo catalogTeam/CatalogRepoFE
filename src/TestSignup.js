@@ -6,7 +6,7 @@ function TestSignup(props){
     const [user, setUser] = useState({
         email: '',
         username: '',
-        pwd: ''
+        password: ''
       })
 
     const [message, setMsg] = useState('');
@@ -24,12 +24,15 @@ function TestSignup(props){
 
     function submitForm (props) {
     makeSignupCall(user).then((response) => {
-        if (response && response.status === 200) {
+        if (response && response.status === 201) {
         const token = response.data
-        setUser({ username: '', pwd: '' })
+        setUser({ username: '', password: '' })
         setMsg('')
-        props.setToken(token)
-        navigate(`/user/${user.username}`)
+        // props.setToken(token)
+        navigate(`/profile/${user.username}`)
+        }
+        else{
+            console.log("bad response", response)
         }
     })
     }
@@ -65,10 +68,10 @@ function TestSignup(props){
                 &nbsp;&nbsp;&nbsp;
                 <input
                     type='password'
-                    name='pwd'
-                    id='pwd'
-                    value={user.pwd}
-                    onChange={(event) => setUser({ ...user, pwd: event.target.value })}
+                    name='password'
+                    id='password'
+                    value={user.password}
+                    onChange={(event) => setUser({ ...user, password: event.target.value })}
                 />
             </div>
             <input type='button' value='Submit' onClick={submitForm} />

@@ -3,9 +3,14 @@ import { useNavigate } from 'react-router-dom'
 import "./CSS/home.css";
 import axios from "axios";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
+import { useCookies } from 'react-cookie';
 
 function Home(props) {
     let navigate = useNavigate();
+
+    const [cookies, setCookie] = useCookies(['auth_token']);
+
+    
 
     
     const [nameData, setName] = useState({ user: ""});
@@ -13,6 +18,19 @@ function Home(props) {
     function handleChange(event) {
       const { name, value } = event.target;
       if (name === "user") setName({ ...nameData, user: value });
+    }
+
+    // function setToken(token){
+    //   props.setToken(token)
+    // }
+
+    function setToken (token) {
+      setCookie('auth_token', token,
+        {
+          maxAge: 1800,
+          path: '/'
+        }
+      )
     }
 
     async function getUser(user) {
@@ -79,8 +97,8 @@ function Home(props) {
           </form>
 
           <input name = "Create" type="button" value="Create A Page" onClick={() => navigate("/Form")} />
-
-
+          <input name = "login" type="button" value="Sign up" onClick={() => navigate("/testingsignup")} />
+          <input name = "signup" type="button" value="Log in" onClick={() => navigate("/testinglogin")} />
       </div>
       );
     }

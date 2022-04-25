@@ -15,8 +15,18 @@ import TestLogin from "./TestLogin";
 
 function MyApp() {
   const [user, setUser] = useState({});
+  const [cookies, setCookie] = useCookies(['auth_token']);
 
   let navigate = useNavigate(); 
+
+  function setToken (token) {
+    setCookie('auth_token', token,
+      {
+        maxAge: 1800,
+        path: '/'
+      }
+    )
+  }
 
   async function makePostCall (person) {
     try {
@@ -48,7 +58,7 @@ function MyApp() {
     makePostCall(user).then((result) => {
       if (result && result.status === 201) {
         setUser(user);
-        navigate(`/user/${user.username}`);
+        navigate(`/profile/${user.username}`);
       }
     });
 }
@@ -77,7 +87,7 @@ function toReviewPage(){
 
           <Route path='/login' element={ <SignUpPage />}/>
 
-          <Route path='/testingsignup' element={ <TestSignup />}/>
+          <Route path='/testingsignup' element={ <TestSignup />} handleSubmit= {addUser}/>
           <Route path='/testinglogin' element={ <TestLogin />}/>
 
 
