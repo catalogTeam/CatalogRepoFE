@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 
 function TestLogin(props){
+
     const [user, setUser] = useState({
         username: '',
         password: ''
@@ -18,8 +19,8 @@ function TestLogin(props){
             const token = response.data
             setUser({ username: '', password: '' })
             setMsg('')
-            // props.setToken(token)
-            navigate(`/profile/${user.username}`)
+            //props.handleSubmit(user);
+            navigate(`/profile/${user.username}`, {state: {user: user}})
           } else {
             console.log(response)
             setMsg('Invalid login credentials!')

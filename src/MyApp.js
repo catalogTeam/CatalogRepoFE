@@ -6,6 +6,7 @@ import Home from "./Home";
 import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
+import ProfilePage from "./ProfilePage";
 import SignUpPage from "./SignUpPage";
 import { useCookies } from 'react-cookie';
 
@@ -53,6 +54,19 @@ function MyApp() {
     navigate(`/user/${user.username}`);
   }
 
+  async function toForm(user){
+    navigate(`/form`, { user: user });
+  }
+
+  async function toSignedInUser(reviewData) {
+    console.log(user.reviews)
+    var reviewList = user.reviews
+    reviewList.push(reviewData)
+    user.reviews = reviewList
+    console.log(user.reviews)
+    navigate(`/profile/${user.username}`);
+  }
+
   function addUser(user) {
     console.log(user)
     makePostCall(user).then((result) => {
@@ -70,31 +84,30 @@ function toReviewPage(){
 }
 
 
-  return (
-    <div className='container'>
-        <Routes>
-          <Route path='/' element={ <Navigate replace to = "/home" /> }/>
+return (
+  <div className='container'>
+      <Routes>
+        <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-          <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
-    
-          <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
+        <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
+  
+        <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-          <Route path='/user/*' element = { <UserPage userData = {user} handleSubmit = {toReviewPage}/>}/>
+        <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>
 
-          <Route path='*' element={ <ErrorPage />}/>
+        <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
-          <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
+        <Route path='*' element={ <ErrorPage />}/>
 
-          <Route path='/login' element={ <SignUpPage />}/>
+        <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-          <Route path='/testingsignup' element={ <TestSignup />} handleSubmit= {addUser}/>
-          <Route path='/testinglogin' element={ <TestLogin />}/>
+        <Route path='/testingsignup' element={ <TestSignup />} handleSubmit= {toSignedInUser}/>
+        
+        <Route path='/testinglogin' element={ <TestLogin />} handleSubmit= {toSignedInUser}/>
 
-
-
-        </Routes>
-    </div>
-  );
+      </Routes>
+  </div>
+);
 }
 
 export default MyApp;

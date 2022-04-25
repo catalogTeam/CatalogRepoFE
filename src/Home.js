@@ -33,6 +33,10 @@ function Home(props) {
       )
     }
 
+    function handleSubmit(user){
+      props.handleSubmit(user)
+    }
+
     async function getUser(user) {
       try {
         const response = await axios.get(`http://localhost:5000/user/${user}`)

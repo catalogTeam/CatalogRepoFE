@@ -7,7 +7,6 @@ import ArtistTable from './Tables/ArtistTable';
 function Form(props) {  
     
     const [user, setUser] = useState({
-        username: "",
         bio: "",
         profile_pic_url: "",
         albums: [],
@@ -15,14 +14,12 @@ function Form(props) {
         reviews: [],
       });
     
-    
-
     const [nameData, setName] = useState({ album: "", artist: "" });
 
     function handleChange(event) {
         const { name, value } = event.target;
         if (name === "bio") setUser({ ...user, bio: value });
-        else if (name === "username") setUser({ ...user, username: value });
+        else if (name === "pagename") setUser({ ...user, pagename: value });
         else if (name === "profile_url") setUser({ ...user, profile_url: value });
         else if (name === "albums") setName({ ...nameData, album: value });
         else if (name === "artists") setName({ ...nameData, artist: value });
@@ -80,19 +77,23 @@ function Form(props) {
     
 
     function submitForm() {
-        props.handleSubmit(user);
-        setUser({username: '', bio: '', profile_url: '', albums: [], artists: []});
+        var fullUser = {...user,...props.user};
+        console.log(props.user)
+        console.log(fullUser)
+        console.log(props)
+        props.handleSubmit(fullUser);
+        setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
         
     }
 
     return (
         <form>
-        <label htmlFor="Username">Username</label>
+        <label htmlFor="pagename">pagename</label>
         <input
             type="text"
-            name="username"
-            id="username"
-            value={user.username}
+            name="pagename"
+            id="pagename"
+            value={user.pagename}
             onChange={handleChange} />
         <label htmlFor="Bio">Bio</label>
         <input

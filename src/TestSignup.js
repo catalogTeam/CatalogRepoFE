@@ -29,7 +29,8 @@ function TestSignup(props){
         setUser({ username: '', password: '' })
         setMsg('')
         // props.setToken(token)
-        navigate(`/profile/${user.username}`)
+        //props.handleSubmit(user);
+        navigate(`/profile/${user.username}`, {state: {user: user}})
         }
         else{
             console.log("bad response", response)
