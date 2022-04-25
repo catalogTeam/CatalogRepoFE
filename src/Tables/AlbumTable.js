@@ -6,6 +6,7 @@ function TableHeader() {
       <tr>
         <th>Album</th>
         <th>Artist</th>
+        <th>Remove</th>
       </tr>
     </thead>
   );
@@ -19,6 +20,9 @@ function TableBody(props) {
     <tr key={index}>
       <td>{row.name}</td>
       <td>{row.artists[0].name}</td>
+      <td>
+        <input type="button" value="Delete" onClick={() => props.removeAlbum(index)} />
+      </td>
     </tr>
     );
   });
@@ -32,6 +36,7 @@ function AlbumTable(props) {
         <TableHeader />
         <TableBody
         user={props.userdata}
+        removeAlbum={props.deleteAlbum}
       />
       </table>
     </div>
