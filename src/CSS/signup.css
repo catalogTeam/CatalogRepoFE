@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-.form-box{
-    width: 380px;
-    height: 480px;
-    position: relative;
-    margin: 6% auto;
-    background: rgb(169, 123, 123);
-    padding: 5px;
-=======
 
 
 .SignUpPage {
@@ -46,5 +37,4 @@ from {
 to {
     transform: rotate(360deg);
 }
->>>>>>> login
 }

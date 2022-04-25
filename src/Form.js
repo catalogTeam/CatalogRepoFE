@@ -1,26 +1,37 @@
 import React, {useState} from 'react';
-import axios from "axios";
 import AlbumTable from './Tables/AlbumTable';
 import ArtistTable from './Tables/ArtistTable';
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+// Importing default pfp
+import defPfp from './default.png'
+import {useLocation } from 'react-router-dom';
 
 
 function Form(props) {  
+
+  const location = useLocation();
+  console.log(location.state.user);
+
+  let navigate = useNavigate();
     
     const [user, setUser] = useState({
         bio: "",
-        profile_pic_url: "",
+        profile: defPfp, // initialize pfp to default
         albums: [],
         artists: [],
         reviews: [],
       });
-    
     const [nameData, setName] = useState({ album: "", artist: "" });
 
     function handleChange(event) {
         const { name, value } = event.target;
         if (name === "bio") setUser({ ...user, bio: value });
-        else if (name === "pagename") setUser({ ...user, pagename: value });
-        else if (name === "profile_url") setUser({ ...user, profile_url: value });
+        else if (name === "username") setUser({ ...user, username: value });
+        else if (name === "profile") {
+          let img = event.target.files[0];
+          setUser({...user, profile: URL.createObjectURL(img)});
+        }
         else if (name === "albums") setName({ ...nameData, album: value });
         else if (name === "artists") setName({ ...nameData, artist: value });
       }
@@ -74,14 +85,11 @@ function Form(props) {
           setName({ artist: "" });
         }
       }
-    
 
     function submitForm() {
-        var fullUser = {...user,...props.user};
-        console.log(props.user)
+        var fullUser = {...user,...location.state.user};
         console.log(fullUser)
-        console.log(props)
-        props.handleSubmit(fullUser);
+        navigate(`/profile/${fullUser.username}`, {state: {user: fullUser}})
         setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
         
     }
@@ -102,12 +110,12 @@ function Form(props) {
             id="bio"
             value={user.bio}
             onChange={handleChange} />
-        <label htmlFor="profile_url">Profile_url</label>
+        {user.profile && <img src={user.profile} />}
+        <label htmlFor="profile">Select Image</label>
         <input
-            type="text"
-            name="profile_url"
-            id="profile_url"
-            value={user.profile_url}
+            type="file"
+            name="profile"
+            id="profile"
             onChange={handleChange} />
         <label htmlFor="albums">Enter an album</label>
         <input

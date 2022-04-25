@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import "./CSS/home.css";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 import { useCookies } from 'react-cookie';
+import axios from "axios";
 
 function Home(props) {
     let navigate = useNavigate();

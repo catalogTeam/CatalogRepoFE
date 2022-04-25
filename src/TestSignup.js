@@ -1,6 +1,6 @@
-import axios from 'axios';
+import axios from 'axios'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 
 function TestSignup(props){
     const [user, setUser] = useState({
@@ -30,7 +30,7 @@ function TestSignup(props){
         setMsg('')
         // props.setToken(token)
         //props.handleSubmit(user);
-        navigate(`/profile/${user.username}`, {state: {user: user}})
+        navigate(`/form`, {state: {user: user}})
         }
         else{
             console.log("bad response", response)

@@ -3,7 +3,6 @@ import {  Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import Form from "./Form";
 import axios from "axios";
 import Home from "./Home";
-import ProfilePage from "./ProfilePage";
 import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
@@ -95,13 +94,7 @@ return (
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-<<<<<<< HEAD
-          <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>
-
-          <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
-=======
         <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>
->>>>>>> login
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
