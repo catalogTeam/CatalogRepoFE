@@ -83,7 +83,7 @@ export default function Header(props) {
     <div className='p-5 text-center'>
         <h1 className='mb-3'>{user['username']}</h1>
         <h4 className='mb-3'>{user['bio']}</h4>
-        <img src={user['profile']} />
+        <img src={user['profile']} height='200px'/>
     </div>
     </div>
     
