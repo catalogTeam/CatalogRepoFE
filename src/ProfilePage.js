@@ -7,6 +7,8 @@ import { useLocation } from 'react-router-dom'
 function ProfilePage(props){
     
     const location = useLocation();
+
+    console.log(props)
     //console.log(location.state.user);
 
     
@@ -16,13 +18,13 @@ function ProfilePage(props){
 
     return(
     <div>
-        <Header userData = {location.state.user} handleSubmit = {() => Submit()} />
+        <Header userData = {props.userData} handleSubmit = {() => Submit()} />
         <header>Albums</header>
-        <AlbumCards albumData = {location.state.user['albums']}/>
+        <AlbumCards albumData = {props.userData['albums']}/>
         <header>Artists</header>
-        <ArtistCards artistData = {location.state.user['artists']}/>
+        <ArtistCards artistData = {props.userData['artists']}/>
         <header>Reviews</header>
-        <ReviewCards reviewData = {location.state.user['reviews']}/>
+        <ReviewCards reviewData = {props.userData['reviews']}/>
     </div>
     );
 }

@@ -101,8 +101,8 @@ function Home(props) {
           </form>
 
           <input name = "Create" type="button" value="Create A Page" onClick={() => navigate("/Form")} />
-          <input name = "login" type="button" value="Sign up" onClick={() => navigate("/testingsignup")} />
-          <input name = "signup" type="button" value="Log in" onClick={() => navigate("/testinglogin")} />
+          <input name = "login" type="button" value="Sign up" onClick={() => navigate("/signup")} />
+          <input name = "signup" type="button" value="Log in" onClick={() => navigate("/login")} />
       </div>
       );
     }

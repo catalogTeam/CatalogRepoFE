@@ -118,12 +118,27 @@ function Form(props) {
         setUser({ ...user, artists: updated});
       }
 
-    function submitForm() {
-        var fullUser = {...user,...location.state.user};
-        console.log(fullUser)
-        navigate(`/profile/${fullUser.username}`, {state: {user: fullUser}})
-        setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
+    // function submitForm() {
+    //     var fullUser = {...user,...location.state.user};
+    //     console.log(fullUser)
+    //     navigate(`/profile/${fullUser.username}`, {state: {user: fullUser}})
+    //     setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
         
+    // }
+
+    function submitForm () {
+      
+      var fullUser = {...user,...location.state.user};
+
+      props.handleSubmit(location.state.token, fullUser)
+      
+      console.log("navingating to")
+      
+      navigate(`/profile/${fullUser.username}`);
+
+
+      
+      setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
     }
 
     return (

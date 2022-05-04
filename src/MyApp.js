@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import {  Route, Routes, useNavigate, Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import {  Route, Routes, useNavigate, Navigate, useLocation } from 'react-router-dom';
 import Form from "./Form";
 import axios from "axios";
 import Home from "./Home";
@@ -15,7 +15,12 @@ import TestLogin from "./TestLogin";
 
 
 function MyApp() {
-  const [user, setUser] = useState({});
+
+  let location = useLocation();
+
+  const [user, setUser] = useState({
+  });
+
   const [cookies, setCookie] = useCookies(['auth_token']);
 
   let navigate = useNavigate(); 
@@ -29,9 +34,50 @@ function MyApp() {
     )
   }
 
-  async function makePostCall (person) {
+  useEffect(() => {
+    console.log("executing use")
+    console.log(user)
+    fetchAll().then(result => {
+      if (result) { setUser(result) 
+      console.log(user)}
+    })
+  }, [cookies], user, location)
+
+  async function fetchAll () {
     try {
-      const response = await axios.post('http://localhost:5000/user', person)
+      const config = {
+        headers: { Authorization: `Bearer ${cookies.auth_token}` }
+      }
+      const response = await axios.get(`http://localhost:5000/user/${user.username}`, config)
+      console.log(response.data[0])
+      return response.data[0]
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error)
+      return false
+    }
+  }
+
+  async function changeUser (username, token) {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      console.log("nameee")
+      console.log(username)
+      const response = await axios.get(`http://localhost:5000/user/${username}`, config)
+      console.log(response.data[0])
+      return response.data[0]
+    } catch (error) {
+      // We're not handling errors. Just logging into the console.
+      console.log(error)
+      return false
+    }
+  }
+
+  async function makePostCall (user) {
+    try {
+      const response = await axios.post('http://localhost:5000/user', user)
       return response
     } catch (error) {
       console.log(error)
@@ -58,13 +104,30 @@ function MyApp() {
     navigate(`/form`, { user: user });
   }
 
-  async function toSignedInUser(reviewData) {
-    console.log(user.reviews)
-    var reviewList = user.reviews
-    reviewList.push(reviewData)
-    user.reviews = reviewList
-    console.log(user.reviews)
-    navigate(`/profile/${user.username}`);
+
+  async function postSignedInUser(token, userData) {
+    console.log(userData)
+
+
+
+    setToken(token)
+
+    await makePostCall(userData)
+
+    setUser(userData)
+
+  }
+
+
+  async function toSignedInUser(token, userData) {
+    console.log("success")
+
+    changeUser(userData.username, token).then(result => {
+      if (result) { setUser(result) 
+      console.log(user)}
+    })
+
+    setToken(token)
   }
 
   function addUser(user) {
@@ -90,21 +153,21 @@ return (
       <Routes>
         <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-        <Route path='/form' element={<Form handleSubmit={addUser}/> }/>
+        <Route path='/form' element={<Form handleSubmit={postSignedInUser}/> }/>
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-        <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>
+        { user.username && <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>}
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
         <Route path='*' element={ <ErrorPage />}/>
 
-        <Route path='/review'element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
+        <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-        <Route path='/testingsignup' element={ <TestSignup />} handleSubmit= {toSignedInUser}/>
+        <Route path='/signup' element={ <TestSignup />} handleSubmit= {postSignedInUser}/>
         
-        <Route path='/testinglogin' element={ <TestLogin />} handleSubmit= {toSignedInUser}/>
+        <Route path='/login' element={ <TestLogin handleSubmit = {toSignedInUser} />} />
 
       </Routes>
   </div>

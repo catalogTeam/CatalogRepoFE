@@ -3,6 +3,10 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 function TestSignup(props){
+
+    let navigate = useNavigate();
+
+    
     const [user, setUser] = useState({
         email: '',
         username: '',
@@ -13,7 +17,7 @@ function TestSignup(props){
 
     async function makeSignupCall (user) {
     try {
-        const response = await axios.post('http://localhost:5000/testingsignup', user)
+        const response = await axios.post('http://localhost:5000/signup', user)
         return response
     } catch (error) {
         console.log(error)
@@ -23,21 +27,21 @@ function TestSignup(props){
 
 
     function submitForm (props) {
-    makeSignupCall(user).then((response) => {
-        if (response && response.status === 201) {
-        const token = response.data
-        setUser({ username: '', password: '' })
-        setMsg('')
-        // props.setToken(token)
-        //props.handleSubmit(user);
-        navigate(`/form`, {state: {user: user}})
+        makeSignupCall(user).then((response) => {
+            if (response && response.status === 201) {
+            const token = response.data
+            setUser({ username: '', password: '' })
+            setMsg('')
+            // props.setToken(token)
+            //props.handleSubmit(user);
+            navigate(`/form`, {state: {user: user, token: token}})
         }
         else{
             console.log("bad response", response)
         }
     })
     }
-    let navigate = useNavigate();
+
     return(
         <div>
             <h1>TESTING SIGNUP</h1>

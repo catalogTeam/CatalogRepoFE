@@ -4,23 +4,25 @@ import {useNavigate } from 'react-router-dom';
 
 function TestLogin(props){
 
-    const [user, setUser] = useState({
-        username: '',
-        password: ''
-      })
+    const [user, setUser] = useState({})
       
     const [message, setMsg] = useState('')
 
 
-    function submitForm (props) {
+    function submitForm () {
         makeLoginCall(user).then((response) => {
           if (response && response.status === 200) {
             console.log(response)
             const token = response.data
             setUser({ username: '', password: '' })
             setMsg('')
-            //props.handleSubmit(user);
-            navigate(`/profile/${user.username}`, {state: {user: user}})
+            console.log(user)
+            props.handleSubmit(token, user).then(() => {
+                   console.log("navingating to")
+                   navigate(`/profile/${user.username}`);
+                })
+            
+            //navigate(`/profile/${user.username}`, {state: {user: user}})
           } else {
             console.log(response)
             setMsg('Invalid login credentials!')
@@ -30,12 +32,13 @@ function TestLogin(props){
 
     async function makeLoginCall (user) {
     try {
-        const response = await axios.post('http://localhost:5000/testinglogin', user)
+        const response = await axios.post('http://localhost:5000/login', user)
         return response
     } catch (error) {
         console.log(error)
         return false
     }
+    
     }
 
     let navigate = useNavigate();
