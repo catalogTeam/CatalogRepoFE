@@ -69,6 +69,11 @@ export default function Header(props) {
         onClick={() => submit()} 
       />
             </MDBNavbarItem>
+            <MDBNavbarItem>
+              <input name = "edit-button" type="button" value="Edit Page"
+        onClick={() => navigate("/Form")}
+      />
+            </MDBNavbarItem>
           </MDBNavbarNav>
 
 
