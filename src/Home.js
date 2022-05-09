@@ -99,8 +99,6 @@ function Home(props) {
             onChange={handleChange} />
             <input type="button"  value="Search" onClick={() => navigate(`/user/${nameData.user}`)} />
           </form>
-
-          <input name = "Create" type="button" value="Create A Page" onClick={() => navigate("/Form")} />
           <input name = "login" type="button" value="Click to Login or Sign-Up" onClick={() => navigate("/signup")} />
 {/* 
           <input name = "login" type="button" value="Sign up" onClick={() => navigate("/signup")} />
