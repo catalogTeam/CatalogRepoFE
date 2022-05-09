@@ -126,15 +126,37 @@ function Form(props) {
         
     // }
 
+    async function makeSignupCall (user) {
+      try {
+          const response = await axios.post('http://localhost:5000/signup', user)
+          return response
+      } catch (error) {
+          console.log(error)
+          return false
+      }
+      }
+
     function submitForm () {
+
       
+      console.log(user)
+      console.log(location.state.user)
       var fullUser = {...user,...location.state.user};
 
-      props.handleSubmit(location.state.token, fullUser)
-      
-      console.log("navingating to")
-      
-      navigate(`/profile/${fullUser.username}`);
+      makeSignupCall(fullUser).then((response) => {
+        if (response && response.status === 201) {
+        const token = response.data
+        
+        props.handleSubmit(token, fullUser)
+
+        navigate(`/profile/${fullUser.username}`);
+
+    }
+    else{
+        console.log("bad response", response)
+    }
+  })
+
 
 
       

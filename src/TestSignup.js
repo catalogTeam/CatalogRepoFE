@@ -27,19 +27,20 @@ function TestSignup(props){
 
 
     function submitForm (props) {
-        makeSignupCall(user).then((response) => {
-            if (response && response.status === 201) {
-            const token = response.data
-            setUser({ username: '', password: '' })
-            setMsg('')
-            // props.setToken(token)
-            //props.handleSubmit(user);
-            navigate(`/form`, {state: {user: user, token: token}})
-        }
-        else{
-            console.log("bad response", response)
-        }
-    })
+    //     makeSignupCall(user).then((response) => {
+    //         if (response && response.status === 201) {
+    //         const token = response.data
+    //         setUser({ username: '', password: '' })
+    //         setMsg('')
+    //         // props.setToken(token)
+    //         //props.handleSubmit(user);
+    //         navigate(`/form`, {state: {user: user}})
+    //     }
+    //     else{
+    //         console.log("bad response", response)
+    //     }
+    // })
+        navigate(`/form`, {state: {user: user}})
     }
 
     return(

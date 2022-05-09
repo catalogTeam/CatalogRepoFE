@@ -108,11 +108,7 @@ function MyApp() {
   async function postSignedInUser(token, userData) {
     console.log(userData)
 
-
-
     setToken(token)
-
-    await makePostCall(userData)
 
     setUser(userData)
 
