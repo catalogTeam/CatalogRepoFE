@@ -7,11 +7,9 @@ import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
-import SignUpPage from "./SignUpPage";
 import { useCookies } from 'react-cookie';
 
-import TestSignup from "./TestSignup";
-import TestLogin from "./TestLogin";
+import Signup from "./Signup";
 
 
 function MyApp() {
@@ -100,10 +98,6 @@ function MyApp() {
     navigate(`/profile/${user.username}`);
   }
 
-  async function toForm(user){
-    navigate(`/form`, { user: user });
-  }
-
 
   async function postSignedInUser(token, userData) {
     console.log(userData)
@@ -161,10 +155,8 @@ return (
 
         <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-        <Route path='/signup' element={ <TestSignup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
+        <Route path='/signup' element={ <Signup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
         
-        {/* <Route path='/login' element={ <TestLogin handleLogin = {toSignedInUser} />} /> */}
-
       </Routes>
   </div>
 );
