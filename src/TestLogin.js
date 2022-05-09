@@ -4,22 +4,22 @@ import {useNavigate } from 'react-router-dom';
 
 function TestLogin(props){
 
-    const [user, setUser] = useState({})
+    const [LoginUser, setUserLogin] = useState({})
       
     const [message, setMsg] = useState('')
 
 
-    function submitForm () {
-        makeLoginCall(user).then((response) => {
+    function SubmitLogin () {
+        makeLoginCall(LoginUser).then((response) => {
           if (response && response.status === 200) {
             console.log(response)
             const token = response.data
-            setUser({ username: '', password: '' })
+            setUserLogin({ username: '', password: '' })
             setMsg('')
-            console.log(user)
-            props.handleSubmit(token, user).then(() => {
+            console.log(LoginUser)
+            props.handleLogin(token, LoginUser).then(() => {
                    console.log("navingating to")
-                   navigate(`/profile/${user.username}`);
+                   navigate(`/profile/${LoginUser.username}`);
                 })
             
             //navigate(`/profile/${user.username}`, {state: {user: user}})
@@ -30,15 +30,14 @@ function TestLogin(props){
         })
       }
 
-    async function makeLoginCall (user) {
+    async function makeLoginCall (LoginUser) {
     try {
-        const response = await axios.post('http://localhost:5000/login', user)
+        const response = await axios.post('http://localhost:5000/login', LoginUser)
         return response
     } catch (error) {
         console.log(error)
         return false
     }
-    
     }
 
     let navigate = useNavigate();
@@ -52,8 +51,8 @@ function TestLogin(props){
                 type='text'
                 name='username'
                 id='username'
-                value={user.username}
-                onChange={(event) => setUser({ ...user, username: event.target.value })}
+                value={LoginUser.username}
+                onChange={(event) => setUserLogin({ ...LoginUser, username: event.target.value })}
                 />
             </div>
             <div>            
@@ -63,13 +62,13 @@ function TestLogin(props){
                     type='password'
                     name='password'
                     id='password'
-                    value={user.password}
-                    onChange={(event) => setUser({ ...user, password: event.target.value })}
+                    value={LoginUser.password}
+                    onChange={(event) => setUserLogin({ ...LoginUser, password: event.target.value })}
                 />
             </div>
-            <input type='button' value='Submit' onClick={submitForm} />
+            <input type='button' value='Submit' onClick={SubmitLogin} />
             &nbsp;&nbsp;&nbsp;
-            <input name = "Create" type="button" value="signup" onClick={() => navigate("/testingsignup")} />
+            <input name = "Create" type="button" value="signup" onClick={() => navigate("/signup")} />
             <div>
             <i> {message} </i>
 

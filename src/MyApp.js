@@ -161,9 +161,9 @@ return (
 
         <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-        <Route path='/signup' element={ <TestSignup />} handleSubmit= {postSignedInUser}/>
+        <Route path='/signup' element={ <TestSignup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
         
-        <Route path='/login' element={ <TestLogin handleSubmit = {toSignedInUser} />} />
+        {/* <Route path='/login' element={ <TestLogin handleLogin = {toSignedInUser} />} /> */}
 
       </Routes>
   </div>

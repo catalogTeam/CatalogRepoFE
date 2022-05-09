@@ -1,12 +1,14 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './CSS/testsignup.css';
+import './CSS/template.css';
 
 
 function TestSignup(props){
 
     let navigate = useNavigate();
+
+    const [LoginUser, setUserLogin] = useState({})
 
     
     const [user, setUser] = useState({
@@ -27,8 +29,7 @@ function TestSignup(props){
     }
     }
 
-
-    function submitForm (props) {
+    function SubmitSignup (props) {
     //     makeSignupCall(user).then((response) => {
     //         if (response && response.status === 201) {
     //         const token = response.data
@@ -45,8 +46,40 @@ function TestSignup(props){
         navigate(`/form`, {state: {user: user}})
     }
 
+    
+    function SubmitLogin () {
+        makeLoginCall(LoginUser).then((response) => {
+          if (response && response.status === 200) {
+            console.log(response)
+            const token = response.data
+            setUserLogin({ username: '', password: '' })
+            setMsg('')
+            console.log(LoginUser)
+            props.handleLogin(token, LoginUser).then(() => {
+                   console.log("navingating to")
+                   navigate(`/profile/${LoginUser.username}`);
+                })
+            
+            //navigate(`/profile/${user.username}`, {state: {user: user}})
+          } else {
+            console.log(response)
+            setMsg('Invalid login credentials!')
+          }
+        })
+      }
+
+    async function makeLoginCall (LoginUser) {
+    try {
+        const response = await axios.post('http://localhost:5000/login', LoginUser)
+        return response
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+    }
+
     return(
-        <html>
+        <div>
             <head>
                 <title> Slide Navbar</title>
                 <link rel="stylesheet" type="text/css" href="slide navbar style.css"></link>
@@ -54,9 +87,10 @@ function TestSignup(props){
             </head>
             <body class="signupmain">
                 <div class="main">
-                    <div class="signup">
+                    <input type="checkbox" id="chk" aria-hidden="true"/>
 
-                    <label class="testlabel" htmlFor='name'>Sign Up</label>
+                    <div class="signup">
+                    <label class="testlabel" for='chk' aria-hidden="true">Sign Up</label>
                     <input
                     class="testinput"
                     type='text'
@@ -84,16 +118,37 @@ function TestSignup(props){
                     placeholder='Password'
                     onChange={(event) => setUser({ ...user, password: event.target.value })}
                     />
-                    <button class="testbutton" value='Submit' onClick={submitForm}>Sign up</button>
+                    <button class="testbutton" value='Submit' onClick={SubmitSignup}>Sign up</button>
                     </div>
 
                     <div class="login">
-                    <label class="testlabel" for="chk" aria-hidden="true" onClick={() => navigate("/Login")}>Login</label>
- 
+                        <label class="testlabel" for="chk" aria-hidden="true" >Login</label>
+                        <input
+                        class="testinput"
+                        type='text'
+                        name='username'
+                        id='username'
+                        value={LoginUser.username}
+                        placeholder="User Name"
+                        onChange={(event) => setUserLogin({ ...LoginUser, username: event.target.value })}
+                        />
+                        <input
+                            class="testinput"
+                            type='password'
+                            name='password'
+                            id='password'
+                            value={LoginUser.password}
+                            placeholder="Password"
+                            onChange={(event) => setUserLogin({ ...LoginUser, password: event.target.value })}
+                        />
+                        <button class="testbutton" value='Submit' onClick={SubmitLogin}>Login</button>
+                        <div>
+                            <i> {message} </i>
+                        </div>
                     </div>
                     </div>
             </body>
-        </html>
+        </div>
 
     );
 }
