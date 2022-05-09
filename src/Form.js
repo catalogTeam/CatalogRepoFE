@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 // Importing default pfp
 import defPfp from './default.png'
 import {useLocation } from 'react-router-dom';
+import './CSS/template.css';
+
 
 function Form(props) {  
 
@@ -164,50 +166,68 @@ function Form(props) {
     }
 
     return (
+      <div>
+      <body class="signupmain">
         <form>
-        <label htmlFor="pagename">pagename</label>
+        <label color="white" HtmlFor="pagename">Page Name</label>
         <input
+            class = "forminput"
             type="text"
             name="pagename"
             id="pagename"
             value={user.pagename}
+            placeholder="Page Name"
             onChange={handleChange} />
         <label htmlFor="Bio">Bio</label>
         <input
+            class = "forminput"
             type="text"
             name="bio"
             id="bio"
             value={user.bio}
+            placeholder="Whats your Bio?"
+
             onChange={handleChange} />
+        <label htmlFor="profile">Select an Image</label>
+        <div>
         {user.profile && <img src={user.profile} height="200px"/>}
-        <label htmlFor="profile">Select Image</label>
+        </div>
         <input
+            class = "forminput"
             type="file"
             name="profile"
             id="profile"
             onChange={handleChange} />
         <label htmlFor="albums">Enter an album</label>
         <input
+            class = "forminput"
             type="text"
             name="albums"
             id="albums"
             value={nameData.album}
+            placeholder="Album Name"
+
             onChange={handleChange} />
         <AlbumTable userdata={user} deleteAlbum={removeAlbum} />
         <input text-align  = "center" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
         <br></br>
         <label htmlFor="artists">Enter an artist</label>
         <input
+            class = "forminput"
             type="text"
             name="artists"
             id="artists"
             value={nameData.artist}
+            placeholder="Artist Name"
+
             onChange={handleChange} />
         <ArtistTable userdata={user} removeArtist={removeArtist} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <br></br>
         <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
         </form>
+    </body>
+    </div>
     ); 
 }
 
