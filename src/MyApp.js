@@ -151,12 +151,11 @@ return (
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
-        <Route path='*' element={ <ErrorPage />}/>
-
         <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
         <Route path='/signup' element={ <Signup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
         
+        <Route path='/errorpage' element={ <ErrorPage />}/>
       </Routes>
   </div>
 );
