@@ -101,7 +101,8 @@ function MyApp() {
   }
 
   async function toForm(user){
-    navigate(`/form`, { user: user });
+    setUser(user)
+    navigate(`/form`);
   }
 
 
@@ -149,11 +150,11 @@ return (
       <Routes>
         <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-        <Route path='/form' element={<Form handleSubmit={postSignedInUser}/> }/>
+        <Route path='/form' element={<Form userData = {user} handleSubmit={postSignedInUser}/> }/>
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-        { user.username && <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>}
+        { user.username && <Route path='/profile/*' element = { <ProfilePage userData = {user} toForm = {toForm} handleSubmit = {toReviewPage}/>}/>}
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 

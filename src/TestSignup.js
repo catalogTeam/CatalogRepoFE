@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
+import defPfp from './default.png';
 
 
 function TestSignup(props){
@@ -9,12 +10,12 @@ function TestSignup(props){
     let navigate = useNavigate();
 
     const [LoginUser, setUserLogin] = useState({})
-
     
     const [user, setUser] = useState({
         email: '',
         username: '',
-        password: ''
+        password: '',
+        profile: defPfp
       })
 
     const [message, setMsg] = useState('');
@@ -29,21 +30,22 @@ function TestSignup(props){
     }
     }
 
-    function SubmitSignup (props) {
-    //     makeSignupCall(user).then((response) => {
-    //         if (response && response.status === 201) {
-    //         const token = response.data
-    //         setUser({ username: '', password: '' })
-    //         setMsg('')
-    //         // props.setToken(token)
-    //         //props.handleSubmit(user);
-    //         navigate(`/form`, {state: {user: user}})
-    //     }
-    //     else{
-    //         console.log("bad response", response)
-    //     }
-    // })
-        navigate(`/form`, {state: {user: user}})
+    function SubmitSignup () {
+         makeSignupCall(user).then((response) => {
+             if (response && response.status === 201) {
+             const token = response.data
+             // props.setToken(token)
+             // props.handleSubmit(token, user)
+             setUser({ username: '', password: '' })
+             setMsg('')
+             props.handleLogin(token, user).then(() => {
+                navigate(`/profile/${user.username}`, {state: {token: token}})
+             })
+         }
+         else{
+             console.log("bad response", response)
+         }
+     })
     }
 
     
