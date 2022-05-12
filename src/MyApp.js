@@ -7,11 +7,9 @@ import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
-import SignUpPage from "./SignUpPage";
 import { useCookies } from 'react-cookie';
 
-import TestSignup from "./TestSignup";
-import TestLogin from "./TestLogin";
+import Signup from "./Signup";
 
 
 function MyApp() {
@@ -158,14 +156,11 @@ return (
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
-        <Route path='*' element={ <ErrorPage />}/>
-
         <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-        <Route path='/signup' element={ <TestSignup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
+        <Route path='/signup' element={ <Signup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
         
-        {/* <Route path='/login' element={ <TestLogin handleLogin = {toSignedInUser} />} /> */}
-
+        <Route path='/errorpage' element={ <ErrorPage />}/>
       </Routes>
   </div>
 );
