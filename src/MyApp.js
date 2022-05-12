@@ -56,10 +56,11 @@ function MyApp() {
     }
   }
 
-  async function changeUser (username, token) {
+
+  async function changeUser (username) {
     try {
       const config = {
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${cookies.auth_token}` }
       }
       console.log("nameee")
       console.log(username)
@@ -108,31 +109,28 @@ function MyApp() {
 
   }
 
-
-  async function toSignedInUser(token, userData) {
+  async function toSignedInUser2(username) {
     console.log("success")
 
-    changeUser(userData.username, token).then(result => {
+    const name = localStorage.getItem('username');
+
+    changeUser(name).then(result => {
       if (result) { setUser(result) 
       console.log(user)}
     })
 
-    setToken(token)
   }
 
-  function addUser(user) {
-    console.log(user)
-    makePostCall(user).then((result) => {
-      if (result && result.status === 201) {
-        setUser(user);
-        navigate(`/profile/${user.username}`);
-      }
-    });
-}
+  async function setData(token, userData) {
+
+    localStorage.setItem('username', userData.username);
+
+    setToken(token)
+
+  }
 
 
 function toReviewPage(){
-  console.log("going to review page")
   navigate(`/review`);
 
 }
@@ -147,13 +145,13 @@ return (
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-        { user.username && <Route path='/profile/*' element = { <ProfilePage userData = {user} handleSubmit = {toReviewPage}/>}/>}
+        <Route path='/profile/:username' element = { <ProfilePage userData = {user} updatePage = {toSignedInUser2} /> } handleSubmit = {toReviewPage} />
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
         <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
 
-        <Route path='/signup' element={ <Signup handleLogin = {toSignedInUser}/>} handleSubmit= {postSignedInUser}/>
+        <Route path='/signup' element={ <Signup handleLogin = {setData}/>} handleSubmit= {postSignedInUser}/>
         
         <Route path='/errorpage' element={ <ErrorPage />}/>
       </Routes>
