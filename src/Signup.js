@@ -47,7 +47,7 @@ function Signup(props){
             setUserLogin({ username: '', password: '' })
             setMsg('')
             console.log(LoginUser)
-            props.handleSubmit(token, LoginUser, false).then(() => {
+            props.handleSubmit(LoginUser, token, false).then(() => {
                    console.log("navingating to")
                    navigate(`/profile/${LoginUser.username}`);
                 })
