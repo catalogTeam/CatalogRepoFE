@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import AlbumTable from './Tables/AlbumTable';
 import ArtistTable from './Tables/ArtistTable';
 import axios from "axios";
@@ -12,19 +12,25 @@ import './CSS/template.css';
 function Form(props) {  
 
   const location = useLocation();
-  console.log(location.state.user);
 
   let navigate = useNavigate();
-    
-    const [user, setUser] = useState({
-        bio: "",
-        profile: defPfp, // initialize pfp to default
-        albums: [],
-        artists: [],
-        reviews: [],
-      });
-    const [nameData, setName] = useState({ album: "", artist: "" });
 
+  async function makePatchCall (user) {
+    try {
+        const response = await axios.patch('http://localhost:5000/patch', user)
+        return response
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+    }
+    
+    const [user, setUser] = useState(props.userData);
+    // setUser(props.userData) <= why cant i do this man...
+    // user = props.userData
+    console.log(props.userData)
+    const [nameData, setName] = useState({ album: "", artist: "" });
+    
     const uploadImage = async (e) => {
       const file = e.target.files[0];
       const base64 = await convertBase64(file);
@@ -120,38 +126,22 @@ function Form(props) {
         setUser({ ...user, artists: updated});
       }
 
-    // function submitForm() {
-    //     var fullUser = {...user,...location.state.user};
-    //     console.log(fullUser)
-    //     navigate(`/profile/${fullUser.username}`, {state: {user: fullUser}})
-    //     setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
-        
-    // }
 
-    async function makeSignupCall (user) {
-      try {
-          const response = await axios.post('http://localhost:5000/signup', user)
-          return response
-      } catch (error) {
-          console.log(error)
-          return false
-      }
-      }
 
     function submitForm () {
 
       
       console.log(user)
-      console.log(location.state.user)
-      var fullUser = {...user,...location.state.user};
+      //console.log(location.state.user)
+      //var fullUser = {...user,...location.state.user};
 
-      makeSignupCall(fullUser).then((response) => {
+      makePatchCall(user).then((response) => {
         if (response && response.status === 201) {
         const token = response.data
         
-        props.handleSubmit(token, fullUser)
+        props.handleSubmit(token, user)
 
-        navigate(`/profile/${fullUser.username}`);
+        navigate(`/profile/${user.username}`);
 
     }
     else{
@@ -162,7 +152,7 @@ function Form(props) {
 
 
       
-      setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
+      //setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
     }
 
     return (
@@ -224,7 +214,7 @@ function Form(props) {
         <ArtistTable userdata={user} removeArtist={removeArtist} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <br></br>
-        <input name = "master-button" type="button" value="Submit All" onClick={submitForm} />
+        <input name = "master-button" type="button" value="Submit Changes" onClick={submitForm} />
         </form>
     </body>
     </div>

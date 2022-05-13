@@ -32,29 +32,30 @@ function MyApp() {
     )
   }
 
-  useEffect(() => {
-    console.log("executing use")
-    console.log(user)
-    fetchAll().then(result => {
-      if (result) { setUser(result) 
-      console.log(user)}
-    })
-  }, [cookies], user, location)
+  // useEffect(() => {
+  //   console.log("executing use")
+  //   console.log(user)
+  //   fetchAll().then(result => {
+  //     if (result) { setUser(result) 
+  //     console.log(user)}
+  //   })
+  // }, [cookies], user, location)
 
-  async function fetchAll () {
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${cookies.auth_token}` }
-      }
-      const response = await axios.get(`http://localhost:5000/user/${user.username}`, config)
-      console.log(response.data[0])
-      return response.data[0]
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
-      console.log(error)
-      return false
-    }
-  }
+  // async function fetchAll () {
+  //   try {
+  //     const config = {
+  //       headers: { Authorization: `Bearer ${cookies.auth_token}` }
+  //     }
+  //     const response = await axios.get(`http://localhost:5000/user/${user.username}`, config)
+  //     console.log(response.data[0])
+  //     return response.data[0]
+  //   } catch (error) {
+  //     // We're not handling errors. Just logging into the console.
+  //     console.log(error)
+  //     return false
+  //   }
+  // }
+
 
 
   async function changeUser (username) {
@@ -99,13 +100,25 @@ function MyApp() {
     navigate(`/profile/${user.username}`);
   }
 
+  async function toForm(user){
+    setUser(user)
+    navigate(`/form`);
+  }
 
-  async function postSignedInUser(token, userData) {
+  async function SignupSubmit(user, token){
+    console.log(user)
+    setSignedInUser(token, user)
+
+  }
+
+  async function setSignedInUser(token, userData) {
     console.log(userData)
 
     setToken(token)
 
     setUser(userData)
+
+    const name = localStorage.getItem('username');
 
   }
 
@@ -121,9 +134,20 @@ function MyApp() {
 
   }
 
+  async function accessControlHandler(user, token, signupBool){
+      if (signupBool){
+        setUser(user, token)
+      }
+      else{
+        setData(user, token)
+      }
+  }
+
   async function setData(token, userData) {
 
     localStorage.setItem('username', userData.username);
+
+    setUser(userData)
 
     setToken(token)
 
@@ -141,17 +165,17 @@ return (
       <Routes>
         <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-        <Route path='/form' element={<Form handleSubmit={postSignedInUser}/> }/>
+        <Route path='/form' element={<Form userData = {user} handleSubmit={setSignedInUser}/> }/>
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-        <Route path='/profile/:username' element = { <ProfilePage userData = {user} updatePage = {toSignedInUser2} /> } handleSubmit = {toReviewPage} />
+        <Route path='/profile/:username' element = { <ProfilePage userData = {user} updatePage = {toSignedInUser2} handleSubmit = {toReviewPage}/> } />
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
-        <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toUser}/>}/>
+        <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {setUser}/>}/>
 
-        <Route path='/signup' element={ <Signup handleLogin = {setData}/>} handleSubmit= {postSignedInUser}/>
+        <Route path='/signup' element={ <Signup handleSubmit = {accessControlHandler}/>} />
         
         <Route path='/errorpage' element={ <ErrorPage />}/>
       </Routes>

@@ -14,33 +14,31 @@ function ProfilePage(props){
 
     let { username } = useParams();
 
-    console.log(props)
+    console.log(props.userData)
 
     useEffect(() => {
         console.log(username)
         if (username){
-          if (username === localStorage.getItem('username')){
+          // if (username === localStorage.getItem('username')){
             props.updatePage(username)
-          }
-          else{
-            console.log("username does not match")
-            navigate("/errorpage")
-          }
+          // }
+          // else{
+          //   console.log("username does not match")
+          //   navigate("/errorpage")
+          // }
         }
 
       }, username)
 
-    //console.log(location.state.user);
-
     
-    function Submit(){
-        props.handleSubmit()
+    function toForm(){
+        navigate("/form")
     }
 
     if (props.userData){
         return(
         <div>
-            <Header userData = {props.userData} handleSubmit = {() => Submit()} />
+            <Header userData = {props.userData} handleSubmit = {toForm} />
             <header>Albums</header>
             <AlbumCards albumData = {props.userData['albums']}/>
             <header>Artists</header>
