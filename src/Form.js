@@ -8,8 +8,11 @@ import defPfp from './default.png'
 import {useLocation } from 'react-router-dom';
 import './CSS/template.css';
 
-const URL = 'https://musiccatalogbe.herokuapp.com';
-// const URL = 'http://localhost:5000';
+var URL = 'http://localhost:5000';
+
+if (process.env.NODE_ENV === "production"){
+  URL = 'https://musiccatalogbe.herokuapp.com';
+}
 
 function Form(props) {  
 

@@ -2,8 +2,11 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
-const URL = 'https://musiccatalogbe.herokuapp.com';
-// const URL = 'http://localhost:5000';
+var URL = 'http://localhost:5000';
+
+if (process.env.NODE_ENV === "production"){
+  URL = 'https://musiccatalogbe.herokuapp.com';
+}
 
 function Signup(props){
 

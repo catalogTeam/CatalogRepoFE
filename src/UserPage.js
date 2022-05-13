@@ -3,13 +3,20 @@ import {
   useParams
 } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom'
-import Header from "./Headers/UserHeader"
-import AlbumCards from "./Cards/AlbumCards"
-import ArtistCards from "./Cards/ArtistCards"
-import ReviewCards from "./Cards/ReviewCards"
-const URL = 'https://musiccatalogbe.herokuapp.com';
-// const URL = 'http://localhost:5000';
+import { useNavigate } from 'react-router-dom';
+import Header from "./Headers/UserHeader";
+import AlbumCards from "./Cards/AlbumCards";
+import ArtistCards from "./Cards/ArtistCards";
+import ReviewCards from "./Cards/ReviewCards";
+
+var URL = 'http://localhost:5000';
+
+if (process.env.NODE_ENV === "production"){
+  URL = 'https://musiccatalogbe.herokuapp.com';
+}
+
+
+
 
 function UserPage(props){
 
