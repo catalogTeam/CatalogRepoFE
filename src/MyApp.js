@@ -153,6 +153,14 @@ function MyApp() {
 
   }
 
+function toProfile(){
+
+  const name = localStorage.getItem('username');
+
+  if (name){
+    navigate(`/profile/${name}`)
+  }
+}
 
 function toReviewPage(){
   navigate(`/review`);
@@ -173,7 +181,7 @@ return (
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
-        <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {setUser}/>}/>
+        <Route path='/review' element={<ReviewPage userData = {user} handleSubmit= {toProfile}/>}/>
 
         <Route path='/signup' element={ <Signup handleSubmit = {accessControlHandler}/>} />
         

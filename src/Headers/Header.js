@@ -66,7 +66,7 @@ export default function Header(props) {
             </MDBNavbarItem>
             <MDBNavbarItem>
             <input name = "master-button" type="button" value="Make a Review" 
-        onClick={() => submit()} 
+        onClick={() => navigate('/review')} 
       />
             </MDBNavbarItem>
             <MDBNavbarItem>
