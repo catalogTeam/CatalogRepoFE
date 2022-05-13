@@ -125,6 +125,8 @@ function MyApp() {
   async function toSignedInUser2(username) {
     console.log("success")
 
+    console.log(localStorage.getItem('username'))
+
     const name = localStorage.getItem('username');
 
     changeUser(name).then(result => {
@@ -135,17 +137,14 @@ function MyApp() {
   }
 
   async function accessControlHandler(user, token, signupBool){
-      if (signupBool){
-        setUser(user, token)
-      }
-      else{
-        setData(user, token)
-      }
+      setData(user, token)
   }
 
-  async function setData(token, userData) {
+  async function setData(userData, token) {
 
     localStorage.setItem('username', userData.username);
+
+    console.log(localStorage.getItem('username'))
 
     setUser(userData)
 
