@@ -8,8 +8,8 @@ import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
 import { useCookies } from 'react-cookie';
-
 import Signup from "./Signup";
+const URL = 'https://musiccatalogfe.herokuapp.com';
 
 
 function MyApp() {
@@ -46,7 +46,7 @@ function MyApp() {
   //     const config = {
   //       headers: { Authorization: `Bearer ${cookies.auth_token}` }
   //     }
-  //     const response = await axios.get(`http://localhost:5000/user/${user.username}`, config)
+  //     const response = await axios.get(`${URL}/user/${user.username}`, config)
   //     console.log(response.data[0])
   //     return response.data[0]
   //   } catch (error) {
@@ -65,7 +65,7 @@ function MyApp() {
       }
       console.log("nameee")
       console.log(username)
-      const response = await axios.get(`http://localhost:5000/user/${username}`, config)
+      const response = await axios.get(`${URL}/user/${username}`, config)
       console.log(response.data[0])
       return response.data[0]
     } catch (error) {
@@ -77,7 +77,7 @@ function MyApp() {
 
   async function makePostCall (user) {
     try {
-      const response = await axios.post('http://localhost:5000/user', user)
+      const response = await axios.post(`${URL}/user`, user)
       return response
     } catch (error) {
       console.log(error)

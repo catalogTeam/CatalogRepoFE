@@ -8,6 +8,8 @@ import defPfp from './default.png'
 import {useLocation } from 'react-router-dom';
 import './CSS/template.css';
 
+const URL = 'https://musiccatalogfe.herokuapp.com';
+
 
 function Form(props) {  
 
@@ -17,7 +19,7 @@ function Form(props) {
 
   async function makePatchCall (user) {
     try {
-        const response = await axios.patch('http://localhost:5000/patch', user)
+        const response = await axios.patch(`${URL}/patch`, user)
         return response
     } catch (error) {
         console.log(error)
@@ -66,7 +68,7 @@ function Form(props) {
       async function getAlbum(album_name) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/search/album/${album_name}`
+            `${URL}/search/album/${album_name}`
           );
           return response.data;
         } catch (error) {
@@ -78,7 +80,7 @@ function Form(props) {
       async function getArtist(artist_name) {
         try {
           const response = await axios.get(
-            `http://localhost:5000/search/artist/${artist_name}`
+            `${URL}/search/artist/${artist_name}`
           );
           return response.data;
         } catch (error) {

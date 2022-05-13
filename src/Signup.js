@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
-
+const URL = 'https://musiccatalogfe.herokuapp.com';
 
 function Signup(props){
 
@@ -20,7 +20,7 @@ function Signup(props){
 
     async function makeSignupCall (user) {
         try {
-            const response = await axios.post('http://localhost:5000/signup', user)
+            const response = await axios.post(`${URL}/signup`, user)
             return response
         } catch (error) {
             console.log(error)
@@ -30,7 +30,7 @@ function Signup(props){
 
           async function makeLoginCall (LoginUser) {
     try {
-        const response = await axios.post('http://localhost:5000/login', LoginUser)
+        const response = await axios.post(`${URL}/login`, LoginUser)
         return response
     } catch (error) {
         console.log(error)

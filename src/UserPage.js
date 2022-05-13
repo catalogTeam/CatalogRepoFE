@@ -4,12 +4,12 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from 'react-router-dom'
-
-
 import Header from "./Headers/UserHeader"
 import AlbumCards from "./Cards/AlbumCards"
 import ArtistCards from "./Cards/ArtistCards"
 import ReviewCards from "./Cards/ReviewCards"
+const URL = 'https://musiccatalogfe.herokuapp.com';
+
 
 function UserPage(props){
 
@@ -33,7 +33,7 @@ function UserPage(props){
 
     async function getUser(user) {
       try {
-        const response = await axios.get(`http://localhost:5000/user/${user}`)
+        const response = await axios.get(`${URL}/user/${user}`)
         return response.data
       } catch (error) {
         console.log(error)

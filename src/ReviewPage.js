@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './CSS/reviewpage.css';
 import { MDBInput } from 'mdb-react-ui-kit';
 import axios from "axios";
-
+const URL = 'https://musiccatalogfe.herokuapp.com';
 
 function ReviewPage(props){
 
@@ -10,7 +10,7 @@ function ReviewPage(props){
 
     async function makeReviewCall () {
         try {
-          const response = await axios.post('http://localhost:5000/reviews', reviewData)
+          const response = await axios.post(`${URL}/reviews`, reviewData)
           return response
         } catch (error) {
           console.log(error)
