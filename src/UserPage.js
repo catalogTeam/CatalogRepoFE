@@ -8,7 +8,7 @@ import Header from "./Headers/UserHeader"
 import AlbumCards from "./Cards/AlbumCards"
 import ArtistCards from "./Cards/ArtistCards"
 import ReviewCards from "./Cards/ReviewCards"
-const URL = 'https://musiccatalogfe.herokuapp.com';
+const URL = 'https://musiccatalogbe.herokuapp.com';
 // const URL = 'http://localhost:5000';
 
 function UserPage(props){

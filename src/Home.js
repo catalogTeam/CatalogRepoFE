@@ -4,7 +4,7 @@ import "./CSS/home.css";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
-const URL = 'https://musiccatalogfe.herokuapp.com';
+const URL = 'https://musiccatalogbe.herokuapp.com';
 // const URL = 'http://localhost:5000';
 
 function Home(props) {

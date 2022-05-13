@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
-const URL = 'https://musiccatalogfe.herokuapp.com';
+const URL = 'https://musiccatalogbe.herokuapp.com';
 // const URL = 'http://localhost:5000';
 
 function Signup(props){

@@ -9,7 +9,7 @@ import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
 import { useCookies } from 'react-cookie';
 import Signup from "./Signup";
-const URL = 'https://musiccatalogfe.herokuapp.com';
+const URL = 'https://musiccatalogbe.herokuapp.com';
 // const URL = 'http://localhost:5000';
 
 function MyApp() {
