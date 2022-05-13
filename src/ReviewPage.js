@@ -3,7 +3,7 @@ import './CSS/reviewpage.css';
 import { MDBInput } from 'mdb-react-ui-kit';
 import axios from "axios";
 const URL = 'https://musiccatalogfe.herokuapp.com';
-
+// const URL = 'http://localhost:5000';
 function ReviewPage(props){
 
     const [reviewData, setReview] = useState({ username: props.userData.username, album: "", review: "" , rating: ""});
