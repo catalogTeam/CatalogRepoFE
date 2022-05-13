@@ -30,7 +30,7 @@ function ReviewPage(props){
         makeReviewCall().then( result => {
             console.log(result.status)
             if (result.status === 201){
-                props.handleSubmit(reviewData)
+                props.handleSubmit()
             }
             else {
                 console.log("error in review post")
