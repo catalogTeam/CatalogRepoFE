@@ -16,6 +16,7 @@
     "mdbreact": "^4.6.1",
     "query-string": "^7.1.1",
     "querystring-es3": "^0.2.1",
+    "random-words": "^1.1.2",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
     "react-cookie": "^4.1.1",

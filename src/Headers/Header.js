@@ -70,7 +70,7 @@ export default function Header(props) {
       />
             </MDBNavbarItem>
             <MDBNavbarItem>
-              <input name = "edit-button" type="button" value="Edit Page"
+              <input name = "edit-button" type="button" value={props.butName}
         onClick={() => props.toForm(props.userData)}
       />
             </MDBNavbarItem>
@@ -91,9 +91,9 @@ export default function Header(props) {
       </MDBContainer>
     </MDBNavbar>
     <div className='p-5 text-center'>
-        <h1 className='mb-3'>{user['username']}</h1>
-        <h4 className='mb-3'>{user['bio']}</h4>
+        <h1 className='mb-3'>{user['displayName']}</h1>
         <img src={user['profile']} height='200px'/>
+        <h4 className='mb-3'>{user['bio']}</h4>
     </div>
     </div>
     

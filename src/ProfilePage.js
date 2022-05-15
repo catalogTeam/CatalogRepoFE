@@ -18,7 +18,7 @@ function ProfilePage(props){
 
     return(
     <div>
-        <Header userData = {props.userData} toForm = {props.toForm} handleSubmit = {() => Submit()} />
+        <Header userData = {props.userData} butName = {"Edit Page"} toForm = {props.toForm} handleSubmit = {() => Submit()} />
         <header>Albums</header>
         <AlbumCards albumData = {props.userData['albums']}/>
         <header>Artists</header>

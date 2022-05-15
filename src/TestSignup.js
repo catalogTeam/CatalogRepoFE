@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
 import defPfp from './default.png';
+var randomWords = require('random-words');
 
 
 function TestSignup(props){
@@ -15,7 +16,9 @@ function TestSignup(props){
         email: '',
         username: '',
         password: '',
-        profile: defPfp
+        profile: defPfp,
+        displayName: randomWords({ exactly: 2, join: '' }) + Math.floor(Math.random() * 100),
+        bio: "Write something. NOW"
       })
 
     const [message, setMsg] = useState('');
@@ -31,7 +34,8 @@ function TestSignup(props){
     }
 
     function SubmitSignup () {
-         makeSignupCall(user).then((response) => {
+        console.log(user.displayName);
+        makeSignupCall(user).then((response) => {
              if (response && response.status === 201) {
              const token = response.data
              // props.setToken(token)

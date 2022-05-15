@@ -9,9 +9,9 @@ import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
 import SignUpPage from "./SignUpPage";
 import { useCookies } from 'react-cookie';
-
+import ProfileView from "./ProfileView";
+import ProfileForm from "./ProfileForm";
 import TestSignup from "./TestSignup";
-import TestLogin from "./TestLogin";
 
 
 function MyApp() {
@@ -105,6 +105,10 @@ function MyApp() {
     navigate(`/form`);
   }
 
+  async function toProfForm(user){
+    setUser(user)
+    navigate('/profile/form');
+  }
 
   async function postSignedInUser(token, userData) {
     console.log(userData)
@@ -151,10 +155,12 @@ return (
         <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
         <Route path='/form' element={<Form userData = {user} handleSubmit={postSignedInUser}/> }/>
+
+        <Route path='/profile/form' element={<ProfileForm userData = {user} handleSubmit={postSignedInUser}/>}/>
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-        { user.username && <Route path='/profile/*' element = { <ProfilePage userData = {user} toForm = {toForm} handleSubmit = {toReviewPage}/>}/>}
+        { user.username && <Route path='/profile/*' element = { <ProfileView userData = {user} toForm = {toProfForm} handleSubmit = {toReviewPage}/>}/>}
 
         <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
 
