@@ -19,27 +19,23 @@ export default function Header(props) {
 
   let navigate = useNavigate();
 
-  const [nameData, setName] = useState({ user: ""});
+  const [nameData, setName] = useState({ page: ""});
 
   const [showBasic, setShowBasic] = useState(false);
   
-  const user = props.userData
+  const page = props.pageData
 
   function handleChange(event) {
     const { name, value } = event.target;
-    if (name === "user") setName({ ...nameData, user: value });
+    if (name === "page") setName({ ...nameData, page: value });
   }
 
   function search(){
 
-    let name = nameData.user
-    setName({ user: "" });
-    navigate(`/user/${name}`)
+    let name = nameData.page
+    setName({ page: "" });
+    navigate(`/page/${name}`)
     
-  }
-
-  function submit(){
-    props.handleSubmit()
   }
 
   return (
@@ -60,18 +56,18 @@ export default function Header(props) {
         <MDBCollapse navbar show={showBasic}>
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='user' href='/home'>
+              <MDBNavbarLink active aria-current='page' href='/home'>
                 Home
               </MDBNavbarLink>
             </MDBNavbarItem>
             <MDBNavbarItem>
-            <input name = "master-button" type="button" value="Make a Review" 
-        onClick={() => submit()} 
+            <input name = "master-button" type="button" value="Back to Pages" 
+        onClick={props.handleSubmit} 
       />
             </MDBNavbarItem>
             <MDBNavbarItem>
               <input name = "edit-button" type="button" value={props.butName}
-        onClick={props.toForm}
+        onClick={() => props.toForm(page)}
       />
             </MDBNavbarItem>
           </MDBNavbarNav>
@@ -79,9 +75,9 @@ export default function Header(props) {
           <form className='d-flex input-group w-auto'>
             <input
             type="text"
-            name="user"
-            id="user"
-            value={nameData.user}
+            name="page"
+            id="page"
+            value={nameData.page}
             onChange={handleChange} />
             <input type="button"  value="Search" onClick={search} />
           </form>
@@ -89,9 +85,9 @@ export default function Header(props) {
       </MDBContainer>
     </MDBNavbar>
     <div className='p-5 text-center'>
-        <h1 className='mb-3'>{user['displayName']}</h1>
-        <img src={user['profile']} height='200px'/>
-        <h4 className='mb-3'>{user['bio']}</h4>
+        <h1 className='mb-3'>{page['pageName']}</h1>
+        <img src={page['pagePic']} height='200px'/>
+        <h4 className='mb-3'>{page['bio']}</h4>
     </div>
     </div>
     

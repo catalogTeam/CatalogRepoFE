@@ -1,7 +1,6 @@
-import Header from "./Headers/Header"
+import Header from "./Headers/PageHeader"
 import AlbumCards from "./Cards/AlbumCards"
 import ArtistCards from "./Cards/ArtistCards"
-import ReviewCards from "./Cards/ReviewCards"
 import { useLocation } from 'react-router-dom'
 
 function ProfilePage(props){
@@ -13,18 +12,20 @@ function ProfilePage(props){
 
     
     function Submit(){
-        props.handleSubmit()
+        props.handleSubmit(props.userData);
+    }
+
+    function edit() {
+        props.toForm(props.userData, props.pageData, 1);
     }
 
     return(
     <div>
-        <Header userData = {props.userData} butName = {"Edit Page"} toForm = {props.toForm} handleSubmit = {() => Submit()} />
+        <Header pageData = {props.pageData} butName = {"Edit Page"} toForm = {edit} handleSubmit = {() => Submit()} />
         <header>Albums</header>
-        <AlbumCards albumData = {props.userData['albums']}/>
+        <AlbumCards albumData = {props.pageData['albums']}/>
         <header>Artists</header>
-        <ArtistCards artistData = {props.userData['artists']}/>
-        <header>Reviews</header>
-        <ReviewCards reviewData = {props.userData['reviews']}/>
+        <ArtistCards artistData = {props.pageData['artists']}/>
     </div>
     );
 }

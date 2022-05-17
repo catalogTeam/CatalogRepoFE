@@ -3,8 +3,6 @@ import AlbumTable from './Tables/AlbumTable';
 import ArtistTable from './Tables/ArtistTable';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-// Importing default pfp
-import defPfp from './default.png'
 import {useLocation } from 'react-router-dom';
 import './CSS/template.css';
 
@@ -13,18 +11,18 @@ function Form(props) {
 
   const location = useLocation();
 
-  let navigate = useNavigate();
+  let oldName = props.pageData.pageName;
+
+  let funcs = [makePostCall, makePutCall];
     
-    const [user, setUser] = useState(props.userData);
-    // setUser(props.userData) <= why cant i do this man...
-    // user = props.userData
-    console.log(props.userData)
+    const [page, setPage] = useState(props.pageData);
+    console.log(props.pageData)
     const [nameData, setName] = useState({ album: "", artist: "" });
     
     const uploadImage = async (e) => {
       const file = e.target.files[0];
       const base64 = await convertBase64(file);
-      setUser({ ...user, profile: base64});
+      setPage({ ...page, pagePic: base64});
     }
 
     const convertBase64 = (file) => {
@@ -44,8 +42,8 @@ function Form(props) {
     
     function handleChange(event) {
         const { name, value } = event.target;
-        if (name === "bio") setUser({ ...user, bio: value });
-        else if (name === "username") setUser({ ...user, username: value });
+        if (name === "bio") setPage({ ...page, bio: value });
+        else if (name === "pageName") setPage({ ...page, pageName: value });
         else if (name === "profile") {
           uploadImage(event);
         }
@@ -78,55 +76,56 @@ function Form(props) {
       }
 
       async function submitAlbum() {
-        var albums = user.albums;
+        var albums = page.albums;
         var album = nameData.album;
         const album_response = await getAlbum(album);
         const album_data = album_response.albums.items[0]
         if (album_data !== undefined){
           albums.push(album_data);
-          setUser({ ...user, albums: albums });
+          setPage({ ...page, albums: albums });
           setName({ album: "" });
         }
       }
 
       function removeAlbum(index) {
-        const updated = user.albums.filter((character, i) => {
+        const updated = page.albums.filter((character, i) => {
           return i !== index
         });
-        setUser({ ...user, albums: updated});
+        setPage({ ...page, albums: updated});
       }
     
       async function submitArtist() {
-        var artists = user.artists;
+        var artists = page.artists;
         var artist = nameData.artist;
         const artist_response = await getArtist(artist);
         const artist_data = artist_response.artists.items[0]
         console.log(artist_data)
         if (artist_data !== undefined){
           artists.push(artist_data);
-          setUser({ ...user, artists: artists });
+          setPage({ ...page, artists: artists });
           setName({ artist: "" });
         }
       }
 
       function removeArtist(index) {
-        const updated = user.artists.filter((character, i) => {
+        const updated = page.artists.filter((character, i) => {
           return i !== index
         });
-        setUser({ ...user, artists: updated});
+        setPage({ ...page, artists: updated});
       }
 
     // function submitForm() {
-    //     var fullUser = {...user,...location.state.user};
-    //     console.log(fullUser)
-    //     navigate(`/profile/${fullUser.username}`, {state: {user: fullUser}})
-    //     setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
+    //     var fullpage = {...page,...location.state.page};
+    //     console.log(fullpage)
+    //     navigate(`/profile/${fullpage.pageName}`, {state: {page: fullpage}})
+    //     setpage({pageName: '', bio: '', profile_url: '', albums: [], artists: []});
         
     // }
 
-    async function makePutCall (user) {
+    async function makePutCall (page) {
       try {
-          const response = await axios.patch('http://localhost:5000/patch', user)
+        console.log(oldName);  
+        const response = await axios.patch('http://localhost:5000/patchpage', {newPage: page, oldName: oldName});
           return response
       } catch (error) {
           console.log(error)
@@ -134,44 +133,45 @@ function Form(props) {
       }
       }
 
-    function submitForm () {
-
-      
-      console.log(user)
-      //console.log(location.state.user)
-      //var fullUser = {...user,...location.state.user};
-
-      makePutCall(user).then((response) => {
-        if (response && response.status === 201) {
-        const token = response.data
-        
-        props.handleSubmit(token, user)
-
-        navigate(`/profile/${user.username}`);
-
+    async function makePostCall(page) {
+      try {
+        const response = await axios.post('http://localhost:5000/page', page);
+        return response;
+      }
+      catch (error) {
+        console.log(error);
+        return false;
+      }
     }
-    else{
-        console.log("bad response", response)
-    }
-  })
 
+    function submitForm (backendFunc) {
 
-
+      console.log(page)
+      //console.log(location.state.page)
+      //var fullpage = {...page,...location.state.page};
+      backendFunc(page).then((response) => {
+      if (response && response.status === 201) {
+      const token = response.data
       
-      //setUser({pagename: '', bio: '', profile_url: '', albums: [], artists: []});
+      props.handleSubmit(props.userData);
+      }
+      else{
+          console.log("bad response", response)
+      }
+      });
     }
 
     return (
       <div>
       <body class="signupmain">
         <form>
-        <label color="white" HtmlFor="pagename">Page Name</label>
+        <label color="white" HtmlFor="pageName">Page Name</label>
         <input
             class = "forminput"
             type="text"
-            name="pagename"
-            id="pagename"
-            value={user.pagename}
+            name="pageName"
+            id="pageName"
+            value={page.pageName}
             placeholder="Page Name"
             onChange={handleChange} />
         <label htmlFor="Bio">Bio</label>
@@ -180,13 +180,13 @@ function Form(props) {
             type="text"
             name="bio"
             id="bio"
-            value={user.bio}
+            value={page.bio}
             placeholder="Whats your Bio?"
 
             onChange={handleChange} />
         <label htmlFor="profile">Select an Image</label>
         <div>
-        {user.profile && <img src={user.profile} height="200px"/>}
+        {page.pagePic && <img src={page.pagePic} height="200px"/>}
         </div>
         <input
             class = "forminput"
@@ -204,7 +204,7 @@ function Form(props) {
             placeholder="Album Name"
 
             onChange={handleChange} />
-        <AlbumTable userdata={user} deleteAlbum={removeAlbum} />
+        <AlbumTable pagedata={page} deleteAlbum={removeAlbum} />
         <input text-align  = "center" name = "album-button" type="button" value="Submit Album" onClick={submitAlbum} />
         <br></br>
         <label htmlFor="artists">Enter an artist</label>
@@ -217,10 +217,10 @@ function Form(props) {
             placeholder="Artist Name"
 
             onChange={handleChange} />
-        <ArtistTable userdata={user} removeArtist={removeArtist} />
+        <ArtistTable pagedata={page} removeArtist={removeArtist} />
         <input name = "artist-button" type="button" value="Submit Artist" onClick={submitArtist} />
         <br></br>
-        <input name = "master-button" type="button" value="Submit Changes" onClick={submitForm} />
+        <input name = "master-button" type="button" value="Submit Page" onClick={() => submitForm(funcs[props.post])} />
         </form>
     </body>
     </div>

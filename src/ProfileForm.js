@@ -85,7 +85,7 @@ function ProfileForm(props) {
       <div>
       <body class="profileEdit">
         <form>
-        <label color="white" HtmlFor="pagename">Display Name</label>
+        <label color="black" HtmlFor="pagename">Display Name</label>
         <input
             class = "forminput"
             type="text"

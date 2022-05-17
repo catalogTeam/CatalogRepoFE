@@ -6,7 +6,7 @@ function ProfileView(props) {
 
     const location = useLocation();
 
-    console.log(props);
+    console.log(props.userData);
 
     function Submit(){
         props.handleSubmit()
@@ -16,7 +16,7 @@ function ProfileView(props) {
         <div>
             <Header userData = {props.userData} butName = {"Edit Profile"} toForm = {props.toForm} handleSubmit = {() => Submit()} />
             
-            <button value='toPages' >View Pages</button>
+            <button value='toPages' onClick={() => props.toPages(props.userData)}>View Pages</button>
             <button value='toReviews' >View Reviews</button>
         </div>
     );

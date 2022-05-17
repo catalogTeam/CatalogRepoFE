@@ -10,6 +10,8 @@ import ProfilePage from "./ProfilePage";
 import SignUpPage from "./SignUpPage";
 import { useCookies } from 'react-cookie';
 import ProfileView from "./ProfileView";
+import ProfilePageList from "./ProfilePageList";
+import UserView from "./UserView";
 import ProfileForm from "./ProfileForm";
 import TestSignup from "./TestSignup";
 
@@ -18,12 +20,16 @@ function MyApp() {
 
   let location = useLocation();
 
-  const [user, setUser] = useState({
-  });
+
+  const [user, setUser] = useState({});
+
+  const [page, setPage] = useState({});
+
+  const [post, setPost] = useState({});
 
   const [cookies, setCookie] = useCookies(['auth_token']);
 
-  let navigate = useNavigate(); 
+  let navigate = useNavigate();    
 
   function setToken (token) {
     setCookie('auth_token', token,
@@ -100,14 +106,35 @@ function MyApp() {
     navigate(`/profile/${user.username}`);
   }
 
-  async function toForm(user){
+  async function toForm(user, page, post){
     setUser(user)
+    setPage(page);
+    setPost(post);
     navigate(`/form`);
   }
 
   async function toProfForm(user){
     setUser(user)
     navigate('/profile/form');
+  }
+
+  async function toPagesView(user){
+    setUser(user)
+    // Get pages
+    try{
+      let response = await axios.get(`http://localhost:5000/pages/${user.username}`);
+      setPage(response.data);
+      navigate(`/profile/pages/${user.username}`);
+    }
+    catch (error) {
+      console.log(error)
+    }
+  }
+
+  async function toPage(user, page){
+    setUser(user)
+    setPage(page)
+    navigate(`/profile/page/${page.pageName}`);
   }
 
   async function postSignedInUser(token, userData) {
@@ -154,15 +181,19 @@ return (
       <Routes>
         <Route path='/' element={ <Navigate replace to = "/home" /> }/>
 
-        <Route path='/form' element={<Form userData = {user} handleSubmit={postSignedInUser}/> }/>
+        <Route path='/form' element={<Form userData = {user} pageData={page} post={post} handleSubmit={toPagesView}/> }/>
 
         <Route path='/profile/form' element={<ProfileForm userData = {user} handleSubmit={postSignedInUser}/>}/>
   
         <Route path='/home' element={<Home handleSubmit= {assignUser}/>}/>
 
-        { user.username && <Route path='/profile/*' element = { <ProfileView userData = {user} toForm = {toProfForm} handleSubmit = {toReviewPage}/>}/>}
+        <Route path='/profile/*' element = { <ProfileView userData = {user} toForm = {toProfForm} handleSubmit = {toReviewPage} toPages={toPagesView}/>} />
 
-        <Route path='/user/:username' element = { < UserPage handleSubmit = {toReviewPage}/>}/>
+        <Route path="/profile/pages/*" element={ <ProfilePageList userData={user} pages={page} toPage={toPage} toForm={toForm}/>} />
+
+        <Route path="/profile/page/*" element={<ProfilePage userData={user} pageData={page} toForm={toForm} handleSubmit={toPagesView} />} />
+
+        <Route path='/user/:username' element = { <UserView handleSubmit = {toReviewPage}/>}/>
 
         <Route path='*' element={ <ErrorPage />}/>
 

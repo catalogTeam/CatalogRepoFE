@@ -32,7 +32,7 @@ function ArtistTable(props) {
       <table>
         <TableHeader />
         <TableBody
-        user={props.userdata}
+        user={props.pagedata}
         removeArtist={props.removeArtist}
       />
       </table>

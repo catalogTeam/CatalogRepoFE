@@ -35,7 +35,7 @@ function AlbumTable(props) {
       <table>
         <TableHeader />
         <TableBody
-        user={props.userdata}
+        user={props.pagedata}
         removeAlbum={props.deleteAlbum}
       />
       </table>
