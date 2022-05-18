@@ -24,7 +24,7 @@ const TopContainer = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   padding: 0 1.8em;
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
   paddding-top: 0em;
 `;
 

@@ -1,79 +1,67 @@
 import React, { useEffect, useState } from "react";
-import {
-  useParams
-} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
+import Header from "./Headers/UserHeader";
+import AlbumCards from "./Cards/AlbumCards";
+import ArtistCards from "./Cards/ArtistCards";
+import ReviewCards from "./Cards/ReviewCards";
 
-import Header from "./Headers/UserHeader"
-import AlbumCards from "./Cards/AlbumCards"
-import ArtistCards from "./Cards/ArtistCards"
-import ReviewCards from "./Cards/ReviewCards"
-
-function UserPage(props){
-
+function UserPage(props) {
   const [user, setUser] = useState({});
 
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
+  let { username } = useParams();
 
-    let { username } = useParams();
+  function assignUser(user) {
+    setUser(user);
+    console.log(user);
+  }
 
-    function assignUser(user) {
-      setUser(user);
-      console.log(user)
+  function Submit() {
+    props.handleSubmit();
+  }
+
+  async function getUser(user) {
+    try {
+      const response = await axios.get(`http://localhost:5000/user/${user}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
+  }
 
+  useEffect(() => {
+    // Update the document title using the browser API
 
-    
-    function Submit(){
-        props.handleSubmit()
-    }
-
-    async function getUser(user) {
-      try {
-        const response = await axios.get(`http://localhost:5000/user/${user}`)
-        return response.data
-      } catch (error) {
-        console.log(error)
-        return false
+    console.log(username);
+    getUser(username).then((response) => {
+      if (response !== false) {
+        assignUser(response[0]);
+      } else {
+        navigate(`/errorPage`);
+        console.log("no user found");
       }
-    }
+      console.log(user);
 
+      console.log(user["albums"]);
+    });
+  }, [username]);
 
-    useEffect(() => {
-        // Update the document title using the browser API
-        
-      
-        console.log(username)
-        getUser(username).then((response) => {
-        if (response !== false){
-          assignUser(response[0]);
-        }
-        else{
-          navigate(`/errorPage`);
-          console.log("no user found")
-        }  
-        console.log(user)
-
-        console.log(user['albums'])   
-      })
-        
-        
-    }, [username])
-
-    return(
+  return (
     <div>
-      <Header userData = {user} handleSubmit = {() => Submit()} />
+      <Header userData={user} handleSubmit={() => Submit()} />
       <header>Albums</header>
-      <AlbumCards albumData = {user['albums']}/>
+      <AlbumCards albumData={user["albums"]} />
       <header>Artists</header>
-      <ArtistCards artistData = {user['artists']}/>
+      <ArtistCards artistData={user["artists"]} />
       <header>Reviews</header>
-      <ReviewCards reviewData = {user['reviews']}/>
+      <ReviewCards reviewData={user["reviews"]} />
     </div>
-    );
+  );
 }
 
 export default UserPage;

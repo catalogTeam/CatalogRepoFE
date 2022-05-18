@@ -14,13 +14,17 @@ function TableBody(props) {
   var artists = props.user.artists;
 
   const rows = artists.map((row, index) => {
-  return (
-    <tr key={index}>
-      <td>{row.name}</td>
-      <td>
-        <input type="button" value="Delete" onClick={ () => props.removeArtist(index) } />
-      </td>
-    </tr>
+    return (
+      <tr key={index}>
+        <td>{row.name}</td>
+        <td>
+          <input
+            type="button"
+            value="Delete"
+            onClick={() => props.removeArtist(index)}
+          />
+        </td>
+      </tr>
     );
   });
   return <tbody>{rows}</tbody>;
@@ -31,13 +35,9 @@ function ArtistTable(props) {
     <div>
       <table>
         <TableHeader />
-        <TableBody
-        user={props.pagedata}
-        removeArtist={props.removeArtist}
-      />
+        <TableBody user={props.pagedata} removeArtist={props.removeArtist} />
       </table>
     </div>
-
   );
 }
 

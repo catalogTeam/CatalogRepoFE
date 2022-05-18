@@ -1,27 +1,29 @@
-.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
-    background-color: rgb(4, 139, 117) !important;
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited {
+  background-color: rgb(4, 139, 117) !important;
 }
-
 
 body {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    /* background-image: url("./background/galaxy.jpg"); */
-    background-color: rgb(4, 139, 117);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* background-image: url("./background/galaxy.jpg"); */
+  background-color: rgb(4, 139, 117);
 
-    font-family: "lato", sans-serif;
-  }
-
-.headertext{
-    color: grey;
-    letter-spacing: .5px;
-    white-space: nowrap;
+  font-family: "lato", sans-serif;
 }
 
-@media (min-width: 1px){
-    .navbar li {
-        margin-left : 1em;
-        margin-right : 1em;
-    }
+.headertext {
+  color: grey;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+@media (min-width: 1px) {
+  .navbar li {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
 }

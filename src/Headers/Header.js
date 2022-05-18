@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   MDBContainer,
   MDBNavbar,
@@ -8,93 +8,93 @@ import {
   MDBNavbarNav,
   MDBNavbarItem,
   MDBNavbarLink,
-  MDBCollapse, 
-} from 'mdb-react-ui-kit';
+  MDBCollapse,
+} from "mdb-react-ui-kit";
 
-import { useNavigate } from 'react-router-dom'
-
-
+import { useNavigate } from "react-router-dom";
 
 export default function Header(props) {
-
   let navigate = useNavigate();
 
-  const [nameData, setName] = useState({ user: ""});
+  const [nameData, setName] = useState({ user: "" });
 
   const [showBasic, setShowBasic] = useState(false);
-  
-  const user = props.userData
+
+  const user = props.userData;
 
   function handleChange(event) {
     const { name, value } = event.target;
     if (name === "user") setName({ ...nameData, user: value });
   }
 
-  function search(){
-
-    let name = nameData.user
+  function search() {
+    let name = nameData.user;
     setName({ user: "" });
-    navigate(`/user/${name}`)
-    
+    navigate(`/user/${name}`);
   }
 
-  function submit(){
-    props.handleSubmit()
+  function submit() {
+    props.handleSubmit();
   }
 
   return (
     <div>
-    <MDBNavbar expand='lg' light bgColor='light'>
-      <MDBContainer fluid>
-        <MDBNavbarBrand href='#'>Catalog</MDBNavbarBrand>
+      <MDBNavbar expand="lg" light bgColor="light">
+        <MDBContainer fluid>
+          <MDBNavbarBrand href="#">Catalog</MDBNavbarBrand>
 
-        <MDBNavbarToggler
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
-          onClick={() => setShowBasic(!showBasic)}
-        >
-          <MDBIcon icon='bars' fas />
-        </MDBNavbarToggler>
+          <MDBNavbarToggler
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={() => setShowBasic(!showBasic)}
+          >
+            <MDBIcon icon="bars" fas />
+          </MDBNavbarToggler>
 
-        <MDBCollapse navbar show={showBasic}>
-          <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
-            <MDBNavbarItem>
-              <MDBNavbarLink active aria-current='user' href='/home'>
-                Home
-              </MDBNavbarLink>
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-            <input name = "master-button" type="button" value="Make a Review" 
-        onClick={() => submit()} 
-      />
-            </MDBNavbarItem>
-            <MDBNavbarItem>
-              <input name = "edit-button" type="button" value={props.butName}
-        onClick={props.toForm}
-      />
-            </MDBNavbarItem>
-          </MDBNavbarNav>
+          <MDBCollapse navbar show={showBasic}>
+            <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
+              <MDBNavbarItem>
+                <MDBNavbarLink active aria-current="user" href="/home">
+                  Home
+                </MDBNavbarLink>
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <input
+                  name="master-button"
+                  type="button"
+                  value="Make a Review"
+                  onClick={() => submit()}
+                />
+              </MDBNavbarItem>
+              <MDBNavbarItem>
+                <input
+                  name="edit-button"
+                  type="button"
+                  value={props.butName}
+                  onClick={props.toForm}
+                />
+              </MDBNavbarItem>
+            </MDBNavbarNav>
 
-          <form className='d-flex input-group w-auto'>
-            <input
-            type="text"
-            name="user"
-            id="user"
-            value={nameData.user}
-            onChange={handleChange} />
-            <input type="button"  value="Search" onClick={search} />
-          </form>
-        </MDBCollapse>
-      </MDBContainer>
-    </MDBNavbar>
-    <div className='p-5 text-center'>
-        <h1 className='mb-3'>{user['displayName']}</h1>
-        <img src={user['profile']} height='200px'/>
-        <h4 className='mb-3'>{user['bio']}</h4>
+            <form className="d-flex input-group w-auto">
+              <input
+                type="text"
+                name="user"
+                id="user"
+                value={nameData.user}
+                onChange={handleChange}
+              />
+              <input type="button" value="Search" onClick={search} />
+            </form>
+          </MDBCollapse>
+        </MDBContainer>
+      </MDBNavbar>
+      <div className="p-5 text-center">
+        <h1 className="mb-3">{user["displayName"]}</h1>
+        <img src={user["profile"]} height="200px" />
+        <h4 className="mb-3">{user["bio"]}</h4>
+      </div>
     </div>
-    </div>
-    
   );
 }
-

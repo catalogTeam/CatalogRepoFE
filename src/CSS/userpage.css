@@ -4,7 +4,6 @@ h1 {
   margin: 0.1em;
   font-size: 35px;
   font: "Times New Roman";
-
 }
 body {
   box-sizing: border-box;
@@ -19,5 +18,4 @@ body {
   font-family: "Times New Roman", Times, serif;
   font-size: 25px;
   color: Black;
-
 }

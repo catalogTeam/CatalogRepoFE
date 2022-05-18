@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import './CSS/signup.css';
+import React, { useState } from "react";
+import "./CSS/signup.css";
 import styled from "styled-components";
 import { AccountBox } from "./components/accountBox";
 
