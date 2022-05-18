@@ -2,13 +2,14 @@ import axios from 'axios'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
-var URL = 'http://localhost:5000';
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
-}
 
 function Signup(props){
+  var URL = 'http://localhost:5000';
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
 
     let navigate = useNavigate();
 
@@ -32,7 +33,7 @@ function Signup(props){
         }
       }
 
-          async function makeLoginCall (LoginUser) {
+    async function makeLoginCall (LoginUser) {
     try {
         const response = await axios.post(`${URL}/login`, LoginUser)
         return response
