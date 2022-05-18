@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import './CSS/template.css';
 var URL = 'http://localhost:5000';
 
-if (process.env.NODE_ENV === "production"){
+
+if (process.env._ && process.env._.indexOf("heroku") !== -1){
   URL = 'https://musiccatalogbe.herokuapp.com';
-  console.log("HELLOO MOTHER!");
+  console.log("I'm in Heroku!");
 }
+
 
 function Signup(props){
 
