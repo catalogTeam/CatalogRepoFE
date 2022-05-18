@@ -9,13 +9,15 @@ import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
 import { useCookies } from 'react-cookie';
 import Signup from "./Signup";
-var URL = 'http://localhost:5000';
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
-}
 function MyApp() {
 
+  var URL = 'http://localhost:5000';
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
+  
   let location = useLocation();
 
   const [user, setUser] = useState({

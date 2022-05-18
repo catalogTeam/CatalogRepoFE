@@ -9,16 +9,12 @@ import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
 import ReviewCards from "./Cards/ReviewCards";
 
-var URL = 'http://localhost:5000';
-
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
-}
-
-
-
-
 function UserPage(props){
+  var URL = 'http://localhost:5000';
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
 
   const [user, setUser] = useState({});
 

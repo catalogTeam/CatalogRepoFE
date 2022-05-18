@@ -8,14 +8,16 @@ import defPfp from './default.png'
 import {useLocation } from 'react-router-dom';
 import './CSS/template.css';
 
-var URL = 'http://localhost:5000';
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
-}
 
 function Form(props) {  
 
+  var URL = 'http://localhost:5000';
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
+  
   const location = useLocation();
 
   let navigate = useNavigate();

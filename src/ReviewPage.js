@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import './CSS/reviewpage.css';
 import { MDBInput } from 'mdb-react-ui-kit';
 import axios from "axios";
-var URL = 'http://localhost:5000';
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
-}
 function ReviewPage(props){
+  var URL = 'http://localhost:5000';
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
 
     const [reviewData, setReview] = useState({ username: props.userData.username, album: "", review: "" , rating: ""});
 
