@@ -6,6 +6,7 @@ var URL = 'http://localhost:5000';
 
 if (process.env.NODE_ENV === "production"){
   URL = 'https://musiccatalogbe.herokuapp.com';
+  console.log("HELLOO MOTHER!");
 }
 
 function Signup(props){
