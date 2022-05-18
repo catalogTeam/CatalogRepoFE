@@ -5,8 +5,8 @@ import './CSS/template.css';
 
 
 function Signup(props){
-  // var URL = 'http://localhost:5000';
-  var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = 'http://localhost:5000';
+  // var URL = 'https://musiccatalogbe.herokuapp.com';
 
   if (process.env.NODE_ENV === "production"){
     URL = 'https://musiccatalogbe.herokuapp.com';
