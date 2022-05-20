@@ -2,13 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 import Header from "./Headers/UserHeader";
 import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
 import ReviewCards from "./Cards/ReviewCards";
 
-function UserPage(props) {
+var URL = 'http://localhost:5000';
+
+if (process.env.NODE_ENV === "production"){
+  URL = 'https://musiccatalogbe.herokuapp.com';
+}
+
+
+function UserPage(props){
+
   const [user, setUser] = useState({});
 
   let navigate = useNavigate();
@@ -45,11 +52,18 @@ function UserPage(props) {
         navigate(`/errorPage`);
         console.log("no user found");
       }
-      console.log(user);
+    }, [username]);
+  });
 
-      console.log(user["albums"]);
-    });
-  }, [username]);
+    async function getUser(user) {
+      try {
+        const response = await axios.get(`${URL}/user/${user}`)
+        return response.data
+      } catch (error) {
+        console.log(error)
+        return false
+      }
+    }
 
   return (
     <div>

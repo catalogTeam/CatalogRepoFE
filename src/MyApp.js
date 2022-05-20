@@ -21,6 +21,13 @@ import UserView from "./UserView";
 import ProfileForm from "./ProfileForm";
 import TestSignup from "./TestSignup";
 
+import { useCookies } from 'react-cookie';
+import Signup from "./Signup";
+var URL = 'http://localhost:5000';
+
+if (process.env.NODE_ENV === "production"){
+  URL = 'https://musiccatalogbe.herokuapp.com';
+}
 function MyApp() {
   let location = useLocation();
 
@@ -97,8 +104,8 @@ function MyApp() {
 
   async function makePostCall(user) {
     try {
-      const response = await axios.post("http://localhost:5000/user", user);
-      return response;
+      const response = await axios.post(`${URL}/user`, user)
+      return response
     } catch (error) {
       console.log(error);
       return false;
@@ -145,6 +152,16 @@ function MyApp() {
       console.log(error);
     }
   }
+  async function SignupSubmit(user, token){
+    console.log(user)
+    setSignedInUser(token, user)
+
+  }
+
+  async function setSignedInUser(token, userData) {
+    console.log(userData)
+
+    setToken(token)
 
   async function backToUser(user) {
     setUser(user);
@@ -187,6 +204,53 @@ function MyApp() {
       }
     });
   }
+    const name = localStorage.getItem('username');
+
+  }
+
+  async function toSignedInUser2(username) {
+    console.log("success")
+
+    console.log(localStorage.getItem('username'))
+
+    const name = localStorage.getItem('username');
+
+    changeUser(name).then(result => {
+      if (result) { setUser(result) 
+      console.log(user)}
+    })
+
+  }
+
+  async function accessControlHandler(user, token, signupBool){
+      setData(user, token)
+  }
+
+  async function setData(userData, token) {
+
+    localStorage.setItem('username', userData.username);
+
+    console.log(localStorage.getItem('username'))
+
+    setUser(userData)
+
+    setToken(token)
+
+  }
+
+function toProfile(){
+
+  const name = localStorage.getItem('username');
+
+  if (name){
+    navigate(`/profile/${name}`)
+  }
+}
+
+function toReviewPage(){
+  navigate(`/review`);
+
+}
 
   function toReviewPage() {
     console.log("going to review page");
