@@ -1,10 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
-=======
-import { useNavigate } from 'react-router-dom';
-
->>>>>>> master
 
 function ErrorPage() {
   let navigate = useNavigate();
