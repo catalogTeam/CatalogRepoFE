@@ -7,13 +7,14 @@ import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
 import ReviewCards from "./Cards/ReviewCards";
 
-var URL = "http://localhost:5000";
+function UserPage(props){
+  var URL = 'http://localhost:5000';
+  // var URL = 'https://musiccatalogbe.herokuapp.com';
 
-if (process.env.NODE_ENV === "production") {
-  URL = "https://musiccatalogbe.herokuapp.com";
-}
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
 
-function UserPage(props) {
   const [user, setUser] = useState({});
 
   let navigate = useNavigate();

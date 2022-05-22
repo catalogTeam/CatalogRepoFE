@@ -4,14 +4,15 @@ import { useNavigate } from "react-router-dom";
 import "./CSS/template.css";
 import defPfp from "./default.png";
 var randomWords = require("random-words");
-var URL = "http://localhost:5000";
+
+function Signup(props) {
+  let navigate = useNavigate();
+
+  var URL = "http://localhost:5000";
 
 if (process.env.NODE_ENV === "production") {
   URL = "https://musiccatalogbe.herokuapp.com";
 }
-
-function Signup(props) {
-  let navigate = useNavigate();
 
   const [LoginUser, setUserLogin] = useState({});
 

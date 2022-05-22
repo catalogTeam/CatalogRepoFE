@@ -18,13 +18,17 @@ import ProfileView from "./ProfileView";
 import ProfilePageList from "./ProfilePageList";
 import UserView from "./UserView";
 import Signup from "./Signup";
-import ProfileForm from "./ProfileForm";
-var URL = "http://localhost:5000";
 
-if (process.env.NODE_ENV === "production") {
-  URL = "https://musiccatalogbe.herokuapp.com";
-}
 function MyApp() {
+
+  var URL = 'http://localhost:5000';
+  // var URL = 'https://musiccatalogbe.herokuapp.com';
+
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
+
   let location = useLocation();
 
   const [user, setUser] = useState({});
