@@ -61,7 +61,7 @@ function Form(props) {
   async function getAlbum(album_name) {
     try {
       const response = await axios.get(
-        `http://localhost:5000/search/album/${album_name}`
+        `${URL}/search/album/${album_name}`
       );
       return response.data;
     } catch (error) {
@@ -73,7 +73,7 @@ function Form(props) {
   async function getArtist(artist_name) {
     try {
       const response = await axios.get(
-        `http://localhost:5000/search/artist/${artist_name}`
+        `${URL}/search/artist/${artist_name}`
       );
       return response.data;
     } catch (error) {
@@ -132,7 +132,7 @@ function Form(props) {
   async function makePutCall(page) {
     try {
       console.log(oldName);
-      const response = await axios.patch("http://localhost:5000/patchpage", {
+      const response = await axios.patch(`${URL}/patchpage`, {
         newPage: page,
         oldName: oldName,
       });
@@ -146,7 +146,7 @@ function Form(props) {
 
   async function makePostCall(page) {
     try {
-      const response = await axios.post("http://localhost:5000/page", page);
+      const response = await axios.post(`${URL}/page`, page);
       return response;
     } catch (error) {
       console.log(error);

@@ -40,7 +40,7 @@ function Home(props) {
 
   async function getUser(user) {
     try {
-      const response = await axios.get(`http://localhost:5000/user/${user}`);
+      const response = await axios.get(`${URL}/user/${user}`);
       console.log(response);
       return response.data;
     } catch (error) {

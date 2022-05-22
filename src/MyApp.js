@@ -70,7 +70,7 @@ function MyApp() {
         headers: { Authorization: `Bearer ${cookies.auth_token}` },
       };
       const response = await axios.get(
-        `http://localhost:5000/user/${user.username}`,
+        `${URL}/user/${user.username}`,
         config
       );
       console.log(response.data[0]);
@@ -90,7 +90,7 @@ function MyApp() {
       console.log("nameee");
       console.log(username);
       const response = await axios.get(
-        `http://localhost:5000/user/${username}`,
+        `${URL}/user/${username}`,
         config
       );
       console.log(response.data[0]);
@@ -144,7 +144,7 @@ function MyApp() {
     // Get pages
     try {
       let response = await axios.get(
-        `http://localhost:5000/pages/${user.username}`
+        `${URL}/pages/${user.username}`
       );
       setPage(response.data);
       navigate(`/profile/pages/${user.username}`);

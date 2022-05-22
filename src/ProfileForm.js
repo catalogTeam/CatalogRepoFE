@@ -8,6 +8,15 @@ import "./CSS/template.css";
 function ProfileForm(props) {
   const location = useLocation();
 
+  var URL = 'http://localhost:5000';
+  // var URL = 'https://musiccatalogbe.herokuapp.com';
+
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
+
+
   let navigate = useNavigate();
 
   const [user, setUser] = useState(props.userData);
@@ -50,7 +59,7 @@ function ProfileForm(props) {
     try {
       console.log(user);
       const response = await axios.patch(
-        "http://localhost:5000/patchprofile",
+        `${URL}/patchprofile`,
         user
       );
       return response;
