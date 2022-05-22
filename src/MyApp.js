@@ -13,20 +13,16 @@ import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
-import SignUpPage from "./SignUpPage";
 import { useCookies } from "react-cookie";
 import ProfileView from "./ProfileView";
 import ProfilePageList from "./ProfilePageList";
 import UserView from "./UserView";
-import ProfileForm from "./ProfileForm";
-import TestSignup from "./TestSignup";
-
-import { useCookies } from 'react-cookie';
 import Signup from "./Signup";
-var URL = 'http://localhost:5000';
+import ProfileForm from "./ProfileForm";
+var URL = "http://localhost:5000";
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
+if (process.env.NODE_ENV === "production") {
+  URL = "https://musiccatalogbe.herokuapp.com";
 }
 function MyApp() {
   let location = useLocation();
@@ -104,8 +100,8 @@ function MyApp() {
 
   async function makePostCall(user) {
     try {
-      const response = await axios.post(`${URL}/user`, user)
-      return response
+      const response = await axios.post(`${URL}/user`, user);
+      return response;
     } catch (error) {
       console.log(error);
       return false;
@@ -152,16 +148,17 @@ function MyApp() {
       console.log(error);
     }
   }
-  async function SignupSubmit(user, token){
-    console.log(user)
-    setSignedInUser(token, user)
 
+  async function SignupSubmit(user, token) {
+    console.log(user);
+    setSignedInUser(token, user);
   }
 
   async function setSignedInUser(token, userData) {
-    console.log(userData)
+    console.log(userData);
 
-    setToken(token)
+    setToken(token);
+  }
 
   async function backToUser(user) {
     setUser(user);
@@ -174,7 +171,7 @@ function MyApp() {
     navigate(`/profile/page/${page.pageName}`);
   }
 
-  async function postSignedInUser(token, userData) {
+  async function postSignedInUser(userData, token) {
     console.log(userData);
 
     setToken(token);
@@ -182,9 +179,9 @@ function MyApp() {
     setUser(userData);
   }
 
-  async function toSignedInUser(token, userData) {
+  async function toSignedInUser(userData, token) {
     console.log("success");
-
+    console.log(userData);
     changeUser(userData.username, token).then((result) => {
       if (result) {
         setUser(result);
@@ -204,53 +201,48 @@ function MyApp() {
       }
     });
   }
-    const name = localStorage.getItem('username');
-
-  }
+  //const name = localStorage.getItem('username');
 
   async function toSignedInUser2(username) {
-    console.log("success")
+    console.log("success");
 
-    console.log(localStorage.getItem('username'))
+    console.log(localStorage.getItem("username"));
 
-    const name = localStorage.getItem('username');
+    const name = localStorage.getItem("username");
 
-    changeUser(name).then(result => {
-      if (result) { setUser(result) 
-      console.log(user)}
-    })
-
+    changeUser(name).then((result) => {
+      if (result) {
+        setUser(result);
+        console.log(user);
+      }
+    });
   }
 
-  async function accessControlHandler(user, token, signupBool){
-      setData(user, token)
+  async function accessControlHandler(user, token, signupBool) {
+    setData(user, token);
   }
 
   async function setData(userData, token) {
+    localStorage.setItem("username", userData.username);
 
-    localStorage.setItem('username', userData.username);
+    console.log(localStorage.getItem("username"));
 
-    console.log(localStorage.getItem('username'))
+    setUser(userData);
 
-    setUser(userData)
-
-    setToken(token)
-
+    setToken(token);
   }
 
-function toProfile(){
+  function toProfile() {
+    const name = localStorage.getItem("username");
 
-  const name = localStorage.getItem('username');
-
-  if (name){
-    navigate(`/profile/${name}`)
+    if (name) {
+      navigate(`/profile/${name}`);
+    }
   }
-}
 
-function toReviewPage(){
-  navigate(`/review`);
-
-}
+  function toReviewPage() {
+    navigate(`/review`);
+  }
 
   function toReviewPage() {
     console.log("going to review page");
@@ -334,8 +326,12 @@ function toReviewPage(){
 
         <Route
           path="/signup"
-          element={<TestSignup handleLogin={toSignedInUser} />}
-          handleSubmit={postSignedInUser}
+          element={
+            <Signup
+              handleLogin={toSignedInUser}
+              handleSubmit={postSignedInUser}
+            />
+          }
         />
 
         {/* <Route path='/login' element={ <TestLogin handleLogin = {toSignedInUser} />} /> */}

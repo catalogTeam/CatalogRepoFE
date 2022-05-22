@@ -2,24 +2,28 @@ import React, { useState } from "react";
 import "./CSS/reviewpage.css";
 import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
-var URL = 'http://localhost:5000';
+var URL = "http://localhost:5000";
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
+if (process.env.NODE_ENV === "production") {
+  URL = "https://musiccatalogbe.herokuapp.com";
 }
-function ReviewPage(props){
+function ReviewPage(props) {
+  const [reviewData, setReview] = useState({
+    username: props.userData.username,
+    album: "",
+    review: "",
+    rating: "",
+  });
 
-    const [reviewData, setReview] = useState({ username: props.userData.username, album: "", review: "" , rating: ""});
-
-    async function makeReviewCall () {
-        try {
-          const response = await axios.post(`${URL}/reviews`, reviewData)
-          return response
-        } catch (error) {
-          console.log(error)
-          return false
-        }
-      }
+  async function makeReviewCall() {
+    try {
+      const response = await axios.post(`${URL}/reviews`, reviewData);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
   function submitReview() {
     makeReviewCall().then((result) => {
@@ -32,7 +36,7 @@ function ReviewPage(props){
     });
   }
 
-  return (
+  /*return (
     <div>
       <body>
         <h1>Album Review</h1>
@@ -92,5 +96,6 @@ function ReviewPage(props){
       </body>
     </div>
   );
+  */
 }
 export default ReviewPage;

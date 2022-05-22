@@ -4,86 +4,83 @@ import { useNavigate } from "react-router-dom";
 import "./CSS/template.css";
 import defPfp from "./default.png";
 var randomWords = require("random-words");
-var URL = 'http://localhost:5000';
+var URL = "http://localhost:5000";
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
+if (process.env.NODE_ENV === "production") {
+  URL = "https://musiccatalogbe.herokuapp.com";
 }
 
-function Signup(props){
+function Signup(props) {
   let navigate = useNavigate();
 
-    const [LoginUser, setUserLogin] = useState({})
+  const [LoginUser, setUserLogin] = useState({});
 
-    const [user, setUser] = useState({
-      email: "",
-      username: "",
-      password: "",
-      profile: defPfp,
-      displayName:
-        randomWords({ exactly: 2, join: "" }) + Math.floor(Math.random() * 100),
-      bio: "Write something. NOW",
-      });
+  const [user, setUser] = useState({
+    email: "",
+    username: "",
+    password: "",
+    profile: defPfp,
+    displayName:
+      randomWords({ exactly: 2, join: "" }) + Math.floor(Math.random() * 100),
+    bio: "Write something. NOW",
+  });
 
-    const [message, setMsg] = useState('');
+  const [message, setMsg] = useState("");
 
-    async function makeSignupCall (user) {
-        try {
-            const response = await axios.post(`${URL}/signup`, user)
-            return response
-        } catch (error) {
-            console.log(error)
-            return false
-        }
-      }
-
-    async function makeLoginCall (LoginUser) {
+  async function makeSignupCall(user) {
     try {
-        const response = await axios.post(`${URL}/login`, LoginUser)
-        return response
+      const response = await axios.post(`${URL}/signup`, user);
+      return response;
     } catch (error) {
       console.log(error);
       return false;
     }
   }
 
+  async function makeLoginCall(LoginUser) {
+    try {
+      const response = await axios.post(`${URL}/login`, LoginUser);
+      return response;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
-    function SubmitLogin () {
-        makeLoginCall(LoginUser).then((response) => {
-          if (response && response.status === 200) {
-            console.log(response)
-            const token = response.data
-            setUserLogin({ username: '', password: '' })
-            setMsg('')
-            console.log(LoginUser)
-            props.handleSubmit(LoginUser, token, false).then(() => {
-                   console.log("navingating to")
-                   navigate(`/profile/${LoginUser.username}`);
-                });
-            
-            //navigate(`/profile/${user.username}`, {state: {user: user}})
-          } else {
-            console.log(response)
-            setMsg('Invalid login credentials!')
-          }
+  function SubmitLogin() {
+    makeLoginCall(LoginUser).then((response) => {
+      if (response && response.status === 200) {
+        console.log(response);
+        const token = response.data;
+        setUserLogin({ username: "", password: "" });
+        setMsg("");
+        console.log(LoginUser);
+        props.handleLogin(LoginUser, token).then(() => {
+          console.log("navingating to");
+          navigate(`/profile/${LoginUser.username}`);
         });
-      }
-    
-    function SubmitSignup () {
 
-        makeSignupCall(user).then((response) => {
-            if (response && response.status === 201) {
-              const token = response.data
-              props.handleSubmit(user, token, true)
-              navigate(`/profile/${user.username}`);
-              setUserLogin({ username: '', password: '' })
-              //navigate(`/profile/${user.username}`, {state: {user: user}})
-            } else {
-              console.log(response)
-            }
-          })
+        //navigate(`/profile/${user.username}`, {state: {user: user}})
+      } else {
+        console.log(response);
+        setMsg("Invalid login credentials!");
       }
+    });
+  }
 
+  function SubmitSignup() {
+    makeSignupCall(user).then((response) => {
+      if (response && response.status === 201) {
+        const token = response.data;
+        props.handleSubmit(user, token);
+        navigate(`/profile/${user.username}`);
+        setUserLogin({ username: "", password: "" });
+        //navigate(`/profile/${user.username}`, {state: {user: user}})
+      } else {
+        console.log(response);
+      }
+    });
+  }
 
   return (
     <div>

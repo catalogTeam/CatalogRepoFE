@@ -4,10 +4,10 @@ import "./CSS/home.css";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-var URL = 'http://localhost:5000';
+var URL = "http://localhost:5000";
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
+if (process.env.NODE_ENV === "production") {
+  URL = "https://musiccatalogbe.herokuapp.com";
 }
 
 function Home(props) {
@@ -24,7 +24,6 @@ function Home(props) {
 
   // function setToken(token){
   //   props.setToken(token)
-  // }
 
   function setToken(token) {
     setCookie("auth_token", token, {
@@ -55,16 +54,17 @@ function Home(props) {
     } else {
       navigate(`/errorPage`);
       console.log("no user found");
+    }
+  }
 
-    async function getUser(user) {
-      try {
-        const response = await axios.get(`${URL}/user/${user}`)
-        console.log(response)
-        return response.data
-      } catch (error) {
-        console.log(error)
-        return false
-      }
+  async function getUser(user) {
+    try {
+      const response = await axios.get(`${URL}/user/${user}`);
+      console.log(response);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
   }
 
@@ -132,7 +132,6 @@ function Home(props) {
           <input name = "signup" type="button" value="Log in" onClick={() => navigate("/login")} /> */}
     </div>
   );
-  }
 }
 
 export default Home;

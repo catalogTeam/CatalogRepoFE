@@ -72,7 +72,7 @@ export default function Header(props) {
                   name="edit-button"
                   type="button"
                   value={props.butName}
-                  onClick={props.toForm}
+                  onClick={() => props.toForm(props.userData)}
                 />
               </MDBNavbarItem>
             </MDBNavbarNav>

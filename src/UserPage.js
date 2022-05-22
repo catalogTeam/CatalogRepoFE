@@ -7,15 +7,13 @@ import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
 import ReviewCards from "./Cards/ReviewCards";
 
-var URL = 'http://localhost:5000';
+var URL = "http://localhost:5000";
 
-if (process.env.NODE_ENV === "production"){
-  URL = 'https://musiccatalogbe.herokuapp.com';
+if (process.env.NODE_ENV === "production") {
+  URL = "https://musiccatalogbe.herokuapp.com";
 }
 
-
-function UserPage(props){
-
+function UserPage(props) {
   const [user, setUser] = useState({});
 
   let navigate = useNavigate();
@@ -45,25 +43,28 @@ function UserPage(props){
     // Update the document title using the browser API
 
     console.log(username);
-    getUser(username).then((response) => {
-      if (response !== false) {
-        assignUser(response[0]);
-      } else {
-        navigate(`/errorPage`);
-        console.log("no user found");
-      }
-    }, [username]);
+    getUser(username).then(
+      (response) => {
+        if (response !== false) {
+          assignUser(response[0]);
+        } else {
+          navigate(`/errorPage`);
+          console.log("no user found");
+        }
+      },
+      [username]
+    );
   });
 
-    async function getUser(user) {
-      try {
-        const response = await axios.get(`${URL}/user/${user}`)
-        return response.data
-      } catch (error) {
-        console.log(error)
-        return false
-      }
+  async function getUser(user) {
+    try {
+      const response = await axios.get(`${URL}/user/${user}`);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return false;
     }
+  }
 
   return (
     <div>
