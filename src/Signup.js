@@ -8,7 +8,8 @@ var randomWords = require("random-words");
 function Signup(props) {
   let navigate = useNavigate();
 
-  var URL = "http://localhost:5000";
+  // var URL = 'http://localhost:5000';
+  var URL = 'https://musiccatalogbe.herokuapp.com';
 
 if (process.env.NODE_ENV === "production") {
   URL = "https://musiccatalogbe.herokuapp.com";

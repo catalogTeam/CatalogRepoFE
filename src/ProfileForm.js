@@ -8,8 +8,8 @@ import "./CSS/template.css";
 function ProfileForm(props) {
   const location = useLocation();
 
-  var URL = 'http://localhost:5000';
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = 'http://localhost:5000';
+  var URL = 'https://musiccatalogbe.herokuapp.com';
 
 
   if (process.env.NODE_ENV === "production"){

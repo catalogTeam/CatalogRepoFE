@@ -4,8 +4,8 @@ import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
 
 function ReviewPage(props){
-  var URL = 'http://localhost:5000';
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = 'http://localhost:5000';
+  var URL = 'https://musiccatalogbe.herokuapp.com';
 
   if (process.env.NODE_ENV === "production"){
     URL = 'https://musiccatalogbe.herokuapp.com';

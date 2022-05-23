@@ -6,6 +6,13 @@ import { useNavigate } from "react-router-dom";
 import "./CSS/ProfileView.css";
 
 function UserView(props) {
+  // var URL = 'http://localhost:5000';
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+
+  if (process.env.NODE_ENV === "production"){
+    URL = 'https://musiccatalogbe.herokuapp.com';
+  }
+
   const [user, setUser] = useState({});
 
   let navigate = useNavigate();
@@ -23,7 +30,7 @@ function UserView(props) {
 
   async function getUser(user) {
     try {
-      const response = await axios.get(`http://localhost:5000/user/${user}`);
+      const response = await axios.get(`${URL}/user/${user}`);
       return response.data;
     } catch (error) {
       console.log(error);
