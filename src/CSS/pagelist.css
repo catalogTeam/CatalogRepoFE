@@ -11,17 +11,28 @@
   margin: .5em;
 }
 
-.main {
+.pagelistmain {
   width: 350px;
   height: 350px;
-  background: url("https://doc-08-2c-docs.googleusercontent.com/docs/securesc/68c90smiglihng9534mvqmq1946dmis5/fo0picsp1nhiucmc0l25s29respgpr4j/1631524275000/03522360960922298374/03522360960922298374/1Sx0jhdpEpnNIydS4rnN4kHSJtU1EyWka?e=view&authuser=0&nonce=gcrocepgbb17m&user=03522360960922298374&hash=tfhgbs86ka6divo3llbvp93mg4csvb38")
-    no-repeat center/ cover;
-  border-radius: 5px;
-  box-shadow: 5px 20px 50px #000;
-  margin: 1em;
+  border-radius: 10px;
+  margin: .5em;
+  animation: myanimation 10s infinite;
 }
 
 .grid-container {
   display: grid;
-  justify-content: space-evenly;
+  justify-content: space-around;
+}
+
+.make-it-slow {
+  box-shadow: 5px 20px 50px pink;;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+@keyframes myanimation {
+  0% {box-shadow: 5px 20px 50px red;}
+  25%{box-shadow:5px 20px 50px yellow;}
+  50%{box-shadow:5px 20px 50px green;}
+  75%{box-shadow:5px 20px 50px brown;}
+  100% {box-shadow: 5px 20px 50px red;}
 }

@@ -10,7 +10,8 @@ function Pages(props) {
     const rows = pageList.map((row, index) => {
       return (
         <div className="grid-container">
-          <div className="main">
+
+          <div className="pagelistmain">
             <h1 className="changetextsize">{row.pageName}          
               <input
               className="margin"
