@@ -4,12 +4,20 @@ import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
 
 function ReviewPage(props){
-  // var URL = 'http://localhost:5000';
-  var URL = 'https://musiccatalogbe.herokuapp.com';
-
-  if (process.env.NODE_ENV === "production"){
-    URL = 'https://musiccatalogbe.herokuapp.com';
+  if (process.env._ && process.env._.indexOf("heroku") !== -1){
+    var URL = 'https://musiccatalogbe.herokuapp.com';
+    console.log("I'm in Heroku!");
   }
+  else{
+    var URL = 'http://localhost:5000';
+    console.log("I'm on local!");
+  }
+  const [reviewData, setReview] = useState({
+    username: props.userData.username,
+    album: "",
+    review: "",
+    rating: "",
+  });
 
   async function makeReviewCall() {
     try {
