@@ -6,14 +6,8 @@ import { useNavigate } from "react-router-dom";
 import "./CSS/ProfileView.css";
 
 function UserView(props) {
-  if (process.env.NODE_ENV === 'production'){
-    var URL = 'https://musiccatalogbe.herokuapp.com';
-    console.log("I'm in Heroku!");
-  }
-  else{
-    var URL = 'http://localhost:5000';
-    console.log("I'm on local!");
-  }
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = 'http://localhost:5000';
 
   const [user, setUser] = useState({});
 

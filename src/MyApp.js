@@ -22,14 +22,9 @@ import ProfileForm from "./ProfileForm";
 
 
 function MyApp() {
-  if (process.env.NODE_ENV === 'production'){
-    var URL = 'https://musiccatalogbe.herokuapp.com';
-    console.log("I'm in Heroku!");
-  }
-  else{
-    var URL = 'http://localhost:5000';
-    console.log("I'm on local!");
-  }
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = 'http://localhost:5000';
+
   let location = useLocation();
 
   const [user, setUser] = useState({});

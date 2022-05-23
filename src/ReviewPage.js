@@ -4,14 +4,9 @@ import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
 
 function ReviewPage(props){
-  if (process.env.NODE_ENV === 'production'){
-    var URL = 'https://musiccatalogbe.herokuapp.com';
-    console.log("I'm in Heroku!");
-  }
-  else{
-    var URL = 'http://localhost:5000';
-    console.log("I'm on local!");
-  }
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = 'http://localhost:5000';
+  
   const [reviewData, setReview] = useState({
     username: props.userData.username,
     album: "",
