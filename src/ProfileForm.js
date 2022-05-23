@@ -7,7 +7,7 @@ import "./CSS/template.css";
 
 function ProfileForm(props) {
   const location = useLocation();
-  if (process.env._ && process.env._.indexOf("heroku") !== -1){
+  if (process.env.NODE_ENV === 'production'){
     var URL = 'https://musiccatalogbe.herokuapp.com';
     console.log("I'm in Heroku!");
   }

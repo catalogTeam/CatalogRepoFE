@@ -7,7 +7,7 @@ var randomWords = require("random-words");
 
 function Signup(props) {
   let navigate = useNavigate();
-  if (process.env._ && process.env._.indexOf("heroku") !== -1){
+  if (process.env.NODE_ENV === 'production'){
     var URL = 'https://musiccatalogbe.herokuapp.com';
     console.log("I'm in Heroku!");
   }

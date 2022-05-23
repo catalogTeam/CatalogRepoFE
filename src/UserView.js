@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./CSS/ProfileView.css";
 
 function UserView(props) {
-  if (process.env._ && process.env._.indexOf("heroku") !== -1){
+  if (process.env.NODE_ENV === 'production'){
     var URL = 'https://musiccatalogbe.herokuapp.com';
     console.log("I'm in Heroku!");
   }
