@@ -5,6 +5,22 @@
   background-color: rgb(4, 139, 117) !important;
 }
 
+.profileheader{
+  color:black;
+  font-family:"Times New Roman";
+}
+
+.linkheader{
+  font-size: 20px;
+  font-family:"Times New Roman";
+}
+
+.biodescription{
+  font-family:"Times New Roman";
+  color: white;
+  margin: .5em;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -12,7 +28,7 @@ body {
   /* background-image: url("./background/galaxy.jpg"); */
   background-color: rgb(4, 139, 117);
 
-  font-family: "lato", sans-serif;
+  font-family:"Times New Roman";
 }
 
 .headertext {
@@ -23,7 +39,7 @@ body {
 
 @media (min-width: 1px) {
   .navbar li {
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: .25em;
+    margin-right: .25em;
   }
 }

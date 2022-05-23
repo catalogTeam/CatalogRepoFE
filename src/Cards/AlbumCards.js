@@ -7,6 +7,8 @@ import {
   MDBCardFooter,
   MDBCardGroup,
 } from "mdb-react-ui-kit";
+import "../CSS/cards.css";
+
 
 function CardList(props) {
   const cards = props.albums?.map((album) => {
@@ -21,7 +23,7 @@ function CardList(props) {
         <MDBCardBody>
           <MDBCardTitle>{album["name"]}</MDBCardTitle>
         </MDBCardBody>
-        <MDBCardFooter>
+        <MDBCardFooter className="albumfont">
           <small className="text-muted text-center">
             by {album["artists"][0]["name"]}
           </small>

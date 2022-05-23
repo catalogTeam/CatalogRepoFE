@@ -4,7 +4,7 @@ import ArtistTable from "./Tables/ArtistTable";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import "./CSS/template.css";
+
 
 function Form(props) {  
   // var URL = 'https://musiccatalogbe.herokuapp.com';
@@ -164,7 +164,7 @@ function Form(props) {
 
   return (
     <div>
-      <body class="signupmain">
+      <body>
         <form>
           <label color="white" HtmlFor="pageName">
             Page Name

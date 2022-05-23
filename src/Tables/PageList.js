@@ -9,15 +9,18 @@ function Pages(props) {
   } else {
     const rows = pageList.map((row, index) => {
       return (
-        <div>
-          <h1 className="changetextsize">{row.pageName}</h1>
-          <img src={row.pagePic} height="100px" />
-          <h2>{row.bio}</h2>
-          <input
-            type="button"
-            value="View Page"
-            onClick={() => props.toPage(pageList[index])}
-          />
+        <div className="grid-container">
+          <div className="main">
+            <h1 className="changetextsize">{row.pageName}          
+              <input
+              className="margin"
+              type="button"
+              value="View Page"
+              onClick={() => props.toPage(pageList[index])}/>
+            </h1>
+            <img src={row.pagePic} height="100px" />
+            <label>{row.bio}</label>
+          </div>
         </div>
       );
     });

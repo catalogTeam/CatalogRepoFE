@@ -6,6 +6,7 @@ import {
   MDBCardTitle,
   MDBCardGroup,
 } from "mdb-react-ui-kit";
+import "../CSS/cards.css";
 
 function CardList(props) {
   const cards = props.artists?.map((artist) => {
@@ -24,7 +25,8 @@ function CardList(props) {
           />
         )}
         <MDBCardBody>
-          <MDBCardTitle>{artist["name"]}</MDBCardTitle>
+          <MDBCardTitle className=" fontsize">{artist["name"]}</MDBCardTitle>
+          
         </MDBCardBody>
       </MDBCard>
     );

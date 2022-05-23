@@ -72,12 +72,12 @@ function Home(props) {
         <title>HTML Elements Reference</title>
       </div>
       <div>
-        <h1>Catalog</h1>
-        <sub>
+        <h1 className="homeheader">Catalog</h1>
+        <sub className="subcolor">
           Enter username below to search for a user page or create a new page
         </sub>
       </div>
-      <div class="AC">
+      <div>
         <MDBAccordion initialActive="AC1">
           <MDBAccordionItem
             collapseId="AC1"
@@ -106,6 +106,7 @@ function Home(props) {
       <form>
         <label htmlFor="user">Username</label>
         <input
+          className="buttonspace"
           type="text"
           name="user"
           id="user"
@@ -113,6 +114,7 @@ function Home(props) {
           onChange={handleChange}
         />
         <input
+          className="buttonspace"
           type="button"
           value="Search"
           onClick={() => navigate(`/user/${nameData.user}`)}

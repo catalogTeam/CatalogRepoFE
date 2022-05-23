@@ -25,9 +25,9 @@ function ProfilePage(props) {
         toForm={edit}
         handleSubmit={() => Submit()}
       />
-      <header>Albums</header>
+      <h1>Albums</h1>
       <AlbumCards albumData={props.pageData["albums"]} />
-      <header>Artists</header>
+      <h1>Artists</h1>
       <ArtistCards artistData={props.pageData["artists"]} />
     </div>
   );

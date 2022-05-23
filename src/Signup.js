@@ -81,19 +81,7 @@ function Signup(props) {
   }
 
   return (
-    <div>
-      <head>
-        <title> Slide Navbar</title>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="slide navbar style.css"
-        ></link>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
-          rel="stylesheet"
-        ></link>
-      </head>
+    <div class="mainbackground">
       <body class="signupmain">
         <div class="main">
           <input type="checkbox" id="chk" aria-hidden="true" />
