@@ -7,8 +7,8 @@ import { useLocation } from "react-router-dom";
 import "./CSS/template.css";
 
 function Form(props) {  
-  var URL = 'https://musiccatalogbe.herokuapp.com';
-  // var URL = 'http://localhost:5000';
+  // var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = 'http://localhost:5000';
 
   const location = useLocation();
 
