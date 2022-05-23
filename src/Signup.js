@@ -22,8 +22,8 @@ if (process.env.NODE_ENV === "production") {
     password: "",
     profile: defPfp,
     displayName:
-      randomWords({ exactly: 2, join: "" }) + Math.floor(Math.random() * 100),
-    bio: "Write something. NOW",
+      "",
+    bio: "",
   });
 
   const [message, setMsg] = useState("");
@@ -113,7 +113,7 @@ if (process.env.NODE_ENV === "production") {
               placeholder="User Name"
               value={user.username}
               onChange={(event) =>
-                setUser({ ...user, username: event.target.value })
+                setUser({ ...user, username: event.target.value, displayName: event.target.value  })
               }
             />
             <input
