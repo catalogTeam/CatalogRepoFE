@@ -19,7 +19,6 @@ import ProfileView from "./ProfileView";
 import ProfilePageList from "./ProfilePageList";
 import UserView from "./UserView";
 import Signup from "./Signup";
-import ProfileForm from "./ProfileForm";
 
 function MyApp() {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
