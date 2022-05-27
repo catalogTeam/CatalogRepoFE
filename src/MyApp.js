@@ -22,8 +22,8 @@ import ProfileForm from "./ProfileForm";
 
 
 function MyApp() {
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = 'http://localhost:5000';
 
   let location = useLocation();
 
