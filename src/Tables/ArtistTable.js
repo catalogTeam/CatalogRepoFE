@@ -1,4 +1,5 @@
 import React from "react";
+import "../CSS/table.css";
 
 function TableHeader() {
   return (
@@ -15,7 +16,7 @@ function TableBody(props) {
 
   const rows = artists.map((row, index) => {
     return (
-      <tr key={index}>
+      <tr className="whitefont" key={index}>
         <td>{row.name}</td>
         <td>
           <input

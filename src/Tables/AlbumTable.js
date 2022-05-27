@@ -1,9 +1,10 @@
 import React from "react";
+import "../CSS/table.css";
 
 function TableHeader() {
   return (
     <thead>
-      <tr>
+      <tr className="whitefont">
         <th>Album</th>
         <th>Artist</th>
         <th>Remove</th>
@@ -17,7 +18,7 @@ function TableBody(props) {
 
   const rows = albums.map((row, index) => {
     return (
-      <tr key={index}>
+      <tr className="whitefont" key={index}>
         <td>{row.name}</td>
         <td>{row.artists[0].name}</td>
         <td>

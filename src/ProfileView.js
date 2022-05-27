@@ -40,7 +40,7 @@ function ProfileView(props) {
           toForm={props.toForm}
           handleSubmit={() => Submit()}
         />
-        <header>Reviews</header>
+        <h1>Album Reviews</h1>
         <ReviewCards reviewData={props.userData.reviews} />
 
         <button value="toPages" onClick={() => props.toPages(props.userData)}>

@@ -90,7 +90,7 @@ function ReviewPage(props) {
 
   return (
     <div>
-      <body>
+      
         <label htmlFor="albums">Enter an album</label>
         <input
           class="forminput"
@@ -101,17 +101,20 @@ function ReviewPage(props) {
           placeholder="Album Name"
           onChange={handleChange}
         />
-        <AlbumTable pagedata={user} deleteAlbum={removeAlbum} />
-        <input
+                <input
           text-align="center"
           name="album-button"
           type="button"
           value="Submit Album"
           onClick={submitAlbum}
         />
+        <AlbumTable pagedata={user} deleteAlbum={removeAlbum} />
+
 
         <label htmlFor="Username">Leave a short review</label>
+        <body>
         <MDBInput
+          className = "whitefont"
           textarea
           rows={4}
           type="text"
@@ -120,6 +123,7 @@ function ReviewPage(props) {
           value={reviewData.review}
           onChange={handleChange}
         />
+        </body>
 
         <input
           type="button"
@@ -128,7 +132,7 @@ function ReviewPage(props) {
             submitReview();
           }}
         />
-      </body>
+      
     </div>
   );
 }
