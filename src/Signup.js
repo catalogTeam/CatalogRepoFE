@@ -19,8 +19,8 @@ function Signup(props) {
     password: "",
     profile: defPfp,
     displayName:
-      randomWords({ exactly: 2, join: "" }) + Math.floor(Math.random() * 100),
-    bio: "Write something. NOW",
+      "",
+    bio: "",
   });
 
   const [message, setMsg] = useState("");
@@ -53,7 +53,7 @@ function Signup(props) {
         setUserLogin({ username: "", password: "" });
         setMsg("");
         console.log(LoginUser);
-        props.handleLogin(LoginUser, token).then(() => {
+        props.handleSubmit(LoginUser, token).then(() => {
           console.log("navingating to");
           navigate(`/profile/${LoginUser.username}`);
         });
@@ -110,7 +110,7 @@ function Signup(props) {
               placeholder="User Name"
               value={user.username}
               onChange={(event) =>
-                setUser({ ...user, username: event.target.value })
+                setUser({ ...user, username: event.target.value, displayName: event.target.value  })
               }
             />
             <input

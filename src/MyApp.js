@@ -13,6 +13,7 @@ import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
+import ProfileForm from "./ProfileForm";
 import { useCookies } from "react-cookie";
 import ProfileView from "./ProfileView";
 import ProfilePageList from "./ProfilePageList";
@@ -25,7 +26,6 @@ function MyApp() {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
   var URL = 'http://localhost:5000';
 
-  let location = useLocation();
 
   const [user, setUser] = useState({});
 
@@ -42,40 +42,6 @@ function MyApp() {
       maxAge: 1800,
       path: "/",
     });
-  }
-
-  useEffect(
-    () => {
-      console.log("executing use");
-      console.log(user);
-      fetchAll().then((result) => {
-        if (result) {
-          setUser(result);
-          console.log(user);
-        }
-      });
-    },
-    [cookies],
-    user,
-    location
-  );
-
-  async function fetchAll() {
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${cookies.auth_token}` },
-      };
-      const response = await axios.get(
-        `${URL}/user/${user.username}`,
-        config
-      );
-      console.log(response.data[0]);
-      return response.data[0];
-    } catch (error) {
-      // We're not handling errors. Just logging into the console.
-      console.log(error);
-      return false;
-    }
   }
 
   async function changeUser(username, token) {
@@ -98,15 +64,6 @@ function MyApp() {
     }
   }
 
-  async function makePostCall(user) {
-    try {
-      const response = await axios.post(`${URL}/user`, user);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
 
   function assignUser(user) {
     setUser(user);
@@ -149,17 +106,6 @@ function MyApp() {
     }
   }
 
-  async function SignupSubmit(user, token) {
-    console.log(user);
-    setSignedInUser(token, user);
-  }
-
-  async function setSignedInUser(token, userData) {
-    console.log(userData);
-
-    setToken(token);
-  }
-
   async function backToUser(user) {
     setUser(user);
     navigate(`/profile/${user.username}`);
@@ -179,36 +125,13 @@ function MyApp() {
     setUser(userData);
   }
 
-  async function toSignedInUser(userData, token) {
-    console.log("success");
-    console.log(userData);
-    changeUser(userData.username, token).then((result) => {
-      if (result) {
-        setUser(result);
-        console.log(user);
-      }
-    });
-
-    setToken(token);
-  }
-
-  function addUser(user) {
-    console.log(user);
-    makePostCall(user).then((result) => {
-      if (result && result.status === 201) {
-        setUser(user);
-        navigate(`/profile/${user.username}`);
-      }
-    });
-  }
-  //const name = localStorage.getItem('username');
-
-  async function toSignedInUser2(username) {
+  async function updateUser(username) {
     console.log("success");
 
     console.log(localStorage.getItem("username"));
 
     const name = localStorage.getItem("username");
+
 
     changeUser(name).then((result) => {
       if (result) {
@@ -216,29 +139,19 @@ function MyApp() {
         console.log(user);
       }
     });
-  }
 
-  async function accessControlHandler(user, token, signupBool) {
-    setData(user, token);
   }
 
   async function setData(userData, token) {
     localStorage.setItem("username", userData.username);
 
-    console.log(localStorage.getItem("username"));
+    console.log("setting" + localStorage.getItem("username"));
 
     setUser(userData);
 
     setToken(token);
   }
 
-  function toProfile() {
-    const name = localStorage.getItem("username");
-
-    if (name) {
-      navigate(`/profile/${name}`);
-    }
-  }
 
   function toReviewPage() {
     navigate(`/review`);
@@ -267,7 +180,7 @@ function MyApp() {
         />
 
         <Route
-          path="/profile/form"
+          exact path="/profile/form"
           element={
             <ProfileForm userData={user} handleSubmit={postSignedInUser} />
           }
@@ -276,11 +189,13 @@ function MyApp() {
         <Route path="/home" element={<Home handleSubmit={assignUser} />} />
 
         <Route
-          path="/profile/*"
+          path="/profile/:username"
           element={
             <ProfileView
               userData={user}
+              handleUser = {updateUser}
               toForm={toProfForm}
+              toReview={toReviewPage}
               handleSubmit={toReviewPage}
               toPages={toPagesView}
             />
@@ -288,7 +203,7 @@ function MyApp() {
         />
 
         <Route
-          path="/profile/pages/*"
+          path="/profile/pages/:username"
           element={
             <ProfilePageList
               userData={user}
@@ -301,7 +216,7 @@ function MyApp() {
         />
 
         <Route
-          path="/profile/page/*"
+          path="/profile/page/:username"
           element={
             <ProfilePage
               userData={user}
@@ -317,22 +232,21 @@ function MyApp() {
           element={<UserView handleSubmit={toReviewPage} />}
         />
 
-        <Route path="*" element={<ErrorPage />} />
-
         <Route
           path="/review"
-          element={<ReviewPage userData={user} handleSubmit={toUser} />}
+          element={<ReviewPage userData={user} handleSubmit={setUser} />}
         />
 
         <Route
           path="/signup"
           element={
             <Signup
-              handleLogin={toSignedInUser}
-              handleSubmit={postSignedInUser}
+              handleSubmit={setData}
             />
           }
         />
+
+        <Route path="*" element={<ErrorPage />} />
 
         {/* <Route path='/login' element={ <TestLogin handleLogin = {toSignedInUser} />} /> */}
       </Routes>
