@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Route,
   Routes,
   useNavigate,
   Navigate,
-  useLocation,
 } from "react-router-dom";
 import Form from "./Form";
 import axios from "axios";
 import Home from "./Home";
-import UserPage from "./UserPage";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
 import ProfilePage from "./ProfilePage";
@@ -39,6 +37,7 @@ function MyApp() {
       maxAge: 1800,
       path: "/",
     });
+    console.log(cookies)
   }
 
   async function changeUser(username, token) {
@@ -61,15 +60,6 @@ function MyApp() {
   function assignUser(user) {
     setUser(user);
     console.log(user);
-    navigate(`/profile/${user.username}`);
-  }
-
-  async function toUser(reviewData) {
-    console.log(user.reviews);
-    var reviewList = user.reviews;
-    reviewList.push(reviewData);
-    user.reviews = reviewList;
-    console.log(user.reviews);
     navigate(`/profile/${user.username}`);
   }
 
@@ -142,11 +132,6 @@ function MyApp() {
   }
 
   function toReviewPage() {
-    navigate(`/review`);
-  }
-
-  function toReviewPage() {
-    console.log("going to review page");
     navigate(`/review`);
   }
 
