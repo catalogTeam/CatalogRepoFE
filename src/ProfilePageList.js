@@ -22,7 +22,7 @@ function ProfilePageList(props) {
   }
 
   return (
-    <div>
+    <div >
       <header>
         <input
           type="button"

@@ -154,7 +154,7 @@ function Form(props) {
 
   return (
     <div>
-      <body class="signupmain">
+      <body>
         <form>
           <label color="white" HtmlFor="pageName">
             Page Name

@@ -10,6 +10,8 @@ import {
   MDBNavbarLink,
   MDBCollapse,
 } from "mdb-react-ui-kit";
+import "../CSS/header.css";
+
 
 import { useNavigate } from "react-router-dom";
 
@@ -41,7 +43,7 @@ export default function Header(props) {
     <div>
       <MDBNavbar expand="lg" light bgColor="light">
         <MDBContainer fluid>
-          <MDBNavbarBrand href="#">Catalog</MDBNavbarBrand>
+          <h1 className="profileheader">Catalog</h1>
 
           <MDBNavbarToggler
             aria-controls="navbarSupportedContent"
@@ -55,45 +57,61 @@ export default function Header(props) {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current="page" href="/home">
+                <MDBNavbarLink 
+                  className="linkheader" 
+                  active aria-current="user" 
+                  href="/home">
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <input
+                {/* <input
                   name="master-button"
                   type="button"
                   value="Make a Review"
                   onClick={() => submit()}
-                />
+                /> */}
+
+                <MDBNavbarLink 
+                  className="linkheader" 
+                  active aria-current="user" 
+                  onClick={() => submit()}>
+                  Make a Review
+                </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <input
+                {/* <input
                   name="edit-button"
                   type="button"
                   value={props.butName}
                   onClick={() => props.toForm(props.userData)}
-                />
+                /> */}
+
+                
+                <MDBNavbarLink 
+                  className="linkheader" 
+                  active aria-current="user" 
+                  onClick={() => props.toForm(props.userData)}>
+                  Edit your page!
+                </MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
 
-            <form className="d-flex input-group w-auto">
-              <input
-                type="text"
-                name="user"
-                id="user"
-                value={nameData.user}
-                onChange={handleChange}
-              />
-              <input type="button" value="Search" onClick={search} />
-            </form>
+            <input
+                  type="text"
+                  name="user"
+                  id="user"
+                  value={nameData.user}
+                  onChange={handleChange}
+                />
+            <input type="button" value="Search" onClick={search} />
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>
       <div className="p-5 text-center">
-        <h1 className="mb-3">{user["displayName"]}</h1>
-        <img src={user["profile"]} height="200px" alt="some value" />
-        <h4 className="mb-3">{user["bio"]}</h4>
+        <h1 className="biodescription">{user["displayName"]}</h1>
+        <img src={user["profile"]} height="200px" />
+        <h1 className="biodescription">{user["bio"]}</h1>
       </div>
     </div>
   );

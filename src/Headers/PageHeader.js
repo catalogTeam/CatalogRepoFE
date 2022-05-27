@@ -10,6 +10,7 @@ import {
   MDBNavbarLink,
   MDBCollapse,
 } from "mdb-react-ui-kit";
+import "../CSS/header.css";
 
 import { useNavigate } from "react-router-dom";
 
@@ -37,7 +38,7 @@ export default function Header(props) {
     <div>
       <MDBNavbar expand="lg" light bgColor="light">
         <MDBContainer fluid>
-          <MDBNavbarBrand href="#">Catalog</MDBNavbarBrand>
+          <MDBNavbarBrand >Catalog</MDBNavbarBrand>
 
           <MDBNavbarToggler
             aria-controls="navbarSupportedContent"
@@ -51,29 +52,43 @@ export default function Header(props) {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current="page" href="/home">
+                <MDBNavbarLink 
+                  className="linkheader" 
+                  active aria-current="page" 
+                  href="/home">
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <input
+                {/* <input
                   name="master-button"
                   type="button"
                   value="Back to Pages"
                   onClick={props.handleSubmit}
-                />
+                /> */}
+                <MDBNavbarLink 
+                  className="linkheader" 
+                  active aria-current="page" 
+                  onClick={props.handleSubmit}>
+                  Back to Pages
+                </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
-                <input
+                {/* <input
                   name="edit-button"
                   type="button"
                   value={props.butName}
                   onClick={() => props.toForm(page)}
-                />
+                /> */}
+                <MDBNavbarLink 
+                  className="linkheader" 
+                  active aria-current="page" 
+                  onClick={() => props.toForm(page)}>
+                  Edit this page!
+                </MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
 
-            <form className="d-flex input-group w-auto">
               <input
                 type="text"
                 name="page"
@@ -82,14 +97,14 @@ export default function Header(props) {
                 onChange={handleChange}
               />
               <input type="button" value="Search" onClick={search} />
-            </form>
+
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>
       <div className="p-5 text-center">
-        <h1 className="mb-3">{page["pageName"]}</h1>
-        <img src={page["pagePic"]} height="200px" alt="some value" />
-        <h4 className="mb-3">{page["bio"]}</h4>
+        <h1 className="biodescription">{page["pageName"]}</h1>
+        <img src={page["pagePic"]} height="200px" />
+        <h1 className="biodescription">{page["bio"]}</h1>
       </div>
     </div>
   );
