@@ -104,24 +104,7 @@ function ReviewPage(props){
       });
     }
   }
-
-  // return (
-  //   <div>
-  //     <body>
-  //       <h1>Album Review</h1>
-  //       <label htmlFor="Username">Enter an Album</label>
-  //       <MDBInput
-  //         type="text"
-  //         name="album"
-  //         id="album"
-  //         value={reviewData.album}
-  //         onChange={handleChange}
-  //       />
-  //     </body>
-  //   </div>
-  // );
       
-
   return(
       <div>
           <body>

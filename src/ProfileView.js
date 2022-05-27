@@ -18,13 +18,13 @@ function ProfileView(props) {
   useEffect(() => {
     console.log(username)
     if (username){
-      // if (username === localStorage.getItem('username')){
+      if (username === localStorage.getItem('username')){
         props.handleUser(username)
-      // }
-      // else{
-      //   console.log("username does not match")
-      //   navigate("/errorpage")
-      // }
+      }
+      else{
+        console.log("username does not match")
+        navigate("/errorpage")
+      }
   }
 
   }, username)
@@ -34,7 +34,7 @@ function ProfileView(props) {
     props.handleSubmit();
   }
 
-  if (props.userData){
+  if (props.userData.username){
   return (
     <div>
       <Header

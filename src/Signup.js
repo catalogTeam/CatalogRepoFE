@@ -56,7 +56,7 @@ if (process.env.NODE_ENV === "production") {
         setUserLogin({ username: "", password: "" });
         setMsg("");
         console.log(LoginUser);
-        props.handleLogin(LoginUser, token).then(() => {
+        props.handleSubmit(LoginUser, token).then(() => {
           console.log("navingating to");
           navigate(`/profile/${LoginUser.username}`);
         });

@@ -30,7 +30,6 @@ function MyApp() {
     URL = 'https://musiccatalogbe.herokuapp.com';
   }
 
-  let location = useLocation();
 
   const [user, setUser] = useState({});
 
@@ -48,8 +47,6 @@ function MyApp() {
       path: "/",
     });
   }
-
-
 
   async function changeUser(username, token) {
     try {
@@ -71,15 +68,6 @@ function MyApp() {
     }
   }
 
-  async function makePostCall(user) {
-    try {
-      const response = await axios.post(`${URL}/user`, user);
-      return response;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
 
   function assignUser(user) {
     setUser(user);
@@ -122,17 +110,6 @@ function MyApp() {
     }
   }
 
-  async function SignupSubmit(user, token) {
-    console.log(user);
-    setSignedInUser(token, user);
-  }
-
-  async function setSignedInUser(token, userData) {
-    console.log(userData);
-
-    setToken(token);
-  }
-
   async function backToUser(user) {
     setUser(user);
     navigate(`/profile/${user.username}`);
@@ -152,30 +129,6 @@ function MyApp() {
     setUser(userData);
   }
 
-  async function toSignedInUser(userData, token) {
-    console.log("success");
-    console.log(userData);
-    changeUser(userData.username, token).then((result) => {
-      if (result) {
-        setUser(result);
-        console.log(user);
-      }
-    });
-
-    setToken(token);
-  }
-
-  function addUser(user) {
-    console.log(user);
-    makePostCall(user).then((result) => {
-      if (result && result.status === 201) {
-        setUser(user);
-        navigate(`/profile/${user.username}`);
-      }
-    });
-  }
-  //const name = localStorage.getItem('username');
-
   async function updateUser(username) {
     console.log("success");
 
@@ -183,16 +136,14 @@ function MyApp() {
 
     const name = localStorage.getItem("username");
 
+
     changeUser(name).then((result) => {
       if (result) {
         setUser(result);
         console.log(user);
       }
     });
-  }
 
-  async function accessControlHandler(user, token, signupBool) {
-    setData(user, token);
   }
 
   async function setData(userData, token) {
@@ -205,21 +156,6 @@ function MyApp() {
     setToken(token);
   }
 
-  async function setReviewUser(userData) {
-    
-
-
-    setUser(userData);
-
-  }
-
-  function toProfile() {
-    const name = localStorage.getItem("username");
-
-    if (name) {
-      navigate(`/profile/${name}`);
-    }
-  }
 
   function toReviewPage() {
     navigate(`/review`);
@@ -300,11 +236,9 @@ function MyApp() {
           element={<UserView handleSubmit={toReviewPage} />}
         />
 
-        <Route path="*" element={<ErrorPage />} />
-
         <Route
           path="/review"
-          element={<ReviewPage userData={user} handleSubmit={setReviewUser} />}
+          element={<ReviewPage userData={user} handleSubmit={setUser} />}
         />
 
         <Route
@@ -315,6 +249,8 @@ function MyApp() {
             />
           }
         />
+
+        <Route path="*" element={<ErrorPage />} />
 
         {/* <Route path='/login' element={ <TestLogin handleLogin = {toSignedInUser} />} /> */}
       </Routes>
