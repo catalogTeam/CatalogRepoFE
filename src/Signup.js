@@ -5,7 +5,7 @@ import "./CSS/template.css";
 import defPfp from "./default.png";
 
 function Signup(props) {
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
+  //var URL = 'https://musiccatalogbe.herokuapp.com';
   var URL = "http://localhost:5000";
 
   let navigate = useNavigate();

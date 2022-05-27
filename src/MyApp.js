@@ -14,8 +14,8 @@ import UserView from "./UserView";
 import Signup from "./Signup";
 
 function MyApp() {
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = "http://localhost:5000";
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+  //var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({});
 

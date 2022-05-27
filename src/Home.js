@@ -4,7 +4,7 @@ import "./CSS/home.css";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 
 function Home(props) {
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = 'https://musiccatalogbe.herokuapp.com';
   //var URL = "http://localhost:5000";
 
   let navigate = useNavigate();
