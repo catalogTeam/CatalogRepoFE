@@ -6,13 +6,10 @@ import defPfp from "./default.png";
 var randomWords = require("random-words");
 
 function Signup(props) {
+  // var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = 'http://localhost:5000';
+
   let navigate = useNavigate();
-
-  var URL = "http://localhost:5000";
-
-if (process.env.NODE_ENV === "production") {
-  URL = "https://musiccatalogbe.herokuapp.com";
-}
 
   const [LoginUser, setUserLogin] = useState({});
 

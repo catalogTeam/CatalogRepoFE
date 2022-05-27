@@ -11,6 +11,7 @@ import {
 
 function ReviewPage(props){
 
+
   const [user, setUser] = useState({ albums: []
 
   });
@@ -28,11 +29,6 @@ function ReviewPage(props){
   let navigate = useNavigate();
 
   var URL = 'http://localhost:5000';
-  // var URL = 'https://musiccatalogbe.herokuapp.com';
-
-  if (process.env.NODE_ENV === "production"){
-    URL = 'https://musiccatalogbe.herokuapp.com';
-  }
 
 
   function handleChange(event) {

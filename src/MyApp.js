@@ -19,16 +19,12 @@ import ProfileView from "./ProfileView";
 import ProfilePageList from "./ProfilePageList";
 import UserView from "./UserView";
 import Signup from "./Signup";
+import ProfileForm from "./ProfileForm";
+
 
 function MyApp() {
-
-  var URL = 'http://localhost:5000';
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-
-
-  if (process.env.NODE_ENV === "production"){
-    URL = 'https://musiccatalogbe.herokuapp.com';
-  }
+  var URL = 'http://localhost:5000';
 
 
   const [user, setUser] = useState({});

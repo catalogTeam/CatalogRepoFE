@@ -6,14 +6,10 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 function Home(props) {
-
-  var URL = 'http://localhost:5000';
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-
-  if (process.env.NODE_ENV === "production"){
-    URL = 'https://musiccatalogbe.herokuapp.com';
-  }
-    let navigate = useNavigate();
+  var URL = 'http://localhost:5000';
+  
+  let navigate = useNavigate();
 
   const [cookies, setCookie] = useCookies(["auth_token"]);
 
