@@ -7,8 +7,8 @@ import axios from "axios";
 
 function Home(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
-  
+  var URL = "http://localhost:5000";
+
   let navigate = useNavigate();
 
   const [cookies, setCookie] = useCookies(["auth_token"]);

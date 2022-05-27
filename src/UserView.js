@@ -7,7 +7,7 @@ import "./CSS/ProfileView.css";
 
 function UserView(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
+  var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({});
 

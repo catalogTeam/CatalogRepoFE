@@ -21,11 +21,9 @@ import UserView from "./UserView";
 import Signup from "./Signup";
 import ProfileForm from "./ProfileForm";
 
-
 function MyApp() {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
-
+  var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({});
 
@@ -51,10 +49,7 @@ function MyApp() {
       };
       console.log("nameee");
       console.log(username);
-      const response = await axios.get(
-        `${URL}/user/${username}`,
-        config
-      );
+      const response = await axios.get(`${URL}/user/${username}`, config);
       console.log(response.data[0]);
       return response.data[0];
     } catch (error) {
@@ -63,7 +58,6 @@ function MyApp() {
       return false;
     }
   }
-
 
   function assignUser(user) {
     setUser(user);
@@ -96,9 +90,7 @@ function MyApp() {
     setUser(user);
     // Get pages
     try {
-      let response = await axios.get(
-        `${URL}/pages/${user.username}`
-      );
+      let response = await axios.get(`${URL}/pages/${user.username}`);
       setPage(response.data);
       navigate(`/profile/pages/${user.username}`);
     } catch (error) {
@@ -132,14 +124,12 @@ function MyApp() {
 
     const name = localStorage.getItem("username");
 
-
     changeUser(name).then((result) => {
       if (result) {
         setUser(result);
         console.log(user);
       }
     });
-
   }
 
   async function setData(userData, token) {
@@ -151,7 +141,6 @@ function MyApp() {
 
     setToken(token);
   }
-
 
   function toReviewPage() {
     navigate(`/review`);
@@ -180,7 +169,8 @@ function MyApp() {
         />
 
         <Route
-          exact path="/profile/form"
+          exact
+          path="/profile/form"
           element={
             <ProfileForm userData={user} handleSubmit={postSignedInUser} />
           }
@@ -193,7 +183,7 @@ function MyApp() {
           element={
             <ProfileView
               userData={user}
-              handleUser = {updateUser}
+              handleUser={updateUser}
               toForm={toProfForm}
               toReview={toReviewPage}
               handleSubmit={toReviewPage}
@@ -237,14 +227,7 @@ function MyApp() {
           element={<ReviewPage userData={user} handleSubmit={setUser} />}
         />
 
-        <Route
-          path="/signup"
-          element={
-            <Signup
-              handleSubmit={setData}
-            />
-          }
-        />
+        <Route path="/signup" element={<Signup handleSubmit={setData} />} />
 
         <Route path="*" element={<ErrorPage />} />
 

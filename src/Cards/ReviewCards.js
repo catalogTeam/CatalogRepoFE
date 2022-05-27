@@ -9,7 +9,7 @@ import {
 
 function CardList(props) {
   const cards = props.reviews?.map((review) => {
-    console.log(review.reviewedItem)
+    console.log(review.reviewedItem);
     return (
       <MDBCard
         shadow="0"
@@ -21,7 +21,11 @@ function CardList(props) {
         <MDBCardBody>
           <MDBCardTitle>{review.reviewedItem["name"]}</MDBCardTitle>
         </MDBCardBody>
-        <MDBCardImage src={review.reviewedItem["images"][0].url} alt="..." position="top" />
+        <MDBCardImage
+          src={review.reviewedItem["images"][0].url}
+          alt="..."
+          position="top"
+        />
         <MDBCardBody>
           <MDBCardTitle>{review["review"]}</MDBCardTitle>
         </MDBCardBody>

@@ -7,9 +7,9 @@ import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
 import ReviewCards from "./Cards/ReviewCards";
 
-function UserPage(props){
+function UserPage(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
+  var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({});
 

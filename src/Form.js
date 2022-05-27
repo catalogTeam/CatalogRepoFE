@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import "./CSS/template.css";
 
-function Form(props) {  
+function Form(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
+  var URL = "http://localhost:5000";
 
   const location = useLocation();
 
@@ -53,9 +53,7 @@ function Form(props) {
 
   async function getAlbum(album_name) {
     try {
-      const response = await axios.get(
-        `${URL}/search/album/${album_name}`
-      );
+      const response = await axios.get(`${URL}/search/album/${album_name}`);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -65,9 +63,7 @@ function Form(props) {
 
   async function getArtist(artist_name) {
     try {
-      const response = await axios.get(
-        `${URL}/search/artist/${artist_name}`
-      );
+      const response = await axios.get(`${URL}/search/artist/${artist_name}`);
       return response.data;
     } catch (error) {
       console.log(error);

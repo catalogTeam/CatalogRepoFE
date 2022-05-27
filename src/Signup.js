@@ -7,7 +7,7 @@ var randomWords = require("random-words");
 
 function Signup(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
+  var URL = "http://localhost:5000";
 
   let navigate = useNavigate();
 
@@ -18,8 +18,7 @@ function Signup(props) {
     username: "",
     password: "",
     profile: defPfp,
-    displayName:
-      "",
+    displayName: "",
     bio: "",
   });
 
@@ -110,7 +109,11 @@ function Signup(props) {
               placeholder="User Name"
               value={user.username}
               onChange={(event) =>
-                setUser({ ...user, username: event.target.value, displayName: event.target.value  })
+                setUser({
+                  ...user,
+                  username: event.target.value,
+                  displayName: event.target.value,
+                })
               }
             />
             <input

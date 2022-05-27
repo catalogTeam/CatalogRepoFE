@@ -7,8 +7,8 @@ import "./CSS/template.css";
 
 function ProfileForm(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = 'http://localhost:5000';
-  
+  var URL = "http://localhost:5000";
+
   const location = useLocation();
 
   let navigate = useNavigate();
@@ -52,10 +52,7 @@ function ProfileForm(props) {
   async function makePutCall(user) {
     try {
       console.log(user);
-      const response = await axios.patch(
-        `${URL}/patchprofile`,
-        user
-      );
+      const response = await axios.patch(`${URL}/patchprofile`, user);
       return response;
     } catch (error) {
       console.log(error);
