@@ -6,6 +6,9 @@ import AlbumTable from "./Tables/AlbumTable";
 import { useNavigate } from "react-router-dom";
 
 function ReviewPage(props) {
+  var URL = 'https://musiccatalogbe.herokuapp.com';
+  // var URL = "http://localhost:5000";
+
   const [user, setUser] = useState({ albums: [] });
 
   const [album, setAlbum] = useState({ album_name: "" });
@@ -18,8 +21,6 @@ function ReviewPage(props) {
   });
 
   let navigate = useNavigate();
-
-  var URL = "http://localhost:5000";
 
   function handleChange(event) {
     const { name, value } = event.target;
