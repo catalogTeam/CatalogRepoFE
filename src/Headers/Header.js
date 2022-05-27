@@ -55,7 +55,7 @@ export default function Header(props) {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
               <MDBNavbarItem>
-                <MDBNavbarLink active aria-current="user" href="/home">
+                <MDBNavbarLink active aria-current="page" href="/home">
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
@@ -92,7 +92,7 @@ export default function Header(props) {
       </MDBNavbar>
       <div className="p-5 text-center">
         <h1 className="mb-3">{user["displayName"]}</h1>
-        <img src={user["profile"]} height="200px" />
+        <img src={user["profile"]} height="200px" alt="some value" />
         <h4 className="mb-3">{user["bio"]}</h4>
       </div>
     </div>

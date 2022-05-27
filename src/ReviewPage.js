@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import "./CSS/reviewpage.css";
-import { MDBInput, MDBScrollspyNavLink } from "mdb-react-ui-kit";
+import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
-import UserPage from "./UserPage";
 import AlbumTable from "./Tables/AlbumTable";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ReviewPage(props) {
   const [user, setUser] = useState({ albums: [] });

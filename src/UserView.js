@@ -49,7 +49,7 @@ function UserView(props) {
 
       console.log(user["albums"]);
     });
-  }, [username]);
+  }, [username]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div>

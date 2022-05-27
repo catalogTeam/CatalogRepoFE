@@ -2,68 +2,18 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/home.css";
 import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
-import { useCookies } from "react-cookie";
-import axios from "axios";
 
 function Home(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
-  var URL = "http://localhost:5000";
+  //var URL = "http://localhost:5000";
 
   let navigate = useNavigate();
-
-  const [cookies, setCookie] = useCookies(["auth_token"]);
 
   const [nameData, setName] = useState({ user: "" });
 
   function handleChange(event) {
     const { name, value } = event.target;
     if (name === "user") setName({ ...nameData, user: value });
-  }
-
-  // function setToken(token){
-  //   props.setToken(token)
-
-  function setToken(token) {
-    setCookie("auth_token", token, {
-      maxAge: 1800,
-      path: "/",
-    });
-  }
-
-  function handleSubmit(user) {
-    props.handleSubmit(user);
-  }
-
-  async function getUser(user) {
-    try {
-      const response = await axios.get(`${URL}/user/${user}`);
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
-  async function checkUser(username) {
-    var user = await getUser(username);
-    if (user !== false) {
-      props.handleSubmit(user[0]);
-    } else {
-      navigate(`/errorPage`);
-      console.log("no user found");
-    }
-  }
-
-  async function getUser(user) {
-    try {
-      const response = await axios.get(`${URL}/user/${user}`);
-      console.log(response);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
   }
 
   return (

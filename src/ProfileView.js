@@ -1,13 +1,11 @@
 import Header from "./Headers/Header";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./CSS/ProfileView.css";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReviewCards from "./Cards/ReviewCards";
 
 function ProfileView(props) {
-  const location = useLocation();
-
   let { username } = useParams();
 
   let navigate = useNavigate();
@@ -15,16 +13,19 @@ function ProfileView(props) {
   console.log(props.userData);
 
   useEffect(() => {
-    console.log(username);
-    if (username) {
-      if (username === localStorage.getItem("username")) {
-        props.handleUser(username);
-      } else {
-        console.log("username does not match");
-        navigate("/errorpage");
+    function getUserData() {
+      console.log(username);
+      if (username) {
+        if (username === localStorage.getItem("username")) {
+          props.handleUser(username);
+        } else {
+          console.log("username does not match");
+          navigate("/errorpage");
+        }
       }
     }
-  }, username);
+    getUserData();
+  }, username); // eslint-disable-line react-hooks/exhaustive-deps
 
   function Submit() {
     props.handleSubmit();

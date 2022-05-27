@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 // Importing default pfp
-import { useLocation } from "react-router-dom";
 import "./CSS/template.css";
 
 function ProfileForm(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
   var URL = "http://localhost:5000";
-
-  const location = useLocation();
 
   let navigate = useNavigate();
 
@@ -17,7 +14,6 @@ function ProfileForm(props) {
   // setUser(props.userData) <= why cant i do this man...
   // user = props.userData
   console.log(props.userData);
-  const [nameData, setName] = useState({ album: "", artist: "" });
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
@@ -105,7 +101,11 @@ function ProfileForm(props) {
             onChange={handleChange}
           />
           <label htmlFor="profile">Edit Profile Picture</label>
-          <div>{user.profile && <img src={user.profile} height="200px" />}</div>
+          <div>
+            {user.profile && (
+              <img src={user.profile} height="200px" alt="some value" />
+            )}
+          </div>
           <input
             class="forminput"
             type="file"

@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  Route,
-  Routes,
-  useNavigate,
-  Navigate,
-} from "react-router-dom";
+import { Route, Routes, useNavigate, Navigate } from "react-router-dom";
 import Form from "./Form";
 import axios from "axios";
 import Home from "./Home";
@@ -37,7 +32,7 @@ function MyApp() {
       maxAge: 1800,
       path: "/",
     });
-    console.log(cookies)
+    console.log(cookies);
   }
 
   async function changeUser(username, token) {

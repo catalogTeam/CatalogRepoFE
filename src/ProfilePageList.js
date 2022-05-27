@@ -1,4 +1,3 @@
-import Header from "./Headers/Header";
 import Pages from "./Tables/PageList";
 import "./CSS/ProfileView.css";
 

@@ -88,7 +88,7 @@ export default function Header(props) {
       </MDBNavbar>
       <div className="p-5 text-center">
         <h1 className="mb-3">{page["pageName"]}</h1>
-        <img src={page["pagePic"]} height="200px" />
+        <img src={page["pagePic"]} height="200px" alt="some value" />
         <h4 className="mb-3">{page["bio"]}</h4>
       </div>
     </div>

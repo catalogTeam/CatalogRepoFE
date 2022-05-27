@@ -1,13 +1,8 @@
 import Header from "./Headers/PageHeader";
 import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
-import { useLocation } from "react-router-dom";
 
 function ProfilePage(props) {
-  const location = useLocation();
-
-  //console.log(location.state.user);
-
   function Submit() {
     props.handleSubmit(props.userData);
   }

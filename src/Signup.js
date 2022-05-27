@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/template.css";
 import defPfp from "./default.png";
-var randomWords = require("random-words");
 
 function Signup(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';

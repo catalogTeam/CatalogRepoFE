@@ -53,16 +53,6 @@ function UserPage(props) {
     );
   });
 
-  async function getUser(user) {
-    try {
-      const response = await axios.get(`${URL}/user/${user}`);
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      return false;
-    }
-  }
-
   return (
     <div>
       <Header userData={user} handleSubmit={() => Submit()} />

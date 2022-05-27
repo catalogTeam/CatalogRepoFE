@@ -33,10 +33,6 @@ export default function Header(props) {
     navigate(`/user/${name}`);
   }
 
-  function submit() {
-    props.handleSubmit();
-  }
-
   return (
     <div>
       <MDBNavbar expand="lg" light bgColor="light">
@@ -76,7 +72,7 @@ export default function Header(props) {
       </MDBNavbar>
       <div className="p-5 text-center">
         <h1 className="mb-3">{user["displayName"]}</h1>
-        <img src={user["profile"]} height="200px" />
+        <img src={user["profile"]} height="200px" alt="some value" />
         <h4 className="mb-3">{user["bio"]}</h4>
       </div>
     </div>

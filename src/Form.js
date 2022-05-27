@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import AlbumTable from "./Tables/AlbumTable";
 import ArtistTable from "./Tables/ArtistTable";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 import "./CSS/template.css";
 
 function Form(props) {
   // var URL = 'https://musiccatalogbe.herokuapp.com';
   var URL = "http://localhost:5000";
-
-  const location = useLocation();
 
   let oldName = props.pageData.pageName;
 
@@ -149,8 +145,6 @@ function Form(props) {
     //var fullpage = {...page,...location.state.page};
     backendFunc(page).then((response) => {
       if (response && response.status === 201) {
-        const token = response.data;
-
         props.handleSubmit(props.userData);
       } else {
         console.log("bad response", response);
@@ -185,7 +179,11 @@ function Form(props) {
             onChange={handleChange}
           />
           <label htmlFor="profile">Select an Image</label>
-          <div>{page.pagePic && <img src={page.pagePic} height="200px" />}</div>
+          <div>
+            {page.pagePic && (
+              <img src={page.pagePic} height="200px" alt="some value" />
+            )}
+          </div>
           <input
             class="forminput"
             type="file"
