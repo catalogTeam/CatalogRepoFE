@@ -16,6 +16,11 @@ h1 {
   font-size: 12px;
 }
 
+.i {
+  font-size: 5px;
+  color: white;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;

@@ -116,6 +116,10 @@ function MyApp() {
     });
   }
 
+  async function searchUser(username) {
+    return await axios.get(`${URL}/user/${username}`);
+  }
+
   async function setData(userData, token) {
     localStorage.setItem("username", userData.username);
 
@@ -155,7 +159,7 @@ function MyApp() {
           }
         />
 
-        <Route path="/home" element={<Home handleSubmit={assignUser} />} />
+        <Route path="/home" element={<Home handleSubmit={assignUser} searchUser={searchUser} />} />
 
         <Route
           path="/profile/:username"

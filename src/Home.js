@@ -11,9 +11,26 @@ function Home(props) {
 
   const [nameData, setName] = useState({ user: "" });
 
+  const [message, setMsg] = useState("");
+
   function handleChange(event) {
     const { name, value } = event.target;
-    if (name === "user") setName({ ...nameData, user: value });
+    if (name === "user") {
+      setName({ ...nameData, user: value });
+      setMsg("");
+    }
+  }
+
+  function handleSearch(username) {
+    props.searchUser(username).then((result) => {
+      console.log(result);
+      if (result.data.length > 0) {
+        navigate(`/user/${username}`);
+      }
+      else {
+        setMsg("No user named: " + username);
+      }
+    });
   }
 
   return (
@@ -67,8 +84,10 @@ function Home(props) {
           className="buttonspace"
           type="button"
           value="Search"
-          onClick={() => navigate(`/user/${nameData.user}`)}
+          onClick={() => handleSearch(nameData.user)}
         />
+        <br></br>
+        <i> {message} </i>
       </form>
 
       <input
