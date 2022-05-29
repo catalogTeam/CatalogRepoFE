@@ -8,7 +8,7 @@ function ProfilePage(props) {
   }
 
   function edit() {
-    props.toForm(props.userData, props.pageData, 1);
+    props.toForm(props.userData);
   }
 
   return (

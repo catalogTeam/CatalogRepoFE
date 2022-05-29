@@ -65,7 +65,7 @@ function ProfileForm(props) {
       if (response && response.status === 201) {
         const token = response.data;
 
-        props.handleSubmit(token, user);
+        props.handleSubmit(user, token);
 
         navigate(`/profile/${user.username}`);
       } else {
