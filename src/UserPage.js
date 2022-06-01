@@ -10,7 +10,7 @@ import ReviewCards from "./Cards/ReviewCards";
 function UserPage(props) {
   var URL = "http://localhost:5000";
 
-  if (process.env.HEROKU_ENV_VAR && process.env.HEROKU_ENV_VAR === 'true'){
+  if (process.env.REACT_APP_URL){
     console.log('true')
     URL = "https://musiccatalogbe.herokuapp.com"
   }
