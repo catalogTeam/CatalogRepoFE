@@ -2,7 +2,6 @@
 
 # How to build the Music Catalog App
 
-
 clone the repos both the back and the frontend in two seperate folders
 
 git clone https://github.com/catalogTeam/CatalogRepoFE
