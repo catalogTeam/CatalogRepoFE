@@ -5,7 +5,7 @@ import "./CSS/template.css";
 import defPfp from "./default.png";
 
 function Signup(props) {
-  var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = "https://musiccatalogbe.herokuapp.com";
   // var URL = "http://localhost:5000";
 
   let navigate = useNavigate();
@@ -29,7 +29,7 @@ function Signup(props) {
       const response = await axios.post(`${URL}/signup`, user);
       return response;
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
       return error.response;
     }
   }
@@ -73,16 +73,13 @@ function Signup(props) {
         navigate(`/profile/${user.username}`);
         setUserLogin({ username: "", password: "" });
         //navigate(`/profile/${user.username}`, {state: {user: user}})
-      } 
-      else if (response && response.status === 400){
-        console.log("bad data")
+      } else if (response && response.status === 400) {
+        console.log("bad data");
         setSignupMsg("Invalid signup credentials!");
-      }
-      else if (response && response.status === 409){
-        console.log("username already taken")
+      } else if (response && response.status === 409) {
+        console.log("username already taken");
         setSignupMsg("Username already taken");
-      }
-      else {
+      } else {
         console.log(response);
       }
     });
@@ -169,7 +166,12 @@ function Signup(props) {
                 setUserLogin({ ...LoginUser, password: event.target.value })
               }
             />
-            <button class="testbutton" type = "submitLogin" value="Submit" onClick={SubmitLogin}>
+            <button
+              class="testbutton"
+              type="submitLogin"
+              value="Submit"
+              onClick={SubmitLogin}
+            >
               Login
             </button>
             <div>

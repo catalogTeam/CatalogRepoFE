@@ -5,20 +5,20 @@
   background-color: rgb(4, 139, 117) !important;
 }
 
-.profileheader{
-  color:black;
-  font-family:"Times New Roman";
+.profileheader {
+  color: black;
+  font-family: "Times New Roman";
 }
 
-.linkheader{
+.linkheader {
   font-size: 20px;
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
 }
 
-.biodescription{
-  font-family:"Times New Roman";
+.biodescription {
+  font-family: "Times New Roman";
   color: white;
-  margin: .5em;
+  margin: 0.5em;
 }
 
 body {
@@ -28,7 +28,7 @@ body {
   /* background-image: url("./background/galaxy.jpg"); */
   background-color: rgb(4, 139, 117);
 
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
 }
 
 .headertext {
@@ -39,7 +39,7 @@ body {
 
 @media (min-width: 1px) {
   .navbar li {
-    margin-left: .25em;
-    margin-right: .25em;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
   }
 }

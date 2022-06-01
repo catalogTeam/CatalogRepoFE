@@ -4,11 +4,11 @@ import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
 import AlbumTable from "./Tables/AlbumTable";
 import { useNavigate } from "react-router-dom";
-import Typography from "@mui/material/Typography"
-import Rating from "@mui/material/Rating"
+import Typography from "@mui/material/Typography";
+import Rating from "@mui/material/Rating";
 
 function ReviewPage(props) {
-  var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = "https://musiccatalogbe.herokuapp.com";
   // var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({ albums: [] });
@@ -83,7 +83,7 @@ function ReviewPage(props) {
           // newUser.reviews = revList
           // props.handleSubmit(newUser)
           // props.handleSubmit(reviewData)
-        
+
           navigate(`/profile/${props.userData.username}`);
         } else {
           console.log("error in review post");
@@ -94,40 +94,39 @@ function ReviewPage(props) {
 
   return (
     <div>
-      
-        <label htmlFor="albums">Enter an album</label>
-        <input
-          class="forminput"
-          type="text"
-          name="album_name"
-          id="album_name"
-          value={album.album_name}
-          placeholder="Album Name"
+      <label htmlFor="albums">Enter an album</label>
+      <input
+        class="forminput"
+        type="text"
+        name="album_name"
+        id="album_name"
+        value={album.album_name}
+        placeholder="Album Name"
+        onChange={handleChange}
+      />
+      <input
+        text-align="center"
+        name="album-button"
+        type="button"
+        value="Submit Album"
+        onClick={submitAlbum}
+      />
+      <AlbumTable pagedata={user} deleteAlbum={removeAlbum} />
+
+      <div>
+        <Typography component="legend">Rating</Typography>
+        <Rating
+          name="rating"
+          precision={0.5}
+          value={reviewData.rating}
           onChange={handleChange}
         />
-                <input
-          text-align="center"
-          name="album-button"
-          type="button"
-          value="Submit Album"
-          onClick={submitAlbum}
-        />
-        <AlbumTable pagedata={user} deleteAlbum={removeAlbum} />
+      </div>
 
-        <div>
-          <Typography component="legend">Rating</Typography>
-          <Rating
-            name="rating"
-            precision={0.5}
-            value={reviewData.rating}
-            onChange={handleChange}
-          />
-        </div>
-
-        <label htmlFor="Username">Leave a short review</label>
-        <body>
+      <label htmlFor="Username">Leave a short review</label>
+      <body>
         <MDBInput
-          className = "whitefont"
+          className="whitefont"
           textarea
           rows={4}
           type="text"
@@ -136,16 +135,15 @@ function ReviewPage(props) {
           value={reviewData.review}
           onChange={handleChange}
         />
-        </body>
+      </body>
 
-        <input
-          type="button"
-          value="Submit Review"
-          onClick={() => {
-            submitReview();
-          }}
-        />
-      
+      <input
+        type="button"
+        value="Submit Review"
+        onClick={() => {
+          submitReview();
+        }}
+      />
     </div>
   );
 }

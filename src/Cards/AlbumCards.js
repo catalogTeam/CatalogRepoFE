@@ -9,7 +9,6 @@ import {
 } from "mdb-react-ui-kit";
 import "../CSS/cards.css";
 
-
 function CardList(props) {
   const cards = props.albums?.map((album) => {
     return (

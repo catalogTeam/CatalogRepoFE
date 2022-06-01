@@ -38,7 +38,7 @@ export default function Header(props) {
     <div>
       <MDBNavbar expand="lg" light bgColor="light">
         <MDBContainer fluid>
-          <MDBNavbarBrand >Catalog</MDBNavbarBrand>
+          <MDBNavbarBrand>Catalog</MDBNavbarBrand>
 
           <MDBNavbarToggler
             aria-controls="navbarSupportedContent"
@@ -52,10 +52,12 @@ export default function Header(props) {
           <MDBCollapse navbar show={showBasic}>
             <MDBNavbarNav className="mr-auto mb-2 mb-lg-0">
               <MDBNavbarItem>
-                <MDBNavbarLink 
-                  className="linkheader" 
-                  active aria-current="page" 
-                  href="/home">
+                <MDBNavbarLink
+                  className="linkheader"
+                  active
+                  aria-current="page"
+                  href="/home"
+                >
                   Home
                 </MDBNavbarLink>
               </MDBNavbarItem>
@@ -66,10 +68,12 @@ export default function Header(props) {
                   value="Back to Pages"
                   onClick={props.handleSubmit}
                 /> */}
-                <MDBNavbarLink 
-                  className="linkheader" 
-                  active aria-current="page" 
-                  onClick={props.handleSubmit}>
+                <MDBNavbarLink
+                  className="linkheader"
+                  active
+                  aria-current="page"
+                  onClick={props.handleSubmit}
+                >
                   Back to Pages
                 </MDBNavbarLink>
               </MDBNavbarItem>
@@ -80,30 +84,31 @@ export default function Header(props) {
                   value={props.butName}
                   onClick={() => props.toForm(page)}
                 /> */}
-                <MDBNavbarLink 
-                  className="linkheader" 
-                  active aria-current="page" 
-                  onClick={() => props.toForm(page)}>
+                <MDBNavbarLink
+                  className="linkheader"
+                  active
+                  aria-current="page"
+                  onClick={() => props.toForm(page)}
+                >
                   Edit this page!
                 </MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>
 
-              <input
-                type="text"
-                name="page"
-                id="page"
-                value={nameData.page}
-                onChange={handleChange}
-              />
-              <input type="button" value="Search" onClick={search} />
-
+            <input
+              type="text"
+              name="page"
+              id="page"
+              value={nameData.page}
+              onChange={handleChange}
+            />
+            <input type="button" value="Search" onClick={search} />
           </MDBCollapse>
         </MDBContainer>
       </MDBNavbar>
       <div className="p-5 text-center">
         <h1 className="biodescription">{page["pageName"]}</h1>
-        <img src={page["pagePic"]} height="200px" />
+        <img src={page["pagePic"]} height="200px" alt="pagepic" />
         <h1 className="biodescription">{page["bio"]}</h1>
       </div>
     </div>

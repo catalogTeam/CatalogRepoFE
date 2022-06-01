@@ -14,7 +14,7 @@ import UserView from "./UserView";
 import Signup from "./Signup";
 
 function MyApp() {
-  var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = "https://musiccatalogbe.herokuapp.com";
   //var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({});
@@ -201,10 +201,7 @@ function MyApp() {
           element={<UserView handleSubmit={toReviewPage} />}
         />
 
-        <Route
-          path="/review"
-          element={<ReviewPage userData={user}  />}
-        />
+        <Route path="/review" element={<ReviewPage userData={user} />} />
 
         <Route path="/signup" element={<Signup handleSubmit={setData} />} />
 
