@@ -203,7 +203,7 @@ function MyApp() {
 
         <Route
           path="/review"
-          element={<ReviewPage userData={user} handleSubmit={setUser} />}
+          element={<ReviewPage userData={user}  />}
         />
 
         <Route path="/signup" element={<Signup handleSubmit={setData} />} />

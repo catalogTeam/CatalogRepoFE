@@ -4,6 +4,8 @@ import { MDBInput } from "mdb-react-ui-kit";
 import axios from "axios";
 import AlbumTable from "./Tables/AlbumTable";
 import { useNavigate } from "react-router-dom";
+import Typography from "@mui/material/Typography"
+import Rating from "@mui/material/Rating"
 
 function ReviewPage(props) {
   var URL = 'https://musiccatalogbe.herokuapp.com';
@@ -80,6 +82,8 @@ function ReviewPage(props) {
           // revList.push(reviewData)
           // newUser.reviews = revList
           // props.handleSubmit(newUser)
+          // props.handleSubmit(reviewData)
+        
           navigate(`/profile/${props.userData.username}`);
         } else {
           console.log("error in review post");
@@ -110,6 +114,15 @@ function ReviewPage(props) {
         />
         <AlbumTable pagedata={user} deleteAlbum={removeAlbum} />
 
+        <div>
+          <Typography component="legend">Rating</Typography>
+          <Rating
+            name="rating"
+            precision={0.5}
+            value={reviewData.rating}
+            onChange={handleChange}
+          />
+        </div>
 
         <label htmlFor="Username">Leave a short review</label>
         <body>
