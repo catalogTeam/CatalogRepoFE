@@ -11,6 +11,8 @@ function Home(props) {
     URL = "https://musiccatalogbe.herokuapp.com"
   }
 
+  console.log(URL)
+
   let navigate = useNavigate();
 
   const [nameData, setName] = useState({ user: "" });
