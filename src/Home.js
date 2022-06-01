@@ -10,8 +10,9 @@ function Home(props) {
     console.log('true')
     URL = "https://musiccatalogbe.herokuapp.com"
   }
-  console.log(process.env.NODE_ENV)
   console.log(URL)
+  console.log(process.env.NODE_ENV)
+
 
   let navigate = useNavigate();
 
