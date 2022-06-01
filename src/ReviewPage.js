@@ -8,8 +8,12 @@ import Typography from "@mui/material/Typography";
 import Rating from "@mui/material/Rating";
 
 function ReviewPage(props) {
-  var URL = "https://musiccatalogbe.herokuapp.com";
-  // var URL = "http://localhost:5000";
+  var URL = "http://localhost:5000";
+
+  if (process.env.NODE_ENV === 'production'){
+    console.log('true')
+    URL = "https://musiccatalogbe.herokuapp.com"
+  }
 
   const [user, setUser] = useState({ albums: [] });
 

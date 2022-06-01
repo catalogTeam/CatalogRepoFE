@@ -5,8 +5,12 @@ import { useNavigate } from "react-router-dom";
 import "./CSS/template.css";
 
 function ProfileForm(props) {
-  var URL = "https://musiccatalogbe.herokuapp.com";
-  //var URL = "http://localhost:5000";
+  var URL = "http://localhost:5000";
+
+  if (process.env.NODE_ENV === 'production'){
+    console.log('true')
+    URL = "https://musiccatalogbe.herokuapp.com"
+  }
 
   let navigate = useNavigate();
 
