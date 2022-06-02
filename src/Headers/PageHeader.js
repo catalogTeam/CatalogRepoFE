@@ -12,11 +12,8 @@ import {
 } from "mdb-react-ui-kit";
 import "../CSS/header.css";
 
-import { useNavigate } from "react-router-dom";
-
 export default function Header(props) {
-  let navigate = useNavigate();
-
+  
   const [nameData, setName] = useState({ page: "" });
 
   const [showBasic, setShowBasic] = useState(false);
@@ -104,7 +101,7 @@ export default function Header(props) {
       </MDBNavbar>
       <div className="p-5 text-center">
         <h1 className="biodescription">{page["pageName"]}</h1>
-        <img src={page["pagePic"]} height="200px" alt="pagepic" />
+        {page["pagePic"] && <img src={page["pagePic"]} height="200px" alt="pagepic" />}
         <h1 className="biodescription">{page["bio"]}</h1>
       </div>
     </div>

@@ -11,10 +11,7 @@ import {
 } from "mdb-react-ui-kit";
 import "../CSS/header.css";
 
-import { useNavigate } from "react-router-dom";
-
 export default function Header(props) {
-  let navigate = useNavigate();
 
   const [nameData, setName] = useState({ user: "" });
 

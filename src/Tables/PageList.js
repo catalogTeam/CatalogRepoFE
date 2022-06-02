@@ -20,7 +20,7 @@ function Pages(props) {
                 onClick={() => props.toPage(pageList[index])}
               />
             </h1>
-            <img src={row.pagePic} height="100px" alt="pagepic" />
+            {row.pagePic && <img src={row.pagePic} height="100px" alt="pagepic" />}
             <label>{row.bio}</label>
           </div>
         </div>

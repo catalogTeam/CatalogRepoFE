@@ -5,11 +5,11 @@ import axios from "axios";
 import Home from "./Home";
 import ErrorPage from "./ErrorPage";
 import ReviewPage from "./ReviewPage";
-import ProfilePage from "./ProfilePage";
-import ProfileForm from "./ProfileForm";
+import ProfilePage from "./ProfileComps/ProfilePage";
+import ProfileForm from "./ProfileComps/ProfileForm";
 import { useCookies } from "react-cookie";
-import ProfileView from "./ProfileView";
-import ProfilePageList from "./ProfilePageList";
+import ProfileView from "./ProfileComps/ProfileView";
+import ProfilePageList from "./ProfileComps/ProfilePageList";
 import UserView from "./UserView";
 import Signup from "./Signup";
 import SearchPage from "./searchRes";
@@ -131,7 +131,7 @@ function MyApp() {
     console.log(pagename);
     let response = await axios.get(`${URL}/search/${pagename}`);
     setPage(response.data);
-    setUser(pagename);
+    // setUser(pagename);
     console.log(response);
     if (response.data.length > 0){
       navigate(`/search/${pagename}`);

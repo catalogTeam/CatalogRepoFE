@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./CSS/ProfileView.css";
-import Pages from "./Tables/PageList";
-import { Card } from "react-bootstrap";
+
 
 function UserView(props) {
   var URL = "http://localhost:5000";
