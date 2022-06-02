@@ -32,7 +32,7 @@ export default function Header(props) {
   function search() {
     let name = nameData.user;
     setName({ user: "" });
-    navigate(`/user/${name}`);
+    props.searchPage(name);
   }
 
   function submit() {

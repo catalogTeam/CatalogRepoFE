@@ -21,14 +21,11 @@ function Home(props) {
     }
   }
 
-  function handleSearch(username) {
-    props.searchUser(username).then((result) => {
+  function handleSearch(pagename) {
+    props.searchPage(pagename).then((result) => {
       console.log(result);
-      if (result.data.length > 0) {
-        navigate(`/user/${username}`);
-      }
-      else {
-        setMsg("No user named: " + username);
+      if (result) {
+        setMsg("No pages similar to: " + pagename);
       }
     });
   }
@@ -41,7 +38,7 @@ function Home(props) {
       <div>
         <h1 className="homeheader">Catalog</h1>
         <sub className="subcolor">
-          Enter username below to search for a user page or create a new page
+          Enter page name below to search for a user page or create a new user and make your own pages
         </sub>
       </div>
       <div>
@@ -71,7 +68,7 @@ function Home(props) {
         </MDBAccordion>
       </div>
       <form>
-        <label htmlFor="user">Username</label>
+        <label htmlFor="user">Search Page Name</label>
         <input
           className="buttonspace"
           type="text"

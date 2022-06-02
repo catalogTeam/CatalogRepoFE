@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/template.css";
 import defPfp from "./default.png";
+var randomWords = require('random-words');
 
 function Signup(props) {
-  var URL = 'https://musiccatalogbe.herokuapp.com';
-  // var URL = "http://localhost:5000";
+  //var URL = 'https://musiccatalogbe.herokuapp.com';
+   var URL = "http://localhost:5000";
+
 
   let navigate = useNavigate();
 
@@ -17,8 +19,8 @@ function Signup(props) {
     username: "",
     password: "",
     profile: defPfp,
-    displayName: "",
-    bio: "",
+    displayName: randomWords({ exactly: 2, join: '' }) + Math.floor(Math.random() * 100),
+    bio: "Empty Bio",
   });
 
   const [message, setMsg] = useState("");
@@ -99,7 +101,6 @@ function Signup(props) {
                 setUser({
                   ...user,
                   username: event.target.value,
-                  displayName: event.target.value,
                 })
               }
             />

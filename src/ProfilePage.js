@@ -1,8 +1,11 @@
 import Header from "./Headers/PageHeader";
 import AlbumCards from "./Cards/AlbumCards";
 import ArtistCards from "./Cards/ArtistCards";
+import SearchPage from "./searchRes";
 
 function ProfilePage(props) {
+  console.log(props.userData);
+  
   function Submit() {
     props.handleSubmit(props.userData);
   }
@@ -15,9 +18,11 @@ function ProfilePage(props) {
     <div>
       <Header
         pageData={props.pageData}
-        butName={"Edit Page"}
+        butName={props.butName}
+        butName2={props.butName2}
         toForm={edit}
         handleSubmit={() => Submit()}
+        searchPage={SearchPage}
       />
       <h1>Albums</h1>
       <AlbumCards albumData={props.pageData["albums"]} />

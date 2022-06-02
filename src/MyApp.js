@@ -12,10 +12,11 @@ import ProfileView from "./ProfileView";
 import ProfilePageList from "./ProfilePageList";
 import UserView from "./UserView";
 import Signup from "./Signup";
+import SearchPage from "./searchRes";
 
 function MyApp() {
-  var URL = 'https://musiccatalogbe.herokuapp.com';
-  //var URL = "http://localhost:5000";
+  //var URL = 'https://musiccatalogbe.herokuapp.com';
+  var URL = "http://localhost:5000";
 
   const [user, setUser] = useState({});
 
@@ -93,6 +94,12 @@ function MyApp() {
     navigate(`/profile/page/${page.pageName}`);
   }
 
+  async function toPage2(searchName, page) {
+    setUser(searchName);
+    setPage(page);
+    navigate(`/user/page/${page.pageName}`);
+  }
+
   async function postSignedInUser(userData, token) {
     console.log(userData);
 
@@ -116,8 +123,18 @@ function MyApp() {
     });
   }
 
-  async function searchUser(username) {
-    return await axios.get(`${URL}/user/${username}`);
+  async function searchPage(pagename) {
+    console.log(pagename);
+    let response = await axios.get(`${URL}/search/${pagename}`);
+    setPage(response.data);
+    setUser(pagename);
+    console.log(response);
+    if (response.data.length > 0){
+      navigate(`/search/${pagename}`);
+    }
+    else {
+      return true;
+    }
   }
 
   async function setData(userData, token) {
@@ -151,6 +168,17 @@ function MyApp() {
           }
         />
 
+        <Route 
+          path="/search/*"
+          element={
+            <SearchPage
+              pages={page}
+              Data={user}
+              toPage={toPage2}
+            />
+          }
+        />
+
         <Route
           exact
           path="/profile/form"
@@ -159,7 +187,7 @@ function MyApp() {
           }
         />
 
-        <Route path="/home" element={<Home handleSubmit={assignUser} searchUser={searchUser} />} />
+        <Route path="/home" element={<Home handleSubmit={assignUser} searchPage={searchPage} />} />
 
         <Route
           path="/profile/:username"
@@ -171,6 +199,7 @@ function MyApp() {
               toReview={toReviewPage}
               handleSubmit={toReviewPage}
               toPages={toPagesView}
+              searchPage={searchPage}
             />
           }
         />
@@ -189,6 +218,20 @@ function MyApp() {
         />
 
         <Route
+          path="/user/page/:pagename"
+          element={
+            <ProfilePage
+              userData={user}
+              pageData={page}
+              toForm={toForm}
+              handleSubmit={searchPage}
+              butName={""}
+              butName2={"Back to Search"}
+            />
+          }
+        />
+
+        <Route
           path="/profile/page/:username"
           element={
             <ProfilePage
@@ -196,6 +239,8 @@ function MyApp() {
               pageData={page}
               toForm={toForm}
               handleSubmit={toPagesView}
+              butName={"Edit Page"}
+              butName2={"Back to Pages"}
             />
           }
         />

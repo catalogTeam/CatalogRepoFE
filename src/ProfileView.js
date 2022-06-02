@@ -39,6 +39,7 @@ function ProfileView(props) {
           butName={"Edit Profile"}
           toForm={props.toForm}
           handleSubmit={() => Submit()}
+          searchPage={props.searchPage}
         />
         <h1>Album Reviews</h1>
         <ReviewCards reviewData={props.userData.reviews} />

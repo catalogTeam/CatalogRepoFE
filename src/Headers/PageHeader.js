@@ -31,7 +31,7 @@ export default function Header(props) {
   function search() {
     let name = nameData.page;
     setName({ page: "" });
-    navigate(`/page/${name}`);
+    props.search(name);
   }
 
   return (
@@ -70,7 +70,7 @@ export default function Header(props) {
                   className="linkheader" 
                   active aria-current="page" 
                   onClick={props.handleSubmit}>
-                  Back to Pages
+                  {props.butName2}
                 </MDBNavbarLink>
               </MDBNavbarItem>
               <MDBNavbarItem>
@@ -84,7 +84,7 @@ export default function Header(props) {
                   className="linkheader" 
                   active aria-current="page" 
                   onClick={() => props.toForm(page)}>
-                  Edit this page!
+                  {props.butName}
                 </MDBNavbarLink>
               </MDBNavbarItem>
             </MDBNavbarNav>

@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./CSS/ProfileView.css";
+import Pages from "./Tables/PageList";
+import { Card } from "react-bootstrap";
 
 function UserView(props) {
   var URL = 'https://musiccatalogbe.herokuapp.com';
@@ -60,7 +62,7 @@ function UserView(props) {
         handleSubmit={() => Submit()}
       />
 
-      <button value="toPages">View Pages</button>
+      <button value="toPages">{username}'s Pages</button>
       <button value="toReviews">View Reviews</button>
     </div>
   );
