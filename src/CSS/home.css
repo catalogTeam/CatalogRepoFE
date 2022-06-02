@@ -1,12 +1,12 @@
 h1 {
   color: black;
   margin: 0.1em;
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
   text-align: center;
-  color: white
+  color: white;
 }
 
-.homeheader{
+.homeheader {
   font-size: 80px;
 }
 
@@ -30,7 +30,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
   font-size: 5px;
 }
 
@@ -44,8 +44,8 @@ body {
   text-align: center;
   background-color: white;
 }
-.buttonspace{
-  margin-right: .5em;
+.buttonspace {
+  margin-right: 0.5em;
   color: white;
 }
 
@@ -64,12 +64,11 @@ create {
   text-align: center;
 }
 
-.subcolor{
+.subcolor {
   color: white;
-
 }
 div {
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
   text-align: center;
   font-size: 1.5em;
   margin: 0.1em;

@@ -15,8 +15,12 @@ import Signup from "./Signup";
 import SearchPage from "./searchRes";
 
 function MyApp() {
-  //var URL = 'https://musiccatalogbe.herokuapp.com';
   var URL = "http://localhost:5000";
+  //var URL = "https://musiccatalogbe.herokuapp.com";
+  if (process.env.REACT_APP_URL){
+    console.log("true");
+    URL = "https://musiccatalogbe.herokuapp.com";
+  }
 
   const [user, setUser] = useState({});
 
@@ -250,10 +254,7 @@ function MyApp() {
           element={<UserView handleSubmit={toReviewPage} />}
         />
 
-        <Route
-          path="/review"
-          element={<ReviewPage userData={user} handleSubmit={setUser} />}
-        />
+        <Route path="/review" element={<ReviewPage userData={user} />} />
 
         <Route path="/signup" element={<Signup handleSubmit={setData} />} />
 

@@ -3,7 +3,7 @@ h1 {
   font-size: 2em;
   margin: 0.1em;
   font-size: 35px;
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
 }
 body {
   box-sizing: border-box;
@@ -15,7 +15,7 @@ body {
 }
 
 .p1 {
-  font-family:"Times New Roman";
+  font-family: "Times New Roman";
   font-size: 25px;
   color: Black;
 }

@@ -6,6 +6,7 @@ import {
   MDBCardImage,
   MDBCardGroup,
 } from "mdb-react-ui-kit";
+import Rating from "@mui/material/Rating";
 
 function CardList(props) {
   const cards = props.reviews?.map((review) => {
@@ -28,6 +29,19 @@ function CardList(props) {
         />
         <MDBCardBody>
           <MDBCardTitle>{review["review"]}</MDBCardTitle>
+        </MDBCardBody>
+
+        <MDBCardBody>
+          <MDBCardTitle>
+            {
+              <Rating
+                name="half-rating-read"
+                value={review["rating"]}
+                precision={0.5}
+                readOnly
+              />
+            }
+          </MDBCardTitle>
         </MDBCardBody>
       </MDBCard>
     );

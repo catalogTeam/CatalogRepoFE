@@ -6,9 +6,12 @@ import defPfp from "./default.png";
 var randomWords = require('random-words');
 
 function Signup(props) {
-  //var URL = 'https://musiccatalogbe.herokuapp.com';
-   var URL = "http://localhost:5000";
+  var URL = "http://localhost:5000";
 
+  if (process.env.REACT_APP_URL){
+    console.log('true')
+    URL = "https://musiccatalogbe.herokuapp.com"
+  }
 
   let navigate = useNavigate();
 
@@ -23,15 +26,16 @@ function Signup(props) {
     bio: "Empty Bio",
   });
 
-  const [message, setMsg] = useState("");
+  const [loginMessage, setLoginMsg] = useState("");
+  const [SignupMessage, setSignupMsg] = useState("");
 
   async function makeSignupCall(user) {
     try {
       const response = await axios.post(`${URL}/signup`, user);
       return response;
     } catch (error) {
-      console.log(error);
-      return false;
+      console.log(error.response);
+      return error.response;
     }
   }
 
@@ -51,7 +55,7 @@ function Signup(props) {
         console.log(response);
         const token = response.data;
         setUserLogin({ username: "", password: "" });
-        setMsg("");
+        setLoginMsg("");
         console.log(LoginUser);
         props.handleSubmit(LoginUser, token).then(() => {
           console.log("navingating to");
@@ -61,7 +65,7 @@ function Signup(props) {
         //navigate(`/profile/${user.username}`, {state: {user: user}})
       } else {
         console.log(response);
-        setMsg("Invalid login credentials!");
+        setLoginMsg("Invalid login credentials!");
       }
     });
   }
@@ -74,6 +78,12 @@ function Signup(props) {
         navigate(`/profile/${user.username}`);
         setUserLogin({ username: "", password: "" });
         //navigate(`/profile/${user.username}`, {state: {user: user}})
+      } else if (response && response.status === 400) {
+        console.log("bad data");
+        setSignupMsg("Invalid signup credentials!");
+      } else if (response && response.status === 409) {
+        console.log("username already taken");
+        setSignupMsg("Username already taken");
       } else {
         console.log(response);
       }
@@ -94,7 +104,7 @@ function Signup(props) {
               class="testinput"
               type="text"
               name="username"
-              id="username"
+              id="si_username"
               placeholder="User Name"
               value={user.username}
               onChange={(event) =>
@@ -108,7 +118,7 @@ function Signup(props) {
               class="testinput"
               type="email"
               name="email"
-              id="email"
+              id="si_email"
               placeholder="Email"
               value={user.email}
               onChange={(event) =>
@@ -119,7 +129,7 @@ function Signup(props) {
               class="testinput"
               type="password"
               name="password"
-              id="password"
+              id="si_password"
               value={user.password}
               placeholder="Password"
               onChange={(event) =>
@@ -129,6 +139,9 @@ function Signup(props) {
             <button class="testbutton" value="Submit" onClick={SubmitSignup}>
               Sign up
             </button>
+            <div>
+              <i> {SignupMessage} </i>
+            </div>
           </div>
 
           <div class="login">
@@ -139,7 +152,7 @@ function Signup(props) {
               class="testinput"
               type="text"
               name="username"
-              id="username"
+              id="li_username"
               value={LoginUser.username}
               placeholder="User Name"
               onChange={(event) =>
@@ -150,18 +163,23 @@ function Signup(props) {
               class="testinput"
               type="password"
               name="password"
-              id="password"
+              id="li_password"
               value={LoginUser.password}
               placeholder="Password"
               onChange={(event) =>
                 setUserLogin({ ...LoginUser, password: event.target.value })
               }
             />
-            <button class="testbutton" value="Submit" onClick={SubmitLogin}>
+            <button
+              class="testbutton"
+              type="submitLogin"
+              value="Submit"
+              onClick={SubmitLogin}
+            >
               Login
             </button>
             <div>
-              <i> {message} </i>
+              <i> {loginMessage} </i>
             </div>
           </div>
         </div>

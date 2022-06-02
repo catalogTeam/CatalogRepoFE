@@ -10,16 +10,17 @@ function Pages(props) {
     const rows = pageList.map((row, index) => {
       return (
         <div className="grid-container">
-
           <div className="pagelistmain">
-            <h1 className="changetextsize">{row.pageName}          
+            <h1 className="changetextsize">
+              {row.pageName}
               <input
-              className="margin"
-              type="button"
-              value="View Page"
-              onClick={() => props.toPage(pageList[index])}/>
+                className="margin"
+                type="button"
+                value="View Page"
+                onClick={() => props.toPage(pageList[index])}
+              />
             </h1>
-            <img src={row.pagePic} height="100px" />
+            <img src={row.pagePic} height="100px" alt="pagepic" />
             <label>{row.bio}</label>
           </div>
         </div>

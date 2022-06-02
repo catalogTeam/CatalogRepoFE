@@ -26,7 +26,6 @@ function CardList(props) {
         )}
         <MDBCardBody>
           <MDBCardTitle className=" fontsize">{artist["name"]}</MDBCardTitle>
-          
         </MDBCardBody>
       </MDBCard>
     );
