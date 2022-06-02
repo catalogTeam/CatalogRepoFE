@@ -6,13 +6,12 @@ import { MDBAccordion, MDBAccordionItem } from "mdb-react-ui-kit";
 function Home(props) {
   var URL = "http://localhost:5000";
 
-  if (process.env.REACT_APP_URL){
-    console.log('true')
-    URL = "https://musiccatalogbe.herokuapp.com"
+  if (process.env.REACT_APP_URL) {
+    console.log("true");
+    URL = "https://musiccatalogbe.herokuapp.com";
   }
-  console.log(URL)
-  console.log(process.env.NODE_ENV)
-
+  console.log(URL);
+  console.log(process.env.NODE_ENV);
 
   let navigate = useNavigate();
 
@@ -45,7 +44,8 @@ function Home(props) {
       <div>
         <h1 className="homeheader">Catalog</h1>
         <sub className="subcolor">
-          Enter page name below to search for a user page or create a new user and make your own pages
+          Enter page name below to search for a user page or create a new user
+          and make your own pages
         </sub>
       </div>
       <div>

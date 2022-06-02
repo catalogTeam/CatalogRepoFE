@@ -10,9 +10,9 @@ import Rating from "@mui/material/Rating";
 function ReviewPage(props) {
   var URL = "http://localhost:5000";
 
-  if (process.env.REACT_APP_URL){
-    console.log('true')
-    URL = "https://musiccatalogbe.herokuapp.com"
+  if (process.env.REACT_APP_URL) {
+    console.log("true");
+    URL = "https://musiccatalogbe.herokuapp.com";
   }
 
   const [user, setUser] = useState({ albums: [] });

@@ -17,7 +17,7 @@ import SearchPage from "./searchRes";
 function MyApp() {
   var URL = "http://localhost:5000";
   //var URL = "https://musiccatalogbe.herokuapp.com";
-  if (process.env.REACT_APP_URL){
+  if (process.env.REACT_APP_URL) {
     console.log("true");
     URL = "https://musiccatalogbe.herokuapp.com";
   }
@@ -133,10 +133,9 @@ function MyApp() {
     setPage(response.data);
     // setUser(pagename);
     console.log(response);
-    if (response.data.length > 0){
+    if (response.data.length > 0) {
       navigate(`/search/${pagename}`);
-    }
-    else {
+    } else {
       return true;
     }
   }
@@ -172,15 +171,9 @@ function MyApp() {
           }
         />
 
-        <Route 
+        <Route
           path="/search/*"
-          element={
-            <SearchPage
-              pages={page}
-              Data={user}
-              toPage={toPage2}
-            />
-          }
+          element={<SearchPage pages={page} Data={user} toPage={toPage2} />}
         />
 
         <Route
@@ -191,7 +184,10 @@ function MyApp() {
           }
         />
 
-        <Route path="/home" element={<Home handleSubmit={assignUser} searchPage={searchPage} />} />
+        <Route
+          path="/home"
+          element={<Home handleSubmit={assignUser} searchPage={searchPage} />}
+        />
 
         <Route
           path="/profile/:username"

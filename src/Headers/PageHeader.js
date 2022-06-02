@@ -13,7 +13,6 @@ import {
 import "../CSS/header.css";
 
 export default function Header(props) {
-  
   const [nameData, setName] = useState({ page: "" });
 
   const [showBasic, setShowBasic] = useState(false);
@@ -65,10 +64,12 @@ export default function Header(props) {
                   value="Back to Pages"
                   onClick={props.handleSubmit}
                 /> */}
-                <MDBNavbarLink 
-                  className="linkheader" 
-                  active aria-current="page" 
-                  onClick={props.handleSubmit}>
+                <MDBNavbarLink
+                  className="linkheader"
+                  active
+                  aria-current="page"
+                  onClick={props.handleSubmit}
+                >
                   {props.butName2}
                 </MDBNavbarLink>
               </MDBNavbarItem>
@@ -79,10 +80,12 @@ export default function Header(props) {
                   value={props.butName}
                   onClick={() => props.toForm(page)}
                 /> */}
-                <MDBNavbarLink 
-                  className="linkheader" 
-                  active aria-current="page" 
-                  onClick={() => props.toForm(page)}>
+                <MDBNavbarLink
+                  className="linkheader"
+                  active
+                  aria-current="page"
+                  onClick={() => props.toForm(page)}
+                >
                   {props.butName}
                 </MDBNavbarLink>
               </MDBNavbarItem>
@@ -101,7 +104,9 @@ export default function Header(props) {
       </MDBNavbar>
       <div className="p-5 text-center">
         <h1 className="biodescription">{page["pageName"]}</h1>
-        {page["pagePic"] && <img src={page["pagePic"]} height="200px" alt="pagepic" />}
+        {page["pagePic"] && (
+          <img src={page["pagePic"]} height="200px" alt="pagepic" />
+        )}
         <h1 className="biodescription">{page["bio"]}</h1>
       </div>
     </div>

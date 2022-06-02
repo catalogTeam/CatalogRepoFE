@@ -12,7 +12,6 @@ import {
 import "../CSS/header.css";
 
 export default function Header(props) {
-
   const [nameData, setName] = useState({ user: "" });
 
   const [showBasic, setShowBasic] = useState(false);

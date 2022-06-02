@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./CSS/template.css";
 import defPfp from "./default.png";
-var randomWords = require('random-words');
+var randomWords = require("random-words");
 
 function Signup(props) {
   var URL = "http://localhost:5000";
 
-  if (process.env.REACT_APP_URL){
-    console.log('true')
-    URL = "https://musiccatalogbe.herokuapp.com"
+  if (process.env.REACT_APP_URL) {
+    console.log("true");
+    URL = "https://musiccatalogbe.herokuapp.com";
   }
 
   let navigate = useNavigate();
@@ -22,7 +22,8 @@ function Signup(props) {
     username: "",
     password: "",
     profile: defPfp,
-    displayName: randomWords({ exactly: 2, join: '' }) + Math.floor(Math.random() * 100),
+    displayName:
+      randomWords({ exactly: 2, join: "" }) + Math.floor(Math.random() * 100),
     bio: "Empty Bio",
   });
 
