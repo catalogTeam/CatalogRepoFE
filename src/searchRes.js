@@ -22,7 +22,7 @@ function SearchPage(props) {
       return (
         <div>
           <input type="button" value="Home" onClick={() => navigate("/home")} />
-          <header>Search Results</header>
+          <h1>Search Results</h1>
           <Pages pages={props.pages} toPage={Submit} />
         </div>
       );

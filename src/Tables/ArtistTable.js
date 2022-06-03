@@ -34,7 +34,7 @@ function TableBody(props) {
 function ArtistTable(props) {
   return (
     <div>
-      <table>
+      <table className="whitefont">
         <TableHeader />
         <TableBody user={props.pagedata} removeArtist={props.removeArtist} />
       </table>
