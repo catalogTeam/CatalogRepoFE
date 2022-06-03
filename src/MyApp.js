@@ -127,13 +127,16 @@ function MyApp() {
     });
   }
 
-  async function searchPage(pagename) {
-    console.log(pagename);
+  async function search(pagename) {
     let response = await axios.get(`${URL}/search/${pagename}`);
     setPage(response.data);
-    // setUser(pagename);
-    console.log(response);
-    if (response.data.length > 0) {
+    localStorage.setItem('searchName', pagename);
+    console.log(response.data);
+    return response.data.length > 0;
+  }
+
+  async function searchPage(pagename) {
+    if (await search(pagename)) {
       navigate(`/search/${pagename}`);
     } else {
       return true;
@@ -172,8 +175,8 @@ function MyApp() {
         />
 
         <Route
-          path="/search/*"
-          element={<SearchPage pages={page} Data={user} toPage={toPage2} />}
+          path="/search/:searchName"
+          element={<SearchPage pages={page} Data={user} toPage={toPage2} handleSubmit={search}/>}
         />
 
         <Route
