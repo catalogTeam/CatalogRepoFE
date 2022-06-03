@@ -11,7 +11,7 @@ function ProfilePage(props) {
   }
 
   function edit() {
-    props.toForm(props.userData);
+    props.toForm(props.userData, props.pageData, 1);
   }
 
   return (
