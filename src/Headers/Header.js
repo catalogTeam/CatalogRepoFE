@@ -107,9 +107,9 @@ export default function Header(props) {
         </MDBContainer>
       </MDBNavbar>
       <div className="p-5 text-center">
-        <h1 className="biodescription">{user["displayName"]}</h1>
+        <h1 className="biodescription" >{user["displayName"]}</h1>
         <img src={user["profile"]} height="200px" alt="profileimg" />
-        <h1 className="biodescription">{user["bio"]}</h1>
+        <h1 className="biodescription" id="bio">{user["bio"]}</h1>
       </div>
     </div>
   );

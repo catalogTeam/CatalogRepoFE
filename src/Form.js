@@ -19,6 +19,7 @@ function Form(props) {
   const [page, setPage] = useState(props.pageData);
   console.log(props.pageData);
   const [nameData, setName] = useState({ album: "", artist: "" });
+  
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];

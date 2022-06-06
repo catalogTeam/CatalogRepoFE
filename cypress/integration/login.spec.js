@@ -15,5 +15,11 @@ describe("login test", () => {
     cy.get("button[type=submitLogin]").click();
 
     cy.url().should("include", "/profile/logintest");
+
+    cy.wait(10000)
+
+    cy.get("h1[id^=bio]").should(($h) => {
+      expect($h.first()).to.contain('test-bio')
+    })
   });
 });
