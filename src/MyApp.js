@@ -43,12 +43,9 @@ function MyApp() {
   async function changeUser(username, token) {
     try {
       const config = {
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { Authorization: `Bearer ${ cookies.auth_token}` },
       };
-      console.log("nameee");
-      console.log(username);
       const response = await axios.get(`${URL}/user/${username}`, config);
-      console.log(response.data[0]);
       return response.data[0];
     } catch (error) {
       // We're not handling errors. Just logging into the console.
