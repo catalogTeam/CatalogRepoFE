@@ -1,5 +1,13 @@
 ![example workflow](https://github.com/catalogTeam/CatalogRepoFE/actions/workflows/node.js.yml/badge.svg)
 
+# Catalog Repository Frontend
+
+Developed with NODE js, Express, MongoDB, and calls to the SpotifyAPI.
+
+Catalog Product Spec: https://docs.google.com/document/d/19jHN31FKUMMZ6EW8DFhTgSvYol8LVn-j9hdNSQfbLMQ/edit?usp=sharing
+
+Updated Product Spec: https://docs.google.com/document/d/1ogO4qJQe5q4V0Pby3Te-ghBrWuaUdyLSyqtJD5cvtKU/edit
+
 ## Getting Started
 
 If you want to be able to replicate this project, then the instructions below should help.
