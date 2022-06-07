@@ -1,36 +1,46 @@
 ![example workflow](https://github.com/catalogTeam/CatalogRepoFE/actions/workflows/node.js.yml/badge.svg)
 
-## Getting Started
+# How to build the Music Catalog App
 
-If you want to be able to replicate this project, then the instructions below should help.
- 
-Front-end: https://github.com/catalogTeam/CatalogRepoFE
+#step 1
 
-Back-end: https://github.com/colewarner24/CatalogRepoBackend
+create a spotify developer account
+https://developer.spotify.com/dashboard/login
+and then create an app
 
-To run this locally, all you need to do is download both repositories and run them individually.
+#step 2
 
-Locally, the Front-end runs on port 3000, and the Back-end runs on port 5000.
+create a new folder
 
-Front-end command script
+clone the repos both the back and the frontend
 
-```md
-npm start
-```
+git clone https://github.com/catalogTeam/CatalogRepoFE
 
-Back-end command script
-```md
-npm run dev
-```
+git clone https://github.com/colewarner24/CatalogRepoBackend
 
-## Installing Packages Used
+#step 3 init backend
 
-Use command 
+run -> npm i
 
-We used a ton of packages, so best way to install it is to just use the command
+and then create a .env folder
 
-```md
-npm install
-```
+get the mongodb uri and assign it to MONGODB_URI in .env file
+get the client secret and client id and assign them to the 
+CLIENT_SECRET and CLIENT_ID variables in the .env file
+create a random string and assign it to TOKEN_SECRET variable
+in your .env file
 
-On the terminal
+# init frontend
+
+run -> npm i
+
+in the backend run -> npm run dev
+and in the frontend run -> npm start
+
+and the application should run !!!
+
+
+
+
+
+
