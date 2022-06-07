@@ -23,6 +23,15 @@ Back-end command script
 npm run dev
 ```
 
+## Setting Up Heroku Frontend Environmental Variables
+
+Heroku requires frontend environmental variables solely for the purpose of being able to seperately run both locally and on heroku.
+We add an evironmental variable for the frontend to check which environment the FE is being run on. If our project is being run on heroku, our backend port will be directed to the Heroku-backend app, while if otherwise, it will be directed to the port 5000 of our local backend.
+
+***NODE_ENV = production***
+
+***REACT_APP_URL = "https://YOUR_HEROKU_BACKEND.herokuapp.com/***
+
 ## Installing Packages Used
 
 Use command 
